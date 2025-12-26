@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import ParticleField from './ParticleField';
+import CircuitPattern from './CircuitPattern';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -8,6 +9,9 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient-bg">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
+      
+      {/* Circuit Pattern */}
+      <CircuitPattern />
       
       {/* Particle Field */}
       <ParticleField />
