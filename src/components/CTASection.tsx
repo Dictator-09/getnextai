@@ -17,8 +17,7 @@ const CTASection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Replace this with your Google Apps Script Web App URL
-  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9NqsvnAuE7n0xF_mkMFLmrIobDEfcaYwpP8pxqmSVoAIGm9tpcwHfvs6atd0Rb_a3/exec';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
