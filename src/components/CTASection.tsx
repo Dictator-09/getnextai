@@ -11,6 +11,7 @@ const CTASection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     message: '',
   });
@@ -33,6 +34,7 @@ const CTASection = () => {
         body: JSON.stringify({
           name: formData.name.trim(),
           email: formData.email.trim(),
+          phone: formData.phone.trim(),
           company: formData.company.trim(),
           message: formData.message.trim(),
           timestamp: new Date().toISOString(),
@@ -44,7 +46,7 @@ const CTASection = () => {
         description: "We'll get back to you within 24 hours.",
       });
       
-      setFormData({ name: '', email: '', company: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
     } catch (error) {
       toast({
         title: "Error",
@@ -242,18 +244,30 @@ const CTASection = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div
+                <motion.div 
+                  className="grid sm:grid-cols-2 gap-5"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.55 }}
                 >
-                  <Input
-                    placeholder="Company name"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
-                  />
+                  <div>
+                    <Input
+                      type="tel"
+                      placeholder="Phone number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      placeholder="Company name"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
+                    />
+                  </div>
                 </motion.div>
                 
                 <motion.div
