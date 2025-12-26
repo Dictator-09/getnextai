@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Send, ArrowRight } from 'lucide-react';
+import { Send, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const CTASection = () => {
   const { toast } = useToast();
@@ -31,6 +32,13 @@ const CTASection = () => {
     setIsSubmitting(false);
   };
 
+  const benefits = [
+    'Free consultation — no commitment required',
+    'Custom solutions tailored to your needs',
+    'Implementation within 2-4 weeks',
+    'Ongoing support and optimization',
+  ];
+
   return (
     <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
@@ -38,57 +46,139 @@ const CTASection = () => {
       <div className="absolute inset-0 grid-pattern opacity-30" />
       
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
+      <motion.div 
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        animate={{ 
+          x: [0, 60, 0],
+          y: [0, -40, 0],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
+        animate={{ 
+          x: [0, -50, 0],
+          y: [0, 50, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div>
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase mb-4 block">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.span 
+                className="text-primary text-sm font-semibold tracking-wider uppercase mb-4 block"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
                 Get Started
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
+              </motion.span>
+              <motion.h2 
+                className="font-display text-4xl md:text-5xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 Ready to{' '}
-                <span className="gradient-text">Transform</span>{' '}
+                <motion.span 
+                  className="gradient-text inline-block"
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                  Transform
+                </motion.span>{' '}
                 Your Business?
-              </h2>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+              </motion.h2>
+              <motion.p 
+                className="text-muted-foreground text-lg mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 Join hundreds of businesses already using AI automation to save time, reduce costs, and scale effortlessly. Let's discuss how we can help you.
-              </p>
+              </motion.p>
               
               {/* Benefits */}
-              <div className="space-y-4">
-                {[
-                  'Free consultation — no commitment required',
-                  'Custom solutions tailored to your needs',
-                  'Implementation within 2-4 weeks',
-                  'Ongoing support and optimization',
-                ].map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                {benefits.map((benefit, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="flex items-center gap-3"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    <motion.div 
+                      className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center"
+                      whileHover={{ scale: 1.2, backgroundColor: "hsl(var(--primary) / 0.4)" }}
+                    >
+                      <Check className="w-3 h-3 text-primary" />
+                    </motion.div>
                     <span className="text-muted-foreground">{benefit}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             
             {/* Contact Form */}
-            <div className="glass-card p-8 md:p-10">
-              <h3 className="font-display text-2xl font-bold mb-6">
+            <motion.div 
+              className="glass-card p-8 md:p-10"
+              initial={{ opacity: 0, x: 50, rotateY: -10 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ 
+                boxShadow: "0 30px 60px -15px hsl(var(--primary) / 0.2)"
+              }}
+            >
+              <motion.h3 
+                className="font-display text-2xl font-bold mb-6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
                 Send us a message
-              </h3>
+              </motion.h3>
               
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
+                <motion.div 
+                  className="grid sm:grid-cols-2 gap-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                >
                   <div>
                     <Input
                       placeholder="Your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="bg-muted/50 border-border/50 focus:border-primary h-12"
+                      className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
                     />
                   </div>
                   <div>
@@ -98,45 +188,73 @@ const CTASection = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      className="bg-muted/50 border-border/50 focus:border-primary h-12"
+                      className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
                     />
                   </div>
-                </div>
+                </motion.div>
                 
-                <Input
-                  placeholder="Company name"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="bg-muted/50 border-border/50 focus:border-primary h-12"
-                />
-                
-                <Textarea
-                  placeholder="Tell us about your project..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={4}
-                  className="bg-muted/50 border-border/50 focus:border-primary resize-none"
-                />
-                
-                <Button
-                  type="submit"
-                  variant="hero"
-                  size="lg"
-                  className="w-full group"
-                  disabled={isSubmitting}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
                 >
-                  {isSubmitting ? (
-                    'Sending...'
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </Button>
+                  <Input
+                    placeholder="Company name"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="bg-muted/50 border-border/50 focus:border-primary h-12 transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
+                  />
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Textarea
+                    placeholder="Tell us about your project..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                    rows={4}
+                    className="bg-muted/50 border-border/50 focus:border-primary resize-none transition-all duration-300 focus:shadow-[0_0_20px_hsl(var(--primary)/0.2)]"
+                  />
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button
+                    type="submit"
+                    variant="hero"
+                    size="lg"
+                    className="w-full group"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        Sending...
+                      </motion.span>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
