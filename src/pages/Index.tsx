@@ -8,12 +8,16 @@ import Footer from '@/components/Footer';
 import StarryBackground from '@/components/StarryBackground';
 import CursorSpotlight from '@/components/CursorSpotlight';
 import ConsentModal from '@/components/ConsentModal';
+import CookieBanner from '@/components/CookieBanner';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Consent Modal */}
       <ConsentModal />
+      
+      {/* Cookie Banner */}
+      <CookieBanner />
       
       {/* Cursor spotlight effect */}
       <CursorSpotlight />
