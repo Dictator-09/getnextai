@@ -84,13 +84,12 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 60, rotateX: -15 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: "easeOut" as const,
     },
   },
@@ -102,24 +101,16 @@ const StatsSection = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
       
-      {/* Animated background particles */}
+      {/* Animated background */}
       <motion.div 
-        className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, 100, 0], 
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-secondary/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, -80, 0], 
-          y: [0, 60, 0],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-secondary/10 rounded-full blur-3xl will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -174,25 +165,18 @@ const StatsSection = () => {
               key={index}
               variants={cardVariants}
               whileHover={{ 
-                y: -15, 
-                scale: 1.05,
-                boxShadow: "0 25px 50px -12px hsl(var(--primary) / 0.25)"
+                y: -10, 
+                transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
-              className="glass-card p-8 text-center group hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
+              className="glass-card p-8 text-center group hover:border-primary/30 transition-colors duration-300 relative overflow-hidden"
             >
               {/* Glow effect on hover */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               {/* Icon */}
-              <motion.div 
-                className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 relative z-10"
-                whileHover={{ rotate: 360, scale: 1.2 }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 relative z-10 group-hover:bg-primary/20 transition-colors duration-300">
                 <stat.icon className="w-8 h-8 text-primary" />
-              </motion.div>
+              </div>
               
               {/* Animated Counter */}
               <div className="relative z-10">

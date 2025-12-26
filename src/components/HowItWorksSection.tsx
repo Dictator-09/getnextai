@@ -33,12 +33,9 @@ const HowItWorksSection = () => {
     <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background Elements */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.1, 1],
-          rotate: [0, 180, 360]
-        }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -127,12 +124,8 @@ const HowItWorksSection = () => {
                         delay: index * 0.2 + 0.3 
                       }}
                     >
-                      {/* Pulse ring */}
-                      <motion.div 
-                        className="absolute inset-0 rounded-full border-2 border-primary/50"
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                      />
+                      {/* Pulse ring - simplified */}
+                      <div className="absolute inset-0 rounded-full border-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300" />
                       <span className="font-display font-bold text-primary text-lg">
                         {step.number}
                       </span>

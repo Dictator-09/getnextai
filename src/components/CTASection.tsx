@@ -70,24 +70,16 @@ const CTASection = () => {
       <div className="absolute inset-0 animated-gradient-bg" />
       <div className="absolute inset-0 grid-pattern opacity-30" />
       
-      {/* Gradient Orbs */}
+      {/* Gradient Orbs - simplified */}
       <motion.div 
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, 60, 0],
-          y: [0, -40, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, -50, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -111,21 +103,13 @@ const CTASection = () => {
               </motion.span>
               <motion.h2 
                 className="font-display text-4xl md:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
               >
                 Ready to{' '}
-                <motion.span 
-                  className="gradient-text inline-block"
-                  animate={{ 
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                >
-                  Transform
-                </motion.span>{' '}
+                <span className="gradient-text">Transform</span>{' '}
                 Your Business?
               </motion.h2>
               <motion.p 
@@ -150,18 +134,14 @@ const CTASection = () => {
                   <motion.div 
                     key={index} 
                     className="flex items-center gap-3"
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    whileHover={{ x: 10 }}
+                    transition={{ delay: 0.3 + index * 0.08 }}
                   >
-                    <motion.div 
-                      className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center"
-                      whileHover={{ scale: 1.2, backgroundColor: "hsl(var(--primary) / 0.4)" }}
-                    >
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
                       <Check className="w-3 h-3 text-primary" />
-                    </motion.div>
+                    </div>
                     <span className="text-muted-foreground">{benefit}</span>
                   </motion.div>
                 ))}
@@ -171,13 +151,10 @@ const CTASection = () => {
             {/* Contact Form */}
             <motion.div 
               className="glass-card p-8 md:p-10"
-              initial={{ opacity: 0, x: 50, rotateY: -10 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ 
-                boxShadow: "0 30px 60px -15px hsl(var(--primary) / 0.2)"
-              }}
+              transition={{ duration: 0.5, delay: 0.15 }}
             >
               {/* Contact Info */}
               <motion.div
@@ -286,12 +263,12 @@ const CTASection = () => {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.8 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  transition={{ delay: 0.6 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
                   <Button
                     type="submit"
