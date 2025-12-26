@@ -29,88 +29,67 @@ const ConsentModal = () => {
     <AnimatePresence>
       {showModal && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ type: "spring", damping: 25, stiffness: 200 }}
+          className="fixed bottom-4 left-4 right-4 md:left-6 md:right-6 z-[100] max-w-2xl mx-auto"
         >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            className="bg-card border border-border rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl"
-          >
-            {/* Icon */}
-            <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center">
-              <Shield className="w-7 h-7 text-primary" />
+          <div className="bg-card border border-border rounded-2xl p-4 md:p-6 shadow-2xl backdrop-blur-lg">
+            <div className="flex flex-col gap-4">
+              {/* Header */}
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-display font-semibold text-foreground mb-1">
+                    Welcome to GetNextAI
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Please review and accept our policies:{' '}
+                    <Link to="/privacy-policy" target="_blank" className="text-primary hover:underline">
+                      Privacy Policy
+                    </Link>
+                    ,{' '}
+                    <Link to="/terms-of-service" target="_blank" className="text-primary hover:underline">
+                      Terms of Service
+                    </Link>
+                    , and{' '}
+                    <Link to="/cookie-policy" target="_blank" className="text-primary hover:underline">
+                      Cookie Policy
+                    </Link>
+                  </p>
+                </div>
+              </div>
+
+              {/* Checkbox & Actions */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex items-center gap-2 flex-1">
+                  <Checkbox
+                    id="consent"
+                    checked={isChecked}
+                    onCheckedChange={(checked) => setIsChecked(checked === true)}
+                  />
+                  <label 
+                    htmlFor="consent" 
+                    className="text-sm text-muted-foreground cursor-pointer"
+                  >
+                    I agree to all policies
+                  </label>
+                </div>
+
+                <Button
+                  onClick={handleAccept}
+                  disabled={!isChecked}
+                  className="w-full sm:w-auto"
+                >
+                  {isChecked && <Check className="w-4 h-4 mr-2" />}
+                  Accept & Continue
+                </Button>
+              </div>
             </div>
-
-            {/* Title */}
-            <h2 className="text-2xl font-display font-bold text-foreground text-center mb-3">
-              Welcome to GetNextAI
-            </h2>
-
-            {/* Description */}
-            <p className="text-muted-foreground text-center mb-6 leading-relaxed">
-              Before you continue, please review and accept our policies to ensure a transparent and secure experience.
-            </p>
-
-            {/* Policy Links */}
-            <div className="bg-muted/50 rounded-xl p-4 mb-6 space-y-2">
-              <Link 
-                to="/privacy-policy" 
-                target="_blank"
-                className="block text-sm text-primary hover:underline"
-              >
-                → Privacy Policy
-              </Link>
-              <Link 
-                to="/terms-of-service" 
-                target="_blank"
-                className="block text-sm text-primary hover:underline"
-              >
-                → Terms of Service
-              </Link>
-              <Link 
-                to="/cookie-policy" 
-                target="_blank"
-                className="block text-sm text-primary hover:underline"
-              >
-                → Cookie Policy
-              </Link>
-            </div>
-
-            {/* Checkbox */}
-            <div className="flex items-start gap-3 mb-6">
-              <Checkbox
-                id="consent"
-                checked={isChecked}
-                onCheckedChange={(checked) => setIsChecked(checked === true)}
-                className="mt-0.5"
-              />
-              <label 
-                htmlFor="consent" 
-                className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
-              >
-                I have read and agree to the{' '}
-                <span className="text-foreground font-medium">Privacy Policy</span>,{' '}
-                <span className="text-foreground font-medium">Terms of Service</span>, and{' '}
-                <span className="text-foreground font-medium">Cookie Policy</span>.
-              </label>
-            </div>
-
-            {/* Accept Button */}
-            <Button
-              onClick={handleAccept}
-              disabled={!isChecked}
-              className="w-full"
-              size="lg"
-            >
-              {isChecked && <Check className="w-4 h-4 mr-2" />}
-              Accept & Continue
-            </Button>
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
