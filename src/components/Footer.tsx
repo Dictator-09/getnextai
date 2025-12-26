@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
 const Footer = () => {
@@ -18,7 +19,7 @@ const Footer = () => {
       { name: 'Contact', href: '#contact' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#' },
+      { name: 'Privacy Policy', href: '/privacy-policy', isRoute: true },
       { name: 'Terms of Service', href: '#' },
       { name: 'Cookie Policy', href: '#' },
     ],
@@ -171,13 +172,24 @@ const Footer = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <motion.a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors inline-block"
-                    whileHover={{ x: 5 }}
-                  >
-                    {link.name}
-                  </motion.a>
+                  {link.isRoute ? (
+                    <motion.div whileHover={{ x: 5 }}>
+                      <Link
+                        to={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors inline-block"
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors inline-block"
+                      whileHover={{ x: 5 }}
+                    >
+                      {link.name}
+                    </motion.a>
+                  )}
                 </motion.li>
               ))}
             </ul>
