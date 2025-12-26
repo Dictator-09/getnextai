@@ -58,9 +58,12 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:flex items-center">
-            <Button variant="hero" size="sm">
+            <Button 
+              variant="hero" 
+              size="sm"
+              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Get Started
             </Button>
           </div>
@@ -88,7 +91,16 @@ const Navbar = () => {
                 </button>
               ))}
               <div className="pt-4 border-t border-border">
-                <Button variant="hero" className="w-full">Get Started</Button>
+                <Button 
+                  variant="hero" 
+                  className="w-full"
+                  onClick={() => {
+                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Get Started
+                </Button>
               </div>
             </div>
           </div>
