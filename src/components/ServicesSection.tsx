@@ -33,12 +33,12 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: "easeOut" as const,
     },
   },
@@ -50,14 +50,14 @@ const ServicesSection = () => {
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <motion.div 
-        className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
-        animate={{ x: [-20, 20, -20], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute top-1/2 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2"
-        animate={{ x: [20, -20, 20], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute top-1/2 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2 will-change-transform"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -112,38 +112,25 @@ const ServicesSection = () => {
               key={index}
               variants={itemVariants}
               whileHover={{ 
-                y: -10, 
-                scale: 1.02,
-                transition: { duration: 0.3 }
+                y: -8, 
+                transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
               className="glass-card-hover p-8 group cursor-pointer relative overflow-hidden"
             >
               {/* Hover gradient overlay */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               {/* Icon */}
-              <motion.div 
-                className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300 relative z-10"
-                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300 relative z-10">
                 <service.icon className="w-7 h-7 text-primary" />
-              </motion.div>
+              </div>
               
               {/* Title */}
               <div className="flex items-center gap-2 mb-4 relative z-10">
                 <h3 className="font-display text-2xl font-bold text-foreground">
                   {service.title}
                 </h3>
-                <motion.div
-                  initial={{ x: -10, opacity: 0 }}
-                  whileHover={{ x: 0, opacity: 1 }}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <ArrowUpRight className="w-5 h-5 text-primary" />
-                </motion.div>
+                <ArrowUpRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               
               {/* Description */}
@@ -154,21 +141,13 @@ const ServicesSection = () => {
               {/* Features */}
               <ul className="space-y-3 relative z-10">
                 {service.features.map((feature, fIndex) => (
-                  <motion.li 
+                  <li 
                     key={fIndex} 
                     className="flex items-center gap-3 text-sm text-muted-foreground"
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + fIndex * 0.1 }}
                   >
-                    <motion.div 
-                      className="w-1.5 h-1.5 rounded-full bg-primary"
-                      animate={{ scale: [1, 1.5, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: fIndex * 0.3 }}
-                    />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                     {feature}
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </motion.div>
