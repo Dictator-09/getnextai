@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -65,19 +66,10 @@ const Footer = () => {
           <motion.div className="lg:col-span-2" variants={itemVariants}>
             <motion.a 
               href="#" 
-              className="flex items-center gap-2 mb-6"
+              className="flex items-center mb-6"
               whileHover={{ scale: 1.02 }}
             >
-              <motion.div 
-                className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30"
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <span className="text-primary font-display font-bold text-lg">G</span>
-              </motion.div>
-              <span className="font-display font-bold text-xl text-foreground">
-                GetNext<span className="text-primary">AI</span>
-              </span>
+              <Logo size="md" />
             </motion.a>
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
               Empowering businesses with intelligent automation solutions. Transform your operations with cutting-edge AI technology.

@@ -2,47 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 230 60% 6%;
-    --foreground: 210 40% 98%;
+    --background: 240 20% 4%;
+    --foreground: 200 20% 95%;
 
-    --card: 230 50% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 15% 8%;
+    --card-foreground: 200 20% 95%;
 
-    --popover: 230 50% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 200 20% 95%;
 
-    --primary: 187 100% 50%;
-    --primary-foreground: 230 60% 6%;
+    --primary: 190 100% 55%;
+    --primary-foreground: 240 20% 4%;
 
-    --secondary: 262 83% 66%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 280 85% 65%;
+    --secondary-foreground: 200 20% 95%;
 
-    --muted: 230 40% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 15% 15%;
+    --muted-foreground: 200 15% 60%;
 
-    --accent: 262 83% 66%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 90% 60%;
+    --accent-foreground: 200 20% 95%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 200 20% 95%;
 
-    --border: 230 30% 18%;
-    --input: 230 30% 18%;
-    --ring: 187 100% 50%;
+    --border: 240 20% 18%;
+    --input: 240 20% 18%;
+    --ring: 190 100% 55%;
 
     --radius: 0.75rem;
 
-    /* Custom design tokens */
-    --glow-primary: 0 0 40px hsl(187 100% 50% / 0.4);
-    --glow-secondary: 0 0 40px hsl(262 83% 66% / 0.4);
-    --gradient-primary: linear-gradient(135deg, hsl(187 100% 50%), hsl(262 83% 66%));
-    --gradient-hero: linear-gradient(135deg, hsl(230 60% 6%) 0%, hsl(230 50% 12%) 50%, hsl(262 50% 15%) 100%);
-    --glass-bg: hsl(230 50% 10% / 0.6);
-    --glass-border: hsl(187 100% 50% / 0.1);
+    /* Custom design tokens - Neon Cyber Theme */
+    --glow-primary: 0 0 40px hsl(190 100% 55% / 0.5);
+    --glow-secondary: 0 0 40px hsl(280 85% 65% / 0.5);
+    --glow-accent: 0 0 40px hsl(220 90% 60% / 0.5);
+    --gradient-primary: linear-gradient(135deg, hsl(190 100% 55%), hsl(220 90% 60%), hsl(280 85% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(240 20% 4%) 0%, hsl(240 25% 8%) 50%, hsl(280 30% 12%) 100%);
+    --glass-bg: hsl(240 20% 8% / 0.7);
+    --glass-border: hsl(190 100% 55% / 0.15);
   }
 }
 
@@ -61,7 +62,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Orbitron', sans-serif;
   }
 }
 
