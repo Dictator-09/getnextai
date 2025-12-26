@@ -169,10 +169,10 @@ const CTASection = () => {
                   <div>
                     <p className="text-sm text-muted-foreground">Need immediate assistance?</p>
                     <a 
-                      href="tel:+1234567890" 
+                      href="tel:+918527706626" 
                       className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
                     >
-                      +1 (234) 567-890
+                      +91 8527706626
                     </a>
                   </div>
                 </div>
