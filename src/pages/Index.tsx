@@ -8,6 +8,7 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import StarryBackground from '@/components/StarryBackground';
+import CursorSpotlight from '@/components/CursorSpotlight';
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -37,6 +38,9 @@ const Index = () => {
         backgroundColor: `hsl(${hue} ${saturation}% ${lightness}%)`,
       }}
     >
+      {/* Cursor spotlight effect */}
+      <CursorSpotlight />
+      
       {/* Scroll-based gradient overlay */}
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
