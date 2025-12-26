@@ -58,11 +58,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="sm">
-              Log In
-            </Button>
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center">
             <Button variant="hero" size="sm">
               Get Started
             </Button>
@@ -90,11 +87,8 @@ const Navbar = () => {
                   {link.name}
                 </button>
               ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="ghost" className="justify-start">
-                  Log In
-                </Button>
-                <Button variant="hero">Get Started</Button>
+              <div className="pt-4 border-t border-border">
+                <Button variant="hero" className="w-full">Get Started</Button>
               </div>
             </div>
           </div>
