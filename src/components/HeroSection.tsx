@@ -99,7 +99,7 @@ const HeroSection = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Button variant="hero" size="lg" className="group">
-                Contact Us for More
+                Contact Us
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
