@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Send, Check } from 'lucide-react';
+import { Send, Check, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CTASection = () => {
@@ -154,6 +154,31 @@ const CTASection = () => {
                 boxShadow: "0 30px 60px -15px hsl(var(--primary) / 0.2)"
               }}
             >
+              {/* Contact Info */}
+              <motion.div
+                className="glass-card p-6 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Need immediate assistance?</p>
+                    <a 
+                      href="tel:+1234567890" 
+                      className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    >
+                      +1 (234) 567-890
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Form Card */}
               <motion.h3 
                 className="font-display text-2xl font-bold mb-6"
                 initial={{ opacity: 0 }}
