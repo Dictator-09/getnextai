@@ -52,9 +52,13 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
                 getnextai@gmail.com
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+              <a href="tel:+919568356026" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                 <Phone className="w-4 h-4" />
-                +1 (234) 567-890
+                +91 9568356026
+              </a>
+              <a href="tel:+918527706626" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                +91 8527706626
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="w-4 h-4" />
