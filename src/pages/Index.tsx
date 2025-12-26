@@ -7,6 +7,7 @@ import StatsSection from '@/components/StatsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import StarryBackground from '@/components/StarryBackground';
 
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -47,10 +48,15 @@ const Index = () => {
       <Navbar />
       <main className="relative z-10">
         <HeroSection />
-        <ServicesSection />
-        <StatsSection />
-        <HowItWorksSection />
-        <CTASection />
+        
+        {/* Starry background for lower sections */}
+        <div className="relative">
+          <StarryBackground />
+          <ServicesSection />
+          <StatsSection />
+          <HowItWorksSection />
+          <CTASection />
+        </div>
       </main>
       <Footer />
     </motion.div>
