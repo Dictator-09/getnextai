@@ -7,10 +7,14 @@ import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import StarryBackground from '@/components/StarryBackground';
 import CursorSpotlight from '@/components/CursorSpotlight';
+import ConsentModal from '@/components/ConsentModal';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Consent Modal */}
+      <ConsentModal />
+      
       {/* Cursor spotlight effect */}
       <CursorSpotlight />
       
