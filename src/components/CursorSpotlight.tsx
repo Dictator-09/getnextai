@@ -1,26 +1,38 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const CursorSpotlight = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.left = `${e.clientX}px`;
         cursorRef.current.style.top = `${e.clientY}px`;
-      }
 
-      // Ensure it's visible if it wasn't (covers edge cases where mouseenter didn't fire)
-      // We check a ref to avoid state dependency if we wanted, but strictly speaking
-      // separating this is cleaner. For now we trust mouseenter/leave.
+        // Ensure visible on movement
+        if (!isVisibleRef.current) {
+          cursorRef.current.style.opacity = '1';
+          isVisibleRef.current = true;
+        }
+      }
     };
 
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => {
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = '1';
+        isVisibleRef.current = true;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = '0';
+        isVisibleRef.current = false;
+      }
+    };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    // Use document instead of body for better coverage
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
@@ -37,7 +49,7 @@ const CursorSpotlight = () => {
       className="fixed pointer-events-none z-40 mix-blend-screen transition-opacity duration-200"
       style={{
         transform: 'translate(-50%, -50%)',
-        opacity: isVisible ? 1 : 0,
+        opacity: 0, // Start invisible, JS will fade it in
       }}
     >
       {/* Simple radial glow */}
