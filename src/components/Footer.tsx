@@ -79,12 +79,12 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               <motion.a 
-                href="mailto:getnextai@gmail.com" 
+                href="mailto:support@getnextai.tech" 
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ x: 5 }}
               >
                 <Mail className="w-4 h-4" />
-                getnextai@gmail.com
+                support@getnextai.tech
               </motion.a>
               <motion.a 
                 href="tel:+919568356026" 

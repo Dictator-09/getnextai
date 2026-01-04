@@ -78,8 +78,8 @@ const TermsOfService = () => {
           <Link to="/">
             <Logo size="md" />
           </Link>
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -166,8 +166,8 @@ const TermsOfService = () => {
             </h3>
             <p className="text-muted-foreground mb-4">
               Contact us at{' '}
-              <a href="mailto:getnextai@gmail.com" className="text-primary hover:underline">
-                getnextai@gmail.com
+              <a href="mailto:support@getnextai.tech" className="text-primary hover:underline">
+                support@getnextai.tech
               </a>
             </p>
             <Link
