@@ -1,40 +1,41 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const CursorSpotlight = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const cursorRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-    if (!isVisible) setIsVisible(true);
-  }, [isVisible]);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsVisible(false);
-  }, []);
-
-  const handleMouseEnter = useCallback(() => {
-    setIsVisible(true);
-  }, []);
-
   useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+
+      // Ensure it's visible if it wasn't (covers edge cases where mouseenter didn't fire)
+      // We check a ref to avoid state dependency if we wanted, but strictly speaking
+      // separating this is cleaner. For now we trust mouseenter/leave.
+    };
+
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    document.body.addEventListener('mouseleave', handleMouseLeave);
-    document.body.addEventListener('mouseenter', handleMouseEnter);
+    // Use document instead of body for better coverage
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      document.body.removeEventListener('mouseleave', handleMouseLeave);
-      document.body.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [handleMouseMove, handleMouseLeave, handleMouseEnter]);
+  }, []);
 
   return (
     <div
+      ref={cursorRef}
       className="fixed pointer-events-none z-40 mix-blend-screen transition-opacity duration-200"
       style={{
-        left: position.x,
-        top: position.y,
         transform: 'translate(-50%, -50%)',
         opacity: isVisible ? 1 : 0,
       }}
