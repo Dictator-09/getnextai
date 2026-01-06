@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -9,6 +9,14 @@ export default function MorphingModel() {
     const scroll = useScroll();
     const groupRef = useRef<THREE.Group>(null);
     const meshRefs = useRef<(THREE.Mesh | null)[]>([]);
+
+    // Debug: Log scroll offset
+    useEffect(() => {
+        const interval = setInterval(() => {
+            console.log("Scroll offset:", scroll.offset.toFixed(3));
+        }, 500);
+        return () => clearInterval(interval);
+    }, [scroll]);
 
     // 5 shapes for 5 sections
     const geometries = useMemo(() => [
@@ -31,9 +39,6 @@ export default function MorphingModel() {
     useFrame((state, delta) => {
         if (!groupRef.current) return;
 
-        // scroll.offset goes from 0 to 1 across all 5 pages
-        // We need to map this to 5 sections (0-4)
-        // Section boundaries: 0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0
         const offset = Math.min(Math.max(scroll.offset, 0), 0.999);
 
         // Determine current section (0-4)
@@ -45,7 +50,7 @@ export default function MorphingModel() {
         else currentSection = 4;
 
         // Calculate progress within current section (0-1)
-        const sectionSize = 0.2; // Each section is 20% of total scroll
+        const sectionSize = 0.2;
         const sectionStart = currentSection * sectionSize;
         const sectionProgress = (offset - sectionStart) / sectionSize;
 
@@ -62,19 +67,16 @@ export default function MorphingModel() {
             const mat = mesh.material as THREE.MeshStandardMaterial;
 
             if (index === currentSection) {
-                // Current section: visible, fading out
                 mesh.visible = true;
                 const scale = 1 - sectionProgress * 0.4;
                 mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
                 mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - sectionProgress * 0.7, 0.15);
             } else if (index === nextSection && currentSection !== 4) {
-                // Next section: fading in (unless we're at the last section)
                 mesh.visible = true;
                 const scale = 0.6 + sectionProgress * 0.4;
                 mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
                 mat.opacity = THREE.MathUtils.lerp(mat.opacity, sectionProgress * 0.7, 0.15);
             } else {
-                // Hidden sections
                 mesh.visible = false;
                 mesh.scale.set(0.01, 0.01, 0.01);
                 mat.opacity = 0;

@@ -10,16 +10,12 @@ export default function Overlay() {
             html
             style={{
                 width: "100%",
-                height: "100%",
-                scrollSnapType: "y mandatory",
-                overflowY: "scroll",
-                scrollBehavior: "smooth"
+                height: "100%"
             }}
         >
             {/* SECTION 1: HERO */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
-                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
             >
                 <div className="text-center z-10 pointer-events-auto">
                     <motion.div
@@ -51,7 +47,6 @@ export default function Overlay() {
             {/* SECTION 2: CUSTOM WEBSITES */}
             <section
                 className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
-                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
             >
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                     <div className="max-w-lg w-full">
@@ -76,7 +71,6 @@ export default function Overlay() {
             {/* SECTION 3: AI VOICE AGENTS */}
             <section
                 className="h-screen w-screen flex items-center justify-start p-8 max-w-screen-2xl mx-auto"
-                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
             >
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                     <div className="max-w-lg w-full">
@@ -101,7 +95,6 @@ export default function Overlay() {
             {/* SECTION 4: WHATSAPP AUTOMATION */}
             <section
                 className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
-                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
             >
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                     <div className="max-w-lg w-full">
@@ -126,7 +119,6 @@ export default function Overlay() {
             {/* SECTION 5: CONTACT */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8"
-                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
             >
                 <div className="bg-black/80 backdrop-blur-xl p-10 rounded-3xl border border-white/10 max-w-4xl w-full flex flex-col md:flex-row gap-10">
                     <div className="flex-1">
