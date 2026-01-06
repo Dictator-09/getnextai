@@ -4,28 +4,6 @@ import { Scroll } from "@react-three/drei";
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle } from "lucide-react";
 
-const Section = (props: any) => {
-    return (
-        <section
-            className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col justify-center items-start ${props.right ? "items-end" : "items-start"
-                }`}
-            style={{
-                opacity: props.opacity,
-                scrollSnapAlign: "start",
-                scrollSnapStop: "always"
-            }}
-        >
-            <div className="w-full md:w-1/2 flex items-center justify-center">
-                <div className="max-w-lg w-full">
-                    <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                        {props.children}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
-
 export default function Overlay() {
     return (
         <Scroll
@@ -38,7 +16,7 @@ export default function Overlay() {
                 scrollBehavior: "smooth"
             }}
         >
-            {/* HERO SECTION (Scroll 0-0.25) */}
+            {/* SECTION 1: HERO */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
                 style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
@@ -70,55 +48,82 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* SERVICES SECTION (Scroll 0.25-0.75) */}
-            <div className="w-full">
-                <Section right opacity={1}>
-                    <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
-                    <p className="text-gray-400 mb-6">
-                        3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
-                    </p>
-                    <ul className="space-y-2 mb-8">
-                        <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> React Three Fiber</li>
-                        <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Next.js 15</li>
-                        <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> WebGL Optimization</li>
-                    </ul>
-                    <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
-                        View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
-                </Section>
+            {/* SECTION 2: CUSTOM WEBSITES */}
+            <section
+                className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
+                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+            >
+                <div className="w-full md:w-1/2 flex items-center justify-center">
+                    <div className="max-w-lg w-full">
+                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                            <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
+                            <p className="text-gray-400 mb-6">
+                                3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
+                            </p>
+                            <ul className="space-y-2 mb-8">
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> React Three Fiber</li>
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Next.js 15</li>
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> WebGL Optimization</li>
+                            </ul>
+                            <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
+                                View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <Section opacity={1}>
-                    <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
-                    <p className="text-gray-400 mb-6">
-                        Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
-                    </p>
-                    <ul className="space-y-2 mb-8">
-                        <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Natural Language Processing</li>
-                        <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> &lt;100ms Latency</li>
-                        <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Multi-lingual Support</li>
-                    </ul>
-                    <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
-                        Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
-                </Section>
+            {/* SECTION 3: AI VOICE AGENTS */}
+            <section
+                className="h-screen w-screen flex items-center justify-start p-8 max-w-screen-2xl mx-auto"
+                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+            >
+                <div className="w-full md:w-1/2 flex items-center justify-center">
+                    <div className="max-w-lg w-full">
+                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                            <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
+                            <p className="text-gray-400 mb-6">
+                                Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
+                            </p>
+                            <ul className="space-y-2 mb-8">
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Natural Language Processing</li>
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> &lt;100ms Latency</li>
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Multi-lingual Support</li>
+                            </ul>
+                            <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
+                                Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <Section right opacity={1}>
-                    <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
-                    <p className="text-gray-400 mb-6">
-                        Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
-                    </p>
-                    <ul className="space-y-2 mb-8">
-                        <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
-                        <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> CRM Integration</li>
-                        <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Instant Checkout</li>
-                    </ul>
-                    <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
-                        Start Chat <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
-                </Section>
-            </div>
+            {/* SECTION 4: WHATSAPP AUTOMATION */}
+            <section
+                className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
+                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+            >
+                <div className="w-full md:w-1/2 flex items-center justify-center">
+                    <div className="max-w-lg w-full">
+                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                            <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
+                            <p className="text-gray-400 mb-6">
+                                Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
+                            </p>
+                            <ul className="space-y-2 mb-8">
+                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
+                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> CRM Integration</li>
+                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Instant Checkout</li>
+                            </ul>
+                            <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
+                                Start Chat <ArrowRight className="ml-2 h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            {/* CONTACT SECTION (Scroll 0.75-1.0) */}
+            {/* SECTION 5: CONTACT */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8"
                 style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
