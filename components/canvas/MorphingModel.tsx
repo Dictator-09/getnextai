@@ -5,96 +5,69 @@ import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Custom geometry helpers for morphing
-function createBrainGeometry() {
-    // Icosahedron with higher detail for AI/Brain look
-    return new THREE.IcosahedronGeometry(1.5, 2);
-}
-
-function createMonitorGeometry() {
-    // Box for website/monitor representation
-    return new THREE.BoxGeometry(2.5, 1.5, 0.2);
-}
-
-function createWaveformGeometry() {
-    // Torus knot for voice/waveform representation
-    return new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-}
-
-function createChatGeometry() {
-    // Rounded box-like shape for chat bubbles
-    return new THREE.DodecahedronGeometry(1.2, 0);
-}
-
-function createFinalGeometry() {
-    // Abstract tetrahedron for the finale
-    return new THREE.OctahedronGeometry(1.5, 0);
-}
-
 export default function MorphingModel() {
     const scroll = useScroll();
     const groupRef = useRef<THREE.Group>(null);
     const meshRefs = useRef<(THREE.Mesh | null)[]>([]);
 
-    // Pre-create all geometries
+    // 5 shapes for 5 sections
     const geometries = useMemo(() => [
-        createBrainGeometry(),     // 0: Hero - AI Brain
-        createMonitorGeometry(),   // 1: Websites - Monitor
-        createWaveformGeometry(),  // 2: Voice - Waveform
-        createChatGeometry(),      // 3: WhatsApp - Chat
-        createFinalGeometry(),     // 4: Contact - Abstract
+        new THREE.IcosahedronGeometry(1.5, 2),    // Hero: AI Brain
+        new THREE.BoxGeometry(2.5, 1.5, 0.2),     // Websites: Monitor
+        new THREE.TorusKnotGeometry(1, 0.3, 64, 8), // Voice: Waveform
+        new THREE.DodecahedronGeometry(1.2, 0),   // WhatsApp: Chat
+        new THREE.OctahedronGeometry(1.5, 0),     // Contact: Abstract
     ], []);
 
     // Colors for each section
     const colors = useMemo(() => [
-        new THREE.Color("#00f5ff"), // Cyan - Brain
-        new THREE.Color("#bd00ff"), // Purple - Monitor
-        new THREE.Color("#ff006e"), // Pink - Waveform
-        new THREE.Color("#25D366"), // WhatsApp Green - Chat
-        new THREE.Color("#ffffff"), // White - Final
+        new THREE.Color("#00f5ff"), // Cyan
+        new THREE.Color("#bd00ff"), // Purple
+        new THREE.Color("#ff006e"), // Pink
+        new THREE.Color("#25D366"), // WhatsApp Green
+        new THREE.Color("#ffffff"), // White
     ], []);
 
     useFrame((state, delta) => {
         if (!groupRef.current) return;
 
-        const offset = Math.min(Math.max(scroll.offset, 0), 1);
+        // Clamp offset strictly to 0-1
+        const offset = Math.min(Math.max(scroll.offset, 0), 0.999);
 
-        // Determine which section we're in (0-4)
-        const sectionFloat = offset * 4;
-        const currentSection = Math.floor(sectionFloat);
+        // Map offset to section index (0-4 for 5 sections)
+        // offset 0.0-0.2 = section 0, 0.2-0.4 = section 1, etc.
+        const sectionFloat = offset * 5;
+        const currentSection = Math.min(Math.floor(sectionFloat), 4);
+        const nextSection = Math.min(currentSection + 1, 4);
         const sectionProgress = sectionFloat - currentSection;
 
-        // Rotate the entire group gently
-        groupRef.current.rotation.y += delta * 0.3;
-        groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+        // Gentle rotation
+        groupRef.current.rotation.y += delta * 0.2;
+        groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
 
-        // Update visibility and scale of each mesh based on section
+        // Update each mesh
         meshRefs.current.forEach((mesh, index) => {
             if (!mesh) return;
 
+            const mat = mesh.material as THREE.MeshStandardMaterial;
+
             if (index === currentSection) {
-                // Current section: fade in and scale up
-                const targetScale = 1 - sectionProgress * 0.3;
-                mesh.scale.setScalar(THREE.MathUtils.lerp(mesh.scale.x, targetScale, 0.1));
+                // Current section: visible, fading out as we scroll
                 mesh.visible = true;
-
-                // Fade out as we approach next section
-                if (mesh.material instanceof THREE.MeshStandardMaterial) {
-                    mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, 1 - sectionProgress, 0.1);
-                }
-            } else if (index === currentSection + 1) {
-                // Next section: fade in
-                const targetScale = 0.5 + sectionProgress * 0.5;
-                mesh.scale.setScalar(THREE.MathUtils.lerp(mesh.scale.x, targetScale, 0.1));
+                const scale = 1 - sectionProgress * 0.5;
+                mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - sectionProgress, 0.15);
+            } else if (index === nextSection && currentSection !== nextSection) {
+                // Next section: fading in
                 mesh.visible = true;
-
-                if (mesh.material instanceof THREE.MeshStandardMaterial) {
-                    mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, sectionProgress, 0.1);
-                }
+                const scale = 0.5 + sectionProgress * 0.5;
+                mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+                mat.opacity = THREE.MathUtils.lerp(mat.opacity, sectionProgress, 0.15);
             } else {
-                // Other sections: hide
-                mesh.scale.setScalar(THREE.MathUtils.lerp(mesh.scale.x, 0, 0.1));
-                mesh.visible = mesh.scale.x > 0.01;
+                // Hidden sections
+                mesh.visible = false;
+                mesh.scale.set(0.01, 0.01, 0.01);
+                mat.opacity = 0;
             }
         });
     });
@@ -107,6 +80,7 @@ export default function MorphingModel() {
                     ref={(el) => { meshRefs.current[index] = el; }}
                     geometry={geometry}
                     visible={index === 0}
+                    scale={index === 0 ? 1 : 0.01}
                 >
                     <meshStandardMaterial
                         wireframe
@@ -121,7 +95,6 @@ export default function MorphingModel() {
                 </mesh>
             ))}
 
-            {/* Lights that change with scroll */}
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1.5} color="#00f5ff" />
             <pointLight position={[-10, -10, -10]} intensity={1} color="#bd00ff" />
