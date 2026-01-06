@@ -17,9 +17,7 @@ export default function MorphingModel() {
 
         const offset = Math.min(Math.max(scroll.offset, 0), 0.999);
 
-        // Position: Move down as user scrolls
-        const yPosition = 2 - (offset * 10);
-        groupRef.current.position.y = yPosition;
+        // Keep orb centered - no Y position change
 
         // Outer sphere rotation
         if (outerSphereRef.current) {
@@ -86,7 +84,7 @@ export default function MorphingModel() {
     }
 
     return (
-        <group ref={groupRef} position={[0, 2, 0]}>
+        <group ref={groupRef} position={[0, 0, 0]}>
             {/* Outer wireframe sphere */}
             <mesh ref={outerSphereRef}>
                 <icosahedronGeometry args={[1.8, 1]} />
