@@ -11,7 +11,7 @@ export default function MorphingModel() {
         const handleScroll = () => {
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = window.scrollY;
-            const progress = Math.min(scrolled / scrollHeight, 1);
+            const progress = Math.min(scrolled / scrollHeight, 0.8); // Clamp to 80% to stop color changes after Contact
             setScrollProgress(progress);
         };
 
