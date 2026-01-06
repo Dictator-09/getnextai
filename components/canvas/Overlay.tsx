@@ -17,14 +17,14 @@ export default function Overlay() {
 
         const slides = slidesRef.current;
 
-        // Create horizontal scroll animation
+        // Create horizontal scroll animation with extended duration
         const scrollTween = gsap.to(slides, {
             x: () => -(slides.scrollWidth - window.innerWidth),
             ease: "none",
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${slides.scrollWidth}`,
+                end: () => `+=${slides.scrollWidth * 1.5}`, // Extended by 1.5x for more scroll time
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
