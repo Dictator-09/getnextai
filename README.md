@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GetNextAI
 
-## Getting Started
+**Pioneering the Antigravity era of digital experiences.**
 
-First, run the development server:
+GetNextAI is a next-generation landing page built with bleeding-edge web technologies, designed to showcase the future of Agentic AI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS v3.4 + `tailwindcss-animate`
+- **Animation**: Framer Motion
+- **3D Engine**: Spline 3D (`@splinetool/react-spline`)
+- **Deployment**: Vercel (Node 22.x/20+ Strict)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **3D Environment**: Immersive Cyberpunk City background (Spline).
+- **Magnetic UI**: Physics-based buttons that react to cursor movement.
+- **Holographic Aesthetics**: Premium dark mode design with cyan/fuchsia accents.
+- **Performance**: Zero-layout shift 3D loading and React Server Components.
 
-## Learn More
+## 📦 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Dictator-09/getnextai.git
+    cd getnextai
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3.  **Run development server**:
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ☁️ Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is configured for seamless deployment on Vercel.
+
+1.  Push to GitHub.
+2.  Import project in Vercel.
+3.  The included `vercel.json` will automatically configure the build settings.
+
+---
+
+*Built with passion for the future.*
