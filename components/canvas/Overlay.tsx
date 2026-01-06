@@ -93,7 +93,7 @@ export default function Overlay() {
             <section ref={containerRef} className="h-screen w-screen overflow-hidden">
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
@@ -113,7 +113,7 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
@@ -133,7 +133,7 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
