@@ -12,11 +12,11 @@ export default function MorphingModel() {
 
     // 5 shapes for 5 sections
     const geometries = useMemo(() => [
-        new THREE.IcosahedronGeometry(1.5, 2),    // Hero: AI Brain
-        new THREE.BoxGeometry(2.5, 1.5, 0.2),     // Websites: Monitor
+        new THREE.IcosahedronGeometry(1.5, 2),      // Hero: AI Brain
+        new THREE.BoxGeometry(2.5, 1.5, 0.2),       // Websites: Monitor
         new THREE.TorusKnotGeometry(1, 0.3, 64, 8), // Voice: Waveform
-        new THREE.DodecahedronGeometry(1.2, 0),   // WhatsApp: Chat
-        new THREE.OctahedronGeometry(1.5, 0),     // Contact: Abstract
+        new THREE.DodecahedronGeometry(1.2, 0),     // WhatsApp: Chat
+        new THREE.OctahedronGeometry(1.5, 0),       // Contact: Abstract
     ], []);
 
     // Colors for each section
@@ -31,15 +31,25 @@ export default function MorphingModel() {
     useFrame((state, delta) => {
         if (!groupRef.current) return;
 
-        // Clamp offset strictly to 0-1
+        // scroll.offset goes from 0 to 1 across all 5 pages
+        // We need to map this to 5 sections (0-4)
+        // Section boundaries: 0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0
         const offset = Math.min(Math.max(scroll.offset, 0), 0.999);
 
-        // Map offset to section index (0-4 for 5 sections)
-        // offset 0.0-0.2 = section 0, 0.2-0.4 = section 1, etc.
-        const sectionFloat = offset * 5;
-        const currentSection = Math.min(Math.floor(sectionFloat), 4);
+        // Determine current section (0-4)
+        let currentSection = 0;
+        if (offset < 0.2) currentSection = 0;
+        else if (offset < 0.4) currentSection = 1;
+        else if (offset < 0.6) currentSection = 2;
+        else if (offset < 0.8) currentSection = 3;
+        else currentSection = 4;
+
+        // Calculate progress within current section (0-1)
+        const sectionSize = 0.2; // Each section is 20% of total scroll
+        const sectionStart = currentSection * sectionSize;
+        const sectionProgress = (offset - sectionStart) / sectionSize;
+
         const nextSection = Math.min(currentSection + 1, 4);
-        const sectionProgress = sectionFloat - currentSection;
 
         // Gentle rotation
         groupRef.current.rotation.y += delta * 0.2;
@@ -52,17 +62,17 @@ export default function MorphingModel() {
             const mat = mesh.material as THREE.MeshStandardMaterial;
 
             if (index === currentSection) {
-                // Current section: visible, fading out as we scroll
+                // Current section: visible, fading out
                 mesh.visible = true;
-                const scale = 1 - sectionProgress * 0.5;
+                const scale = 1 - sectionProgress * 0.4;
                 mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - sectionProgress, 0.15);
-            } else if (index === nextSection && currentSection !== nextSection) {
-                // Next section: fading in
+                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - sectionProgress * 0.7, 0.15);
+            } else if (index === nextSection && currentSection !== 4) {
+                // Next section: fading in (unless we're at the last section)
                 mesh.visible = true;
-                const scale = 0.5 + sectionProgress * 0.5;
+                const scale = 0.6 + sectionProgress * 0.4;
                 mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                mat.opacity = THREE.MathUtils.lerp(mat.opacity, sectionProgress, 0.15);
+                mat.opacity = THREE.MathUtils.lerp(mat.opacity, sectionProgress * 0.7, 0.15);
             } else {
                 // Hidden sections
                 mesh.visible = false;
