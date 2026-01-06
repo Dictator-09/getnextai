@@ -8,15 +8,23 @@ export default function Overlay() {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
 
-    // Map scroll progress to horizontal translation
-    // 0-0.2: Hero (no movement)
-    // 0.2-0.6: Services sliding (0 to -200vw)
-    // 0.6-1: Contact (stay at -200vw)
+    // Discrete scroll sections with snapping behavior
+    // 0-0.15: Hero
+    // 0.15-0.35: Tile 1 (Custom Websites)
+    // 0.35-0.55: Tile 2 (AI Voice Agents)
+    // 0.55-0.75: Tile 3 (WhatsApp Automation)
+    // 0.75-1: Contact
+
     const x = useTransform(
         scrollYProgress,
-        [0, 0.2, 0.6, 1],
-        ["0vw", "0vw", "-200vw", "-200vw"]
+        [0, 0.15, 0.35, 0.55, 0.75, 1],
+        ["0vw", "0vw", "-100vw", "-200vw", "-200vw", "-200vw"]
     );
+
+    // Individual tile opacity for clean transitions
+    const tile1Opacity = useTransform(scrollYProgress, [0.1, 0.15, 0.35, 0.4], [0, 1, 1, 0]);
+    const tile2Opacity = useTransform(scrollYProgress, [0.3, 0.35, 0.55, 0.6], [0, 1, 1, 0]);
+    const tile3Opacity = useTransform(scrollYProgress, [0.5, 0.55, 0.75, 0.8], [0, 1, 1, 0]);
 
     return (
         <div ref={containerRef} className="absolute top-0 left-0 w-full z-20">
@@ -61,9 +69,7 @@ export default function Overlay() {
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
                             className="w-full max-w-lg"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            style={{ opacity: tile1Opacity }}
                         >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
@@ -86,9 +92,7 @@ export default function Overlay() {
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
                             className="w-full max-w-lg"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            style={{ opacity: tile2Opacity }}
                         >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
@@ -111,9 +115,7 @@ export default function Overlay() {
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
                             className="w-full max-w-lg"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            style={{ opacity: tile3Opacity }}
                         >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
