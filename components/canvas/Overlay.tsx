@@ -11,6 +11,8 @@ const Section = (props: any) => {
                 }`}
             style={{
                 opacity: props.opacity,
+                scrollSnapAlign: "start",
+                scrollSnapStop: "always"
             }}
         >
             <div className="w-full md:w-1/2 flex items-center justify-center">
@@ -26,9 +28,21 @@ const Section = (props: any) => {
 
 export default function Overlay() {
     return (
-        <Scroll html style={{ width: "100%", height: "100%" }}>
+        <Scroll
+            html
+            style={{
+                width: "100%",
+                height: "100%",
+                scrollSnapType: "y mandatory",
+                overflowY: "scroll",
+                scrollBehavior: "smooth"
+            }}
+        >
             {/* HERO SECTION (Scroll 0-0.25) */}
-            <section className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none">
+            <section
+                className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
+                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+            >
                 <div className="text-center z-10 pointer-events-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -105,7 +119,10 @@ export default function Overlay() {
             </div>
 
             {/* CONTACT SECTION (Scroll 0.75-1.0) */}
-            <section className="h-screen w-screen flex flex-col items-center justify-center p-8">
+            <section
+                className="h-screen w-screen flex flex-col items-center justify-center p-8"
+                style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+            >
                 <div className="bg-black/80 backdrop-blur-xl p-10 rounded-3xl border border-white/10 max-w-4xl w-full flex flex-col md:flex-row gap-10">
                     <div className="flex-1">
                         <h2 className="text-5xl font-bold text-white mb-6">Let's Build<br />The Future.</h2>
