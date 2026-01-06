@@ -9,21 +9,26 @@ import { EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
 
 export default function Scene() {
     return (
-        <div className="fixed inset-0 z-0 h-screen w-full bg-black">
-            <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 1.5]}>
-                <Suspense fallback={null}>
-                    <ScrollControls pages={5} damping={0.1}>
-                        <MorphingModel />
-                        <Overlay />
-                    </ScrollControls>
+        <>
+            {/* Spline 3D Model Layer */}
+            <MorphingModel />
 
-                    <EffectComposer>
-                        <Noise opacity={0.05} />
-                        <Vignette eskil={false} offset={0.1} darkness={1.1} />
-                    </EffectComposer>
-                    <Preload all />
-                </Suspense>
-            </Canvas>
-        </div>
+            {/* R3F Canvas for HTML Overlay and Effects */}
+            <div className="fixed inset-0 z-10 h-screen w-full pointer-events-none">
+                <Canvas gl={{ antialias: true, alpha: true }} dpr={[1, 1.5]}>
+                    <Suspense fallback={null}>
+                        <ScrollControls pages={5} damping={0.1}>
+                            <Overlay />
+                        </ScrollControls>
+
+                        <EffectComposer>
+                            <Noise opacity={0.05} />
+                            <Vignette eskil={false} offset={0.1} darkness={1.1} />
+                        </EffectComposer>
+                        <Preload all />
+                    </Suspense>
+                </Canvas>
+            </div>
+        </>
     );
 }
