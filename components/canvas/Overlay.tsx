@@ -24,7 +24,7 @@ export default function Overlay() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${slides.scrollWidth * 1.5}`, // Extended by 1.5x for more scroll time
+                end: () => `+=${slides.scrollWidth * 4.0}`, // Extended by 4.0x for more scroll time
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
