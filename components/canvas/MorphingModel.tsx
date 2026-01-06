@@ -1,45 +1,10 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import Spline from "@splinetool/react-spline";
 
 export default function MorphingModel() {
     const splineRef = useRef<any>(null);
-    const [scrollProgress, setScrollProgress] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = window.scrollY;
-            const progress = Math.min(scrolled / scrollHeight, 1);
-            setScrollProgress(progress);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Calculate color based on scroll progress
-    const getOverlayColor = (progress: number) => {
-        if (progress < 0.2) {
-            // Hero: Cyan
-            return 'rgba(0, 245, 255, 0.15)';
-        } else if (progress < 0.4) {
-            // Websites: Purple
-            return 'rgba(189, 0, 255, 0.15)';
-        } else if (progress < 0.6) {
-            // Voice: Pink
-            return 'rgba(255, 0, 110, 0.15)';
-        } else if (progress < 0.8) {
-            // WhatsApp: Green
-            return 'rgba(37, 211, 102, 0.15)';
-        } else {
-            // Contact: White/Blue
-            return 'rgba(100, 200, 255, 0.1)';
-        }
-    };
 
     // Aggressive watermark hiding
     useEffect(() => {
@@ -107,15 +72,6 @@ export default function MorphingModel() {
                 <Spline
                     scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
                     onLoad={onLoad}
-                />
-
-                {/* Color Overlay */}
-                <div
-                    className="absolute inset-0 pointer-events-none transition-colors duration-500"
-                    style={{
-                        backgroundColor: getOverlayColor(scrollProgress),
-                        mixBlendMode: 'screen'
-                    }}
                 />
             </div>
 
