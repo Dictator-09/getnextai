@@ -36,7 +36,23 @@ export default function MorphingModel() {
             <Spline
                 scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
                 onLoad={onLoad}
+                style={{
+                    width: '100%',
+                    height: '100%'
+                }}
             />
+
+            {/* Hide Spline watermark */}
+            <style jsx global>{`
+                #spline-watermark,
+                [id*="spline"],
+                [class*="spline-watermark"],
+                a[href*="spline.design"] {
+                    display: none !important;
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                }
+            `}</style>
         </div>
     );
 }
