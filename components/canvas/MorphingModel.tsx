@@ -1,77 +1,59 @@
 "use client";
 
-import { useRef } from "react";
-import { useScroll } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import { useRef, useEffect, useState } from "react";
+import Spline from "@splinetool/react-spline";
 
 export default function MorphingModel() {
-    const scroll = useScroll();
-    const groupRef = useRef<THREE.Group>(null);
-    const meshRef = useRef<THREE.Mesh>(null);
+    const splineRef = useRef<any>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [scrollOffset, setScrollOffset] = useState(0);
 
-    useFrame((state, delta) => {
-        if (!groupRef.current || !meshRef.current) return;
+    useEffect(() => {
+        const handleScroll = () => {
+            // Calculate scroll progress (0 to 1)
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = Math.min(scrolled / scrollHeight, 1);
 
-        const offset = Math.min(Math.max(scroll.offset, 0), 0.999);
+            setScrollOffset(progress);
 
-        // Position: Move down as user scrolls (Y axis goes from top to bottom)
-        // Start at Y=2, end at Y=-8 (moves down 10 units total)
-        const yPosition = 2 - (offset * 10);
-        groupRef.current.position.y = yPosition;
+            if (containerRef.current) {
+                // Move the Spline model down as user scrolls
+                const translateY = progress * 150; // Move down 150vh total
+                containerRef.current.style.transform = `translateY(${translateY}vh) scale(${1 - progress * 0.2})`;
+            }
+        };
 
-        // Rotation: Roll the object as it moves down
-        // Complete multiple full rotations as it travels
-        meshRef.current.rotation.x = offset * Math.PI * 8; // 4 full rotations
-        meshRef.current.rotation.z = offset * Math.PI * 4; // 2 full rotations on Z axis
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial call
 
-        // Gentle continuous rotation for visual interest
-        groupRef.current.rotation.y += delta * 0.3;
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-        // Color shift based on scroll position
-        const mat = meshRef.current.material as THREE.MeshStandardMaterial;
-        const color = new THREE.Color();
-
-        if (offset < 0.2) {
-            color.set("#00f5ff"); // Cyan
-        } else if (offset < 0.4) {
-            color.set("#bd00ff"); // Purple
-        } else if (offset < 0.6) {
-            color.set("#ff006e"); // Pink
-        } else if (offset < 0.8) {
-            color.set("#25D366"); // Green
-        } else {
-            color.set("#ffffff"); // White
-        }
-
-        mat.color.lerp(color, 0.1);
-        mat.emissive.lerp(color, 0.1);
-
-        // Scale pulse for visual interest
-        const pulse = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.05;
-        meshRef.current.scale.setScalar(pulse);
-    });
+    const onLoad = (spline: any) => {
+        splineRef.current = spline;
+        console.log('Spline scene loaded');
+    };
 
     return (
-        <group ref={groupRef} position={[0, 2, 0]}>
-            {/* Main rolling object - using Icosahedron for interesting rolling motion */}
-            <mesh ref={meshRef}>
-                <icosahedronGeometry args={[1.5, 1]} />
-                <meshStandardMaterial
-                    wireframe
-                    color="#00f5ff"
-                    emissive="#00f5ff"
-                    emissiveIntensity={0.5}
-                    roughness={0.1}
-                    metalness={0.8}
-                />
-            </mesh>
-
-            {/* Lights */}
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1.5} color="#00f5ff" />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#bd00ff" />
-            <pointLight position={[0, 10, -10]} intensity={0.8} color="#ff006e" />
-        </group>
+        <div
+            ref={containerRef}
+            className="fixed top-0 left-0 w-full h-screen pointer-events-none transition-transform duration-100 ease-linear"
+            style={{
+                zIndex: 1,
+                willChange: 'transform'
+            }}
+        >
+            <Spline
+                scene="https://prod.spline.design/orb-wmw23cg9rHJjJiXzQ0GbMNE0/scene.splinecode"
+                onLoad={onLoad}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none'
+                }}
+            />
+        </div>
     );
 }
