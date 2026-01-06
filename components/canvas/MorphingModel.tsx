@@ -5,17 +5,14 @@ import Spline from "@splinetool/react-spline";
 
 export default function MorphingModel() {
     const splineRef = useRef<any>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [colorProgress, setColorProgress] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = window.scrollY;
-
-            // For color shifting: use full scroll range (0-1)
-            const fullProgress = Math.min(scrolled / scrollHeight, 1);
-            setColorProgress(fullProgress);
+            const progress = Math.min(scrolled / scrollHeight, 1);
+            setScrollProgress(progress);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -24,17 +21,34 @@ export default function MorphingModel() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Calculate color based on scroll progress
+    const getOverlayColor = (progress: number) => {
+        if (progress < 0.2) {
+            // Hero: Cyan
+            return 'rgba(0, 245, 255, 0.15)';
+        } else if (progress < 0.4) {
+            // Websites: Purple
+            return 'rgba(189, 0, 255, 0.15)';
+        } else if (progress < 0.6) {
+            // Voice: Pink
+            return 'rgba(255, 0, 110, 0.15)';
+        } else if (progress < 0.8) {
+            // WhatsApp: Green
+            return 'rgba(37, 211, 102, 0.15)';
+        } else {
+            // Contact: White/Blue
+            return 'rgba(100, 200, 255, 0.1)';
+        }
+    };
+
     // Aggressive watermark hiding
     useEffect(() => {
         const hideSplineLogo = () => {
-            // Method 1: Shadow DOM injection
             const viewer = document.querySelector('spline-viewer');
             if (viewer?.shadowRoot) {
-                // Remove existing logo styles first
                 const existingStyles = viewer.shadowRoot.querySelectorAll('style[data-logo-hide]');
                 existingStyles.forEach(s => s.remove());
 
-                // Inject new style
                 const style = document.createElement('style');
                 style.setAttribute('data-logo-hide', 'true');
                 style.textContent = `
@@ -53,18 +67,14 @@ export default function MorphingModel() {
                 viewer.shadowRoot.appendChild(style);
             }
 
-            // Method 2: Direct DOM manipulation
             const logos = document.querySelectorAll('a[href*="spline.design"], #logo, .logo');
             logos.forEach(logo => {
                 (logo as HTMLElement).style.display = 'none';
             });
         };
 
-        // Run multiple times to catch the logo
         const intervals = [0, 100, 300, 500, 1000, 2000, 3000];
         const timers = intervals.map(delay => setTimeout(hideSplineLogo, delay));
-
-        // Also run on interval
         const interval = setInterval(hideSplineLogo, 1000);
 
         return () => {
@@ -76,7 +86,6 @@ export default function MorphingModel() {
     const onLoad = (spline: any) => {
         splineRef.current = spline;
 
-        // Hide logo immediately when Spline loads
         setTimeout(() => {
             const viewer = document.querySelector('spline-viewer');
             if (viewer?.shadowRoot) {
@@ -90,21 +99,27 @@ export default function MorphingModel() {
 
     return (
         <>
+            {/* Spline Container */}
             <div
-                ref={containerRef}
                 className="fixed top-0 left-0 w-full h-screen pointer-events-none"
-                style={{
-                    zIndex: 1,
-                    filter: `hue-rotate(${colorProgress * 360}deg)` // Full 360deg rotation
-                }}
+                style={{ zIndex: 1 }}
             >
                 <Spline
                     scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
                     onLoad={onLoad}
                 />
+
+                {/* Color Overlay */}
+                <div
+                    className="absolute inset-0 pointer-events-none transition-colors duration-500"
+                    style={{
+                        backgroundColor: getOverlayColor(scrollProgress),
+                        mixBlendMode: 'screen'
+                    }}
+                />
             </div>
 
-            {/* Global CSS to hide any Spline branding */}
+            {/* Global CSS */}
             <style jsx global>{`
         spline-viewer::part(logo),
         #logo,
