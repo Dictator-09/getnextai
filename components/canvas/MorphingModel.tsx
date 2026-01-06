@@ -21,8 +21,40 @@ export default function MorphingModel() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Hide Spline watermark by injecting CSS into Shadow DOM
+    useEffect(() => {
+        const hideLogo = () => {
+            const viewer = document.querySelector('spline-viewer');
+            if (viewer && viewer.shadowRoot) {
+                const style = document.createElement('style');
+                style.textContent = '#logo { display: none !important; }';
+                viewer.shadowRoot.appendChild(style);
+            }
+        };
+
+        // Try immediately and after delays to ensure Spline has loaded
+        hideLogo();
+        const timer1 = setTimeout(hideLogo, 500);
+        const timer2 = setTimeout(hideLogo, 1500);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+        };
+    }, []);
+
     const onLoad = (spline: any) => {
         splineRef.current = spline;
+
+        // Also try to hide logo when Spline loads
+        setTimeout(() => {
+            const viewer = document.querySelector('spline-viewer');
+            if (viewer && viewer.shadowRoot) {
+                const style = document.createElement('style');
+                style.textContent = '#logo { display: none !important; }';
+                viewer.shadowRoot.appendChild(style);
+            }
+        }, 100);
     };
 
     return (
@@ -41,18 +73,6 @@ export default function MorphingModel() {
                     height: '100%'
                 }}
             />
-
-            {/* Hide Spline watermark */}
-            <style jsx global>{`
-                #spline-watermark,
-                [id*="spline"],
-                [class*="spline-watermark"],
-                a[href*="spline.design"] {
-                    display: none !important;
-                    opacity: 0 !important;
-                    visibility: hidden !important;
-                }
-            `}</style>
         </div>
     );
 }
