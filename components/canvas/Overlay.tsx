@@ -1,33 +1,63 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Overlay() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll();
+    const slidesRef = useRef<HTMLDivElement>(null);
 
-    // Discrete scroll sections with snapping behavior
-    // 0-0.15: Hero
-    // 0.15-0.35: Tile 1 (Custom Websites)
-    // 0.35-0.55: Tile 2 (AI Voice Agents)
-    // 0.55-0.75: Tile 3 (WhatsApp Automation)
-    // 0.75-1: Contact
+    useEffect(() => {
+        if (!slidesRef.current) return;
 
-    const x = useTransform(
-        scrollYProgress,
-        [0, 0.15, 0.35, 0.55, 0.75, 1],
-        ["0vw", "0vw", "-100vw", "-200vw", "-200vw", "-200vw"]
-    );
+        const slides = slidesRef.current;
 
-    // Individual tile opacity for clean transitions
-    const tile1Opacity = useTransform(scrollYProgress, [0.1, 0.15, 0.35, 0.4], [0, 1, 1, 0]);
-    const tile2Opacity = useTransform(scrollYProgress, [0.3, 0.35, 0.55, 0.6], [0, 1, 1, 0]);
-    const tile3Opacity = useTransform(scrollYProgress, [0.5, 0.55, 0.75, 0.8], [0, 1, 1, 0]);
+        // Create horizontal scroll animation
+        const scrollTween = gsap.to(slides, {
+            x: () => -(slides.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top top",
+                end: () => `+=${slides.scrollWidth}`,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+            }
+        });
+
+        // Animate individual tiles
+        const tiles = slides.querySelectorAll('.service-tile');
+        tiles.forEach((tile, index) => {
+            gsap.fromTo(tile,
+                { opacity: 0, scale: 0.9 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    scrollTrigger: {
+                        trigger: tile,
+                        containerAnimation: scrollTween,
+                        start: "left center",
+                        end: "right center",
+                        scrub: 1,
+                    }
+                }
+            );
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
     return (
-        <div ref={containerRef} className="absolute top-0 left-0 w-full z-20">
+        <div className="absolute top-0 left-0 w-full z-20">
             {/* SECTION 1: HERO */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
@@ -59,18 +89,12 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* HORIZONTAL SLIDING SERVICES SECTION */}
-            <section className="h-screen w-screen overflow-hidden relative">
-                <motion.div
-                    className="h-full flex will-change-transform"
-                    style={{ x }}
-                >
+            {/* HORIZONTAL SCROLL SECTION WITH GSAP */}
+            <section ref={containerRef} className="h-screen w-screen overflow-hidden">
+                <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <motion.div
-                            className="w-full max-w-lg"
-                            style={{ opacity: tile1Opacity }}
-                        >
+                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                        <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
                                 <p className="text-gray-400 mb-6">
@@ -85,15 +109,12 @@ export default function Overlay() {
                                     View Projects <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <motion.div
-                            className="w-full max-w-lg"
-                            style={{ opacity: tile2Opacity }}
-                        >
+                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                        <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
                                 <p className="text-gray-400 mb-6">
@@ -108,15 +129,12 @@ export default function Overlay() {
                                     Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <motion.div
-                            className="w-full max-w-lg"
-                            style={{ opacity: tile3Opacity }}
-                        >
+                    <div className="service-tile min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
+                        <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
                                 <p className="text-gray-400 mb-6">
@@ -131,12 +149,12 @@ export default function Overlay() {
                                     Start Chat <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </motion.div>
+                </div>
             </section>
 
-            {/* SECTION 3: CONTACT (Vertical Scroll) */}
+            {/* SECTION 3: CONTACT */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8"
             >
@@ -154,7 +172,6 @@ export default function Overlay() {
                             </div>
                         </div>
 
-                        {/* Immediate Contact */}
                         <div className="mt-8 p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-xl">
                             <p className="text-sm text-gray-400 mb-2">Need to talk now?</p>
                             <a
