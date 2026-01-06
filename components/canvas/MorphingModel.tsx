@@ -78,8 +78,8 @@ export default function MorphingModel() {
         }, 50);
     };
 
-    // Calculate vertical position: starts at bottom (100vh), moves to top (-20vh)
-    const translateY = 100 - (scrollProgress * 120); // 100vh to -20vh
+    // Calculate vertical position: starts at center (0vh), moves up as you scroll
+    const translateY = -(scrollProgress * 100); // 0vh to -100vh (moves upward)
 
     return (
         <>
