@@ -26,8 +26,7 @@ export default function MorphingModel() {
         splineRef.current = spline;
     };
 
-    // Calculate vertical position: starts at center (0vh), moves up as you scroll
-    const translateY = -(scrollProgress * 100); // 0vh to -100vh (moves upward)
+
 
     return (
         <div
@@ -35,8 +34,6 @@ export default function MorphingModel() {
             className="fixed top-0 left-0 w-full h-screen pointer-events-none"
             style={{
                 zIndex: 1,
-                transform: `translateY(${translateY}vh)`,
-                transition: 'transform 0.1s linear'
             }}
         >
             <Spline
