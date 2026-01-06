@@ -2,8 +2,9 @@
 
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, Preload } from "@react-three/drei";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import MorphingModel from "./MorphingModel";
+import Overlay from "./Overlay";
 import { EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
 
 export default function Scene() {
@@ -13,9 +14,7 @@ export default function Scene() {
                 <Suspense fallback={null}>
                     <ScrollControls pages={5} damping={0.1}>
                         <MorphingModel />
-
-                        {/* HTML Overlay Content will be injected here via Scroll component later if needed, 
-                    or managed outside via absolute positioning synced with scroll */}
+                        <Overlay />
                     </ScrollControls>
 
                     <EffectComposer>
