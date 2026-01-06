@@ -2,8 +2,36 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Overlay() {
+    const [scrollProgress, setScrollProgress] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = Math.min(scrolled / scrollHeight, 1);
+            setScrollProgress(progress);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Calculate which service to show based on scroll
+    // Hero: 0-0.25, Services: 0.25-0.75 (3 tiles), Contact: 0.75-1
+    const getServiceTranslate = () => {
+        if (scrollProgress < 0.25) return 0; // Before services
+        if (scrollProgress >= 0.75) return -200; // After services (show last tile)
+
+        // Between 0.25 and 0.75, move through 3 tiles
+        const serviceProgress = (scrollProgress - 0.25) / 0.5; // 0 to 1 across services section
+        return -serviceProgress * 200; // Move from 0% to -200% (3 tiles: 0, -100%, -200%)
+    };
+
     return (
         <div className="absolute top-0 left-0 w-full z-20">
             {/* SECTION 1: HERO */}
@@ -37,11 +65,16 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* HORIZONTAL SCROLL SECTION: SERVICES */}
-            <section className="h-screen w-screen overflow-x-auto overflow-y-hidden">
-                <div className="h-full flex">
+            {/* HORIZONTAL SLIDING SERVICES SECTION */}
+            <section className="h-screen w-screen overflow-hidden relative">
+                <div
+                    className="h-full flex transition-transform duration-300 ease-out"
+                    style={{
+                        transform: `translateX(${getServiceTranslate()}vw)`
+                    }}
+                >
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
@@ -61,7 +94,7 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
@@ -81,7 +114,7 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-lg">
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
@@ -102,7 +135,7 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* SECTION 5: CONTACT (Vertical Scroll) */}
+            {/* SECTION 3: CONTACT (Vertical Scroll) */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8"
             >
