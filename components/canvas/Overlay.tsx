@@ -1,39 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 
 export default function Overlay() {
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = window.scrollY;
-            const progress = Math.min(scrolled / scrollHeight, 1);
-            setScrollProgress(progress);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Calculate which service to show based on scroll
-    // Hero: 0-0.25, Services: 0.25-0.75 (3 tiles), Contact: 0.75-1
-    const getServiceTranslate = () => {
-        if (scrollProgress < 0.25) return 0; // Before services
-        if (scrollProgress >= 0.75) return -200; // After services (show last tile)
-
-        // Between 0.25 and 0.75, move through 3 tiles
-        const serviceProgress = (scrollProgress - 0.25) / 0.5; // 0 to 1 across services section
-        return -serviceProgress * 200; // Move from 0% to -200% (3 tiles: 0, -100%, -200%)
-    };
+    // Map scroll progress to horizontal translation
+    // 0-0.2: Hero (no movement)
+    // 0.2-0.6: Services sliding (0 to -200vw)
+    // 0.6-1: Contact (stay at -200vw)
+    const x = useTransform(
+        scrollYProgress,
+        [0, 0.2, 0.6, 1],
+        ["0vw", "0vw", "-200vw", "-200vw"]
+    );
 
     return (
-        <div className="absolute top-0 left-0 w-full z-20">
+        <div ref={containerRef} className="absolute top-0 left-0 w-full z-20">
             {/* SECTION 1: HERO */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
@@ -67,15 +53,18 @@ export default function Overlay() {
 
             {/* HORIZONTAL SLIDING SERVICES SECTION */}
             <section className="h-screen w-screen overflow-hidden relative">
-                <div
-                    className="h-full flex transition-transform duration-300 ease-out"
-                    style={{
-                        transform: `translateX(${getServiceTranslate()}vw)`
-                    }}
+                <motion.div
+                    className="h-full flex will-change-transform"
+                    style={{ x }}
                 >
                     {/* SERVICE 1: CUSTOM WEBSITES */}
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
+                        <motion.div
+                            className="w-full max-w-lg"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
                                 <p className="text-gray-400 mb-6">
@@ -90,12 +79,17 @@ export default function Overlay() {
                                     View Projects <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
+                        <motion.div
+                            className="w-full max-w-lg"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
                                 <p className="text-gray-400 mb-6">
@@ -110,12 +104,17 @@ export default function Overlay() {
                                     Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
                     <div className="min-w-screen h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
+                        <motion.div
+                            className="w-full max-w-lg"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
                                 <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
                                 <p className="text-gray-400 mb-6">
@@ -130,9 +129,9 @@ export default function Overlay() {
                                     Start Chat <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
-                </div>
+                </motion.div>
             </section>
 
             {/* SECTION 3: CONTACT (Vertical Scroll) */}
