@@ -14,7 +14,7 @@ export default function Scene() {
             <MorphingModel />
 
             {/* R3F Canvas for HTML Overlay and Effects */}
-            <div className="fixed inset-0 z-10 h-screen w-full pointer-events-none">
+            <div className="fixed inset-0 z-10 h-screen w-full">
                 <Canvas gl={{ antialias: true, alpha: true }} dpr={[1, 1.5]}>
                     <Suspense fallback={null}>
                         <ScrollControls pages={5} damping={0.1}>
