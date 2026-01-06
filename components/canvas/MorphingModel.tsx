@@ -34,7 +34,7 @@ export default function MorphingModel() {
             }}
         >
             <Spline
-                scene="https://prod.spline.design/cf32c213-e597-4fbf-b025-f73deff3bcbb/scene.splinecode"
+                scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
                 onLoad={onLoad}
             />
         </div>
