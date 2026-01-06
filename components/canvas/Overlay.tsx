@@ -136,6 +136,17 @@ export default function Overlay() {
                                 <span>Detailed Implementation Roadmap</span>
                             </div>
                         </div>
+
+                        {/* Immediate Contact */}
+                        <div className="mt-8 p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-xl">
+                            <p className="text-sm text-gray-400 mb-2">Need to talk now?</p>
+                            <a
+                                href="tel:+918527706626"
+                                className="text-2xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                            >
+                                +91 8527706626
+                            </a>
+                        </div>
                     </div>
 
                     <form className="flex-1 space-y-4">
