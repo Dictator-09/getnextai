@@ -67,16 +67,27 @@ export default function MorphingModel() {
             const mat = mesh.material as THREE.MeshStandardMaterial;
 
             if (index === currentSection) {
+                // Current section: visible, fading out as we progress
                 mesh.visible = true;
-                const scale = 1 - sectionProgress * 0.4;
+                const scale = 1 - sectionProgress * 0.3;
                 mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - sectionProgress * 0.7, 0.15);
+                // Fade out more aggressively - start fading at 30% progress, fully gone by 70%
+                const fadeOutProgress = Math.max(0, (sectionProgress - 0.3) / 0.4);
+                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - fadeOutProgress, 0.2);
             } else if (index === nextSection && currentSection !== 4) {
-                mesh.visible = true;
-                const scale = 0.6 + sectionProgress * 0.4;
-                mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                mat.opacity = THREE.MathUtils.lerp(mat.opacity, sectionProgress * 0.7, 0.15);
+                // Next section: fade in only after current has started fading (after 30% progress)
+                const fadeInProgress = Math.max(0, (sectionProgress - 0.3) / 0.7);
+                if (fadeInProgress > 0) {
+                    mesh.visible = true;
+                    const scale = 0.7 + fadeInProgress * 0.3;
+                    mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+                    mat.opacity = THREE.MathUtils.lerp(mat.opacity, fadeInProgress, 0.2);
+                } else {
+                    mesh.visible = false;
+                    mat.opacity = 0;
+                }
             } else {
+                // Hidden sections
                 mesh.visible = false;
                 mesh.scale.set(0.01, 0.01, 0.01);
                 mat.opacity = 0;
