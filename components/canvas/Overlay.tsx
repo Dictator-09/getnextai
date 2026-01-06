@@ -23,11 +23,17 @@ export default function Overlay() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${slides.scrollWidth * 4.0}`,
+                end: () => `+=${slides.scrollWidth * 3.0}`,
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
+                snap: {
+                    snapTo: [0, 0.25, 0.5, 1],
+                    duration: { min: 0.2, max: 0.8 },
+                    delay: 0,
+                    ease: "power1.inOut"
+                }
             }
         });
 
