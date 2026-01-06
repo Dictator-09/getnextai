@@ -26,15 +26,42 @@ export default function MorphingModel() {
         splineRef.current = spline;
     };
 
+    // Update Spline rotation based on scroll
+    useEffect(() => {
+        if (splineRef.current) {
+            const spline = splineRef.current;
 
+            // Rotation based on scroll progress (4 full rotations)
+            const rotation = scrollProgress * Math.PI * 4;
+
+            try {
+                // Try to rotate objects in the scene
+                if (spline.findObjectByName) {
+                    const wheelObjects = ['Sphere', 'Circle', 'Wheel', 'Torus', 'Group', 'Icosahedron'];
+
+                    wheelObjects.forEach(name => {
+                        const obj = spline.findObjectByName(name);
+                        if (obj && obj.rotation) {
+                            obj.rotation.y = rotation;
+                        }
+                    });
+                }
+
+                // Fallback: rotate entire scene
+                if (spline.scene && spline.scene.rotation) {
+                    spline.scene.rotation.y = rotation;
+                }
+            } catch (error) {
+                // Silent fail - Spline API may vary
+            }
+        }
+    }, [scrollProgress]);
 
     return (
         <div
             ref={containerRef}
             className="fixed top-0 left-0 w-full h-screen pointer-events-none"
-            style={{
-                zIndex: 1,
-            }}
+            style={{ zIndex: 1 }}
         >
             <Spline
                 scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
