@@ -37,79 +37,72 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* SECTION 2: CUSTOM WEBSITES */}
-            <section
-                className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
-            >
-                <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="max-w-lg w-full">
-                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                            <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
-                            <p className="text-gray-400 mb-6">
-                                3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
-                            </p>
-                            <ul className="space-y-2 mb-8">
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> 3x Higher Engagement</li>
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Lightning-Fast Load Times</li>
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Mobile-First Design</li>
-                            </ul>
-                            <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
-                                View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                            </button>
+            {/* HORIZONTAL SCROLL SECTION: SERVICES */}
+            <section className="h-screen w-screen overflow-x-auto overflow-y-hidden">
+                <div className="h-full flex">
+                    {/* SERVICE 1: CUSTOM WEBSITES */}
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                        <div className="w-full max-w-lg">
+                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                                <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
+                                <p className="text-gray-400 mb-6">
+                                    3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
+                                </p>
+                                <ul className="space-y-2 mb-8">
+                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> 3x Higher Engagement</li>
+                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Lightning-Fast Load Times</li>
+                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Mobile-First Design</li>
+                                </ul>
+                                <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
+                                    View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SERVICE 2: AI VOICE AGENTS */}
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                        <div className="w-full max-w-lg">
+                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                                <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
+                                <p className="text-gray-400 mb-6">
+                                    Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
+                                </p>
+                                <ul className="space-y-2 mb-8">
+                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 80% Cost Reduction</li>
+                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 24/7 Availability</li>
+                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Instant Customer Support</li>
+                                </ul>
+                                <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
+                                    Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SERVICE 3: WHATSAPP AUTOMATION */}
+                    <div className="min-w-screen h-screen flex items-center justify-center p-8">
+                        <div className="w-full max-w-lg">
+                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
+                                <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
+                                <p className="text-gray-400 mb-6">
+                                    Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
+                                </p>
+                                <ul className="space-y-2 mb-8">
+                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
+                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 5x Faster Sales Cycle</li>
+                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Automated Lead Nurturing</li>
+                                </ul>
+                                <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
+                                    Start Chat <ArrowRight className="ml-2 h-4 w-4" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* SECTION 3: AI VOICE AGENTS */}
-            <section
-                className="h-screen w-screen flex items-center justify-start p-8 max-w-screen-2xl mx-auto"
-            >
-                <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="max-w-lg w-full">
-                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                            <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
-                            <p className="text-gray-400 mb-6">
-                                Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
-                            </p>
-                            <ul className="space-y-2 mb-8">
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 80% Cost Reduction</li>
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 24/7 Availability</li>
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Instant Customer Support</li>
-                            </ul>
-                            <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
-                                Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* SECTION 4: WHATSAPP AUTOMATION */}
-            <section
-                className="h-screen w-screen flex items-center justify-end p-8 max-w-screen-2xl mx-auto"
-            >
-                <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="max-w-lg w-full">
-                        <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                            <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
-                            <p className="text-gray-400 mb-6">
-                                Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
-                            </p>
-                            <ul className="space-y-2 mb-8">
-                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
-                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 5x Faster Sales Cycle</li>
-                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Automated Lead Nurturing</li>
-                            </ul>
-                            <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
-                                Start Chat <ArrowRight className="ml-2 h-4 w-4" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* SECTION 5: CONTACT */}
+            {/* SECTION 5: CONTACT (Vertical Scroll) */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8"
             >
