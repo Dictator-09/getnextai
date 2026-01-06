@@ -49,9 +49,9 @@ export default function Overlay() {
                                 3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
                             </p>
                             <ul className="space-y-2 mb-8">
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> React Three Fiber</li>
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Next.js 15</li>
-                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> WebGL Optimization</li>
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> 3x Higher Engagement</li>
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Lightning-Fast Load Times</li>
+                                <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Mobile-First Design</li>
                             </ul>
                             <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
                                 View Projects <ArrowRight className="ml-2 h-4 w-4" />
@@ -73,9 +73,9 @@ export default function Overlay() {
                                 Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
                             </p>
                             <ul className="space-y-2 mb-8">
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Natural Language Processing</li>
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> &lt;100ms Latency</li>
-                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Multi-lingual Support</li>
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 80% Cost Reduction</li>
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 24/7 Availability</li>
+                                <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Instant Customer Support</li>
                             </ul>
                             <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
                                 Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
@@ -98,8 +98,8 @@ export default function Overlay() {
                             </p>
                             <ul className="space-y-2 mb-8">
                                 <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
-                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> CRM Integration</li>
-                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Instant Checkout</li>
+                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 5x Faster Sales Cycle</li>
+                                <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Automated Lead Nurturing</li>
                             </ul>
                             <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
                                 Start Chat <ArrowRight className="ml-2 h-4 w-4" />
