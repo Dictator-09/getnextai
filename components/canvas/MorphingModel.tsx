@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo } from "react";
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -9,14 +9,6 @@ export default function MorphingModel() {
     const scroll = useScroll();
     const groupRef = useRef<THREE.Group>(null);
     const meshRefs = useRef<(THREE.Mesh | null)[]>([]);
-
-    // Debug: Log scroll offset
-    useEffect(() => {
-        const interval = setInterval(() => {
-            console.log("Scroll offset:", scroll.offset.toFixed(3));
-        }, 500);
-        return () => clearInterval(interval);
-    }, [scroll]);
 
     // 5 shapes for 5 sections
     const geometries = useMemo(() => [
@@ -60,34 +52,44 @@ export default function MorphingModel() {
         groupRef.current.rotation.y += delta * 0.2;
         groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
 
-        // Update each mesh
+        // Update each mesh with FULLY SEQUENTIAL transitions
         meshRefs.current.forEach((mesh, index) => {
             if (!mesh) return;
 
             const mat = mesh.material as THREE.MeshStandardMaterial;
 
             if (index === currentSection) {
-                // Current section: visible, fading out as we progress
+                // Current section: visible until 50% progress, then fade out completely
                 mesh.visible = true;
-                const scale = 1 - sectionProgress * 0.3;
-                mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                // Fade out more aggressively - start fading at 30% progress, fully gone by 70%
-                const fadeOutProgress = Math.max(0, (sectionProgress - 0.3) / 0.4);
-                mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - fadeOutProgress, 0.2);
-            } else if (index === nextSection && currentSection !== 4) {
-                // Next section: fade in only after current has started fading (after 30% progress)
-                const fadeInProgress = Math.max(0, (sectionProgress - 0.3) / 0.7);
-                if (fadeInProgress > 0) {
-                    mesh.visible = true;
-                    const scale = 0.7 + fadeInProgress * 0.3;
+
+                if (sectionProgress < 0.5) {
+                    // First half: stay at full opacity
+                    const scale = 1 - sectionProgress * 0.2;
                     mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
-                    mat.opacity = THREE.MathUtils.lerp(mat.opacity, fadeInProgress, 0.2);
+                    mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1, 0.2);
                 } else {
+                    // Second half: fade out completely
+                    const fadeProgress = (sectionProgress - 0.5) / 0.5;
+                    const scale = 0.9 - fadeProgress * 0.4;
+                    mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+                    mat.opacity = THREE.MathUtils.lerp(mat.opacity, 1 - fadeProgress, 0.2);
+                }
+            } else if (index === nextSection && currentSection !== 4) {
+                // Next section: only fade in AFTER current is at 50% (fully sequential)
+                if (sectionProgress >= 0.5) {
+                    mesh.visible = true;
+                    const fadeProgress = (sectionProgress - 0.5) / 0.5;
+                    const scale = 0.5 + fadeProgress * 0.5;
+                    mesh.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1);
+                    mat.opacity = THREE.MathUtils.lerp(mat.opacity, fadeProgress, 0.2);
+                } else {
+                    // Hide completely during first half
                     mesh.visible = false;
+                    mesh.scale.set(0.01, 0.01, 0.01);
                     mat.opacity = 0;
                 }
             } else {
-                // Hidden sections
+                // All other sections: hidden
                 mesh.visible = false;
                 mesh.scale.set(0.01, 0.01, 0.01);
                 mat.opacity = 0;
