@@ -1,18 +1,11 @@
 "use client";
 
-import { Scroll } from "@react-three/drei";
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle } from "lucide-react";
 
 export default function Overlay() {
     return (
-        <Scroll
-            html
-            style={{
-                width: "100%",
-                height: "100%"
-            }}
-        >
+        <div className="absolute top-0 left-0 w-full z-20">
             {/* SECTION 1: HERO */}
             <section
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
@@ -161,6 +154,6 @@ export default function Overlay() {
                     </form>
                 </div>
             </section>
-        </Scroll>
+        </div>
     );
 }
