@@ -9,35 +9,32 @@ export default function MorphingModel() {
     const scroll = useScroll();
     const meshRef = useRef<THREE.Mesh>(null);
 
-    // Geometries to morph between
-    // 1. Sphere (Brain/Network)
-    // 2. Box (Website/Structure) 
-    // 3. Torus (Voice/Waveform)
-    // 4. Icosahedron (Complex/Final)
-
     useFrame((state, delta) => {
         if (!meshRef.current) return;
 
-        const r1 = scroll.range(0 / 4, 1 / 4); // 0-25%
-        const r2 = scroll.range(1 / 4, 1 / 4); // 25-50%
-        const r3 = scroll.range(2 / 4, 1 / 4); // 50-75%
-        const r4 = scroll.range(3 / 4, 1 / 4); // 75-100%
+        // Clamp scroll offset to 0-1 range to prevent runaway values
+        const offset = Math.min(Math.max(scroll.offset, 0), 1);
 
-        // Rotation Logic (Always rotating, speed changes on scroll)
-        meshRef.current.rotation.x += delta * 0.2;
-        meshRef.current.rotation.y += delta * 0.3 + (scroll.offset * 0.5);
+        // Calculate how "settled" we are at the end (1 = at end, 0 = at start)
+        const atEnd = offset > 0.95 ? 1 - (1 - offset) * 20 : 0;
 
-        // Color Logic via Uniforms or direct material manipulation (simplified here)
-        // Interpolating color based on scroll
+        // Base rotation speed that slows down significantly at the end
+        const rotationMultiplier = 1 - (atEnd * 0.8); // Reduce to 20% speed at end
+
+        // Rotation Logic (slows down at the end of scroll)
+        meshRef.current.rotation.x += delta * 0.2 * rotationMultiplier;
+        meshRef.current.rotation.y += delta * 0.3 * rotationMultiplier;
+
+        // Color Logic - interpolate based on clamped offset
         const color = new THREE.Color();
-        if (scroll.offset < 0.25) {
-            color.set("#00f5ff"); // Cyan (Brain)
-        } else if (scroll.offset < 0.5) {
-            color.lerp(new THREE.Color("#bd00ff"), (scroll.offset - 0.25) * 4); // Purple (Web)
-        } else if (scroll.offset < 0.75) {
-            color.lerp(new THREE.Color("#ff006e"), (scroll.offset - 0.5) * 4); // Pink (Voice)
+        if (offset < 0.25) {
+            color.set("#00f5ff"); // Cyan (Hero)
+        } else if (offset < 0.5) {
+            color.set("#00f5ff").lerp(new THREE.Color("#bd00ff"), (offset - 0.25) * 4);
+        } else if (offset < 0.75) {
+            color.set("#bd00ff").lerp(new THREE.Color("#ff006e"), (offset - 0.5) * 4);
         } else {
-            color.lerp(new THREE.Color("#ffffff"), (scroll.offset - 0.75) * 4); // White (Contact)
+            color.set("#ff006e").lerp(new THREE.Color("#ffffff"), (offset - 0.75) * 4);
         }
 
         if (meshRef.current.material instanceof THREE.MeshStandardMaterial) {
@@ -45,8 +42,9 @@ export default function MorphingModel() {
             meshRef.current.material.emissive.lerp(color, 0.1);
         }
 
-        // Scale Pulse
-        const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.05 + (scroll.offset * 0.5);
+        // Scale Pulse - also settles at end
+        const pulseAmount = 0.05 * rotationMultiplier;
+        const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * pulseAmount + (offset * 0.3);
         meshRef.current.scale.setScalar(scale);
     });
 
@@ -55,7 +53,6 @@ export default function MorphingModel() {
             {/* Main Floating Object */}
             <mesh ref={meshRef} position={[0, 0, 0]}>
                 <icosahedronGeometry args={[1.5, 0]} />
-                {/* Using Icosahedron as base, low poly look */}
                 <meshStandardMaterial
                     wireframe
                     color="#00f5ff"
