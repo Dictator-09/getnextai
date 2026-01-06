@@ -57,11 +57,18 @@ export default function MorphingModel() {
         }
     }, [scrollProgress]);
 
+    // Calculate vertical position: starts at center (0vh), moves to top (-100vh)
+    const translateY = -scrollProgress * 100;
+
     return (
         <div
             ref={containerRef}
             className="fixed top-0 left-0 w-full h-screen pointer-events-none"
-            style={{ zIndex: 1 }}
+            style={{
+                zIndex: 1,
+                transform: `translateY(${translateY}vh)`,
+                transition: 'transform 0.1s ease-out'
+            }}
         >
             <Spline
                 scene="https://prod.spline.design/pZ0YbecNqQsTFe0L/scene.splinecode"
