@@ -58,7 +58,7 @@ export default function MorphingModel() {
     }, [scrollProgress]);
 
     // Calculate vertical position: starts at center (0vh), moves to top (-100vh)
-    const translateY = -scrollProgress * 100;
+    const translateY = scrollProgress * -100;
 
     return (
         <div
