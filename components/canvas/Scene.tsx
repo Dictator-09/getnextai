@@ -12,7 +12,7 @@ export default function Scene() {
         <div className="fixed inset-0 z-0 h-screen w-full bg-black">
             <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 1.5]}>
                 <Suspense fallback={null}>
-                    <ScrollControls pages={5} damping={0.1}>
+                    <ScrollControls pages={4} damping={0.1}>
                         <MorphingModel />
                         <Overlay />
                     </ScrollControls>
