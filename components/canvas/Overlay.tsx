@@ -18,19 +18,27 @@ export default function Overlay() {
         const slides = slidesRef.current;
 
         // Create horizontal scroll animation with extended duration
-        const scrollTween = gsap.to(slides, {
-            x: () => -(slides.scrollWidth - window.innerWidth),
-            ease: "none",
+        // Create horizontal scroll animation with hold at the end
+        const scrollTween = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${slides.scrollWidth * 4.0}`, // Extended by 4.0x for more scroll time
+                end: () => `+=${slides.scrollWidth * 4.0}`,
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
             }
         });
+
+        scrollTween.to(slides, {
+            x: () => -(slides.scrollWidth - window.innerWidth),
+            ease: "none",
+            duration: 1
+        });
+
+        // Add a hold period after the scroll (equal duration to the scroll)
+        scrollTween.to({}, { duration: 1 });
 
         // Animate individual tiles
         const tiles = slides.querySelectorAll('.service-tile');
