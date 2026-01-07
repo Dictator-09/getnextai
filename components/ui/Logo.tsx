@@ -2,6 +2,7 @@ export default function Logo({ className = "", showText = true }: { className?: 
     return (
         <div className={`flex items-center gap-2 ${className}`}>
             <svg
+                aria-hidden="true"
                 width="40"
                 height="40"
                 viewBox="0 0 40 40"

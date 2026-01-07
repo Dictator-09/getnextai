@@ -39,9 +39,9 @@ export default function Loader({ onFinished }: { onFinished: () => void }) {
                     {/* Glowing Ring */}
                     <div className="absolute -inset-4 rounded-full border border-cyan-500/20 blur-md animate-pulse" />
 
-                    <h1 className="text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">
+                    <div className="text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">
                         GETNEXT<span className="text-white">AI</span>
-                    </h1>
+                    </div>
                 </div>
 
                 <div className="mt-8 flex flex-col items-center">
