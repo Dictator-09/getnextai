@@ -5,9 +5,10 @@ import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle, Code2, Cpu, Zap, La
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ContactForm from "@/components/ui/ContactForm";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TypeAnimation } from "react-type-animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,8 +69,18 @@ export default function Overlay() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-7xl md:text-9xl font-heading font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-white to-purple-500 mb-4">
-                            GETNEXT<br />AI
+                        <h1 className="text-7xl md:text-9xl font-heading font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-white to-purple-500 animate-gradient mb-4">
+                            <TypeAnimation
+                                sequence={[
+                                    'GETNEXT',
+                                    1000,
+                                    'GETNEXTAI',
+                                ]}
+                                wrapper="span"
+                                speed={50}
+                                repeat={0}
+                                cursor={false}
+                            />
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-2xl mx-auto">
                             The Agency for the <span className="text-cyan-400 font-bold">Post-Labor Economy</span>.
@@ -77,7 +88,7 @@ export default function Overlay() {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-cyan-500 text-black font-bold rounded-full text-lg shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+                            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 animate-gradient text-white font-bold rounded-full text-lg shadow-[0_0_30px_rgba(6,182,212,0.6)] ripple-effect"
                         >
                             Initialize Future
                         </motion.button>
@@ -107,7 +118,16 @@ export default function Overlay() {
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-4xl">
+                        <motion.div
+                            className="w-full max-w-4xl"
+                            whileHover={{
+                                rotateY: 5,
+                                rotateX: 5,
+                                scale: 1.02
+                            }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            style={{ transformStyle: "preserve-3d" }}
+                        >
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(6,182,212,0.3)] transition-all duration-500">
                                 <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">Custom Websites</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
@@ -122,12 +142,21 @@ export default function Overlay() {
                                     View Projects <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-4xl">
+                        <motion.div
+                            className="w-full max-w-4xl"
+                            whileHover={{
+                                rotateY: 5,
+                                rotateX: 5,
+                                scale: 1.02
+                            }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            style={{ transformStyle: "preserve-3d" }}
+                        >
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(168,85,247,0.3)] transition-all duration-500">
                                 <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">AI Voice Agents</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
@@ -142,12 +171,21 @@ export default function Overlay() {
                                     Hear Demo <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-4xl">
+                        <motion.div
+                            className="w-full max-w-4xl"
+                            whileHover={{
+                                rotateY: 5,
+                                rotateX: 5,
+                                scale: 1.02
+                            }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            style={{ transformStyle: "preserve-3d" }}
+                        >
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(34,197,94,0.3)] transition-all duration-500">
                                 <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">WhatsApp Automation</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
@@ -162,7 +200,7 @@ export default function Overlay() {
                                     Start Chat <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

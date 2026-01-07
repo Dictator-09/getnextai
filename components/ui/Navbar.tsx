@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -55,6 +56,8 @@ export default function Navbar() {
                         >
                             Contact
                         </Link>
+
+                        <ThemeToggle />
 
                         <Link href="#contact">
                             <button className="px-5 py-2.5 bg-white text-black font-bold text-sm rounded-full hover:bg-cyan-400 hover:scale-105 transition-all duration-300 flex items-center gap-2 shadow-lg">

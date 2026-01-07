@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
@@ -52,6 +53,13 @@ export default function ContactForm() {
             // Since 'no-cors' returns an opaque response, we assume success if no error is thrown
             setStatus("success");
             setFormData({ name: "", email: "", phone: "", service: "Custom Website" });
+
+            // Trigger confetti celebration
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
         } catch (error) {
             console.error("Submission Error:", error);
             setStatus("error");
