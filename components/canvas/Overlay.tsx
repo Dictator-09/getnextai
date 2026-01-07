@@ -5,6 +5,9 @@ import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle, Code2, Cpu, Zap, La
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ContactForm from "@/components/ui/ContactForm";
+import TextReveal from "@/components/ui/TextReveal";
+import CounterSection from "@/components/ui/CounterSection";
+import MarqueeBanner from "@/components/ui/MarqueeBanner";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -83,7 +86,9 @@ export default function Overlay() {
                             />
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-2xl mx-auto">
-                            The Agency for the <span className="text-cyan-400 font-bold">Post-Labor Economy</span>.
+                            <TextReveal delay={0.5}>
+                                The Agency for the Post-Labor Economy.
+                            </TextReveal>
                         </p>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
@@ -112,6 +117,9 @@ export default function Overlay() {
                     </div>
                 </div>
             </section>
+
+            {/* MARQUEE BANNER */}
+            <MarqueeBanner />
 
             {/* HORIZONTAL SCROLL SECTION WITH GSAP */}
             <section ref={containerRef} className="h-screen w-screen overflow-hidden">
@@ -240,6 +248,10 @@ export default function Overlay() {
                     <ContactForm />
                 </div>
             </section>
+
+            {/* COUNTER SECTION */}
+            <CounterSection />
+
             <Footer />
         </div>
     );
