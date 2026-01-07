@@ -23,13 +23,13 @@ export default function Overlay() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${slides.scrollWidth * 3.0}`,
+                end: () => `+=${slides.scrollWidth * 1.5}`,
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
                 snap: {
-                    snapTo: [0, 0.25, 0.5, 1],
+                    snapTo: [0, 0.256, 0.513, 1],
                     duration: { min: 0.2, max: 0.8 },
                     delay: 0,
                     ease: "power1.inOut"
@@ -43,27 +43,9 @@ export default function Overlay() {
             duration: 1
         });
 
-        // Add a hold period after the scroll (equal duration to the scroll)
-        scrollTween.to({}, { duration: 1 });
+        // Add a brief hold period after the scroll
+        scrollTween.to({}, { duration: 0.3 });
 
-        // Animate individual tiles
-        const tiles = slides.querySelectorAll('.service-tile');
-        tiles.forEach((tile, index) => {
-            gsap.fromTo(tile,
-                { opacity: 0, scale: 0.9 },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    scrollTrigger: {
-                        trigger: tile,
-                        containerAnimation: scrollTween,
-                        start: "left center",
-                        end: "right center",
-                        scrub: 1,
-                    }
-                }
-            );
-        });
 
         return () => {
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -108,19 +90,19 @@ export default function Overlay() {
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
-                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Custom Websites</h2>
-                                <p className="text-gray-400 mb-6">
+                        <div className="w-full max-w-4xl">
+                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(6,182,212,0.3)] transition-all duration-500">
+                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">Custom Websites</h2>
+                                <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
                                 </p>
-                                <ul className="space-y-2 mb-8">
-                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> 3x Higher Engagement</li>
-                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Lightning-Fast Load Times</li>
-                                    <li className="flex items-center text-cyan-400"><Globe className="mr-2 h-5 w-5" /> Mobile-First Design</li>
+                                <ul className="space-y-3 mb-10">
+                                    <li className="flex items-center text-cyan-400 text-lg"><Globe className="mr-3 h-6 w-6" /> 3x Higher Engagement</li>
+                                    <li className="flex items-center text-cyan-400 text-lg"><Globe className="mr-3 h-6 w-6" /> Lightning-Fast Load Times</li>
+                                    <li className="flex items-center text-cyan-400 text-lg"><Globe className="mr-3 h-6 w-6" /> Mobile-First Design</li>
                                 </ul>
-                                <button className="flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition-colors">
-                                    View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                                <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 border border-cyan-500/50 rounded-xl text-white font-semibold hover:from-cyan-500/30 hover:to-cyan-600/30 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                                    View Projects <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
                         </div>
@@ -128,19 +110,19 @@ export default function Overlay() {
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
-                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                                <h2 className="text-4xl font-bold mb-4 text-white">AI Voice Agents</h2>
-                                <p className="text-gray-400 mb-6">
+                        <div className="w-full max-w-4xl">
+                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(168,85,247,0.3)] transition-all duration-500">
+                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">AI Voice Agents</h2>
+                                <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
                                 </p>
-                                <ul className="space-y-2 mb-8">
-                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 80% Cost Reduction</li>
-                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> 24/7 Availability</li>
-                                    <li className="flex items-center text-purple-400"><Mic className="mr-2 h-5 w-5" /> Instant Customer Support</li>
+                                <ul className="space-y-3 mb-10">
+                                    <li className="flex items-center text-purple-400 text-lg"><Mic className="mr-3 h-6 w-6" /> 80% Cost Reduction</li>
+                                    <li className="flex items-center text-purple-400 text-lg"><Mic className="mr-3 h-6 w-6" /> 24/7 Availability</li>
+                                    <li className="flex items-center text-purple-400 text-lg"><Mic className="mr-3 h-6 w-6" /> Instant Customer Support</li>
                                 </ul>
-                                <button className="flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
-                                    Hear Demo <ArrowRight className="ml-2 h-4 w-4" />
+                                <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-500/50 rounded-xl text-white font-semibold hover:from-purple-500/30 hover:to-purple-600/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+                                    Hear Demo <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
                         </div>
@@ -148,19 +130,19 @@ export default function Overlay() {
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
-                        <div className="w-full max-w-lg">
-                            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl">
-                                <h2 className="text-4xl font-bold mb-4 text-white">WhatsApp Automation</h2>
-                                <p className="text-gray-400 mb-6">
+                        <div className="w-full max-w-4xl">
+                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(34,197,94,0.3)] transition-all duration-500">
+                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">WhatsApp Automation</h2>
+                                <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
                                 </p>
-                                <ul className="space-y-2 mb-8">
-                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 98% Open Rates</li>
-                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> 5x Faster Sales Cycle</li>
-                                    <li className="flex items-center text-green-400"><MessageSquare className="mr-2 h-5 w-5" /> Automated Lead Nurturing</li>
+                                <ul className="space-y-3 mb-10">
+                                    <li className="flex items-center text-green-400 text-lg"><MessageSquare className="mr-3 h-6 w-6" /> 98% Open Rates</li>
+                                    <li className="flex items-center text-green-400 text-lg"><MessageSquare className="mr-3 h-6 w-6" /> 5x Faster Sales Cycle</li>
+                                    <li className="flex items-center text-green-400 text-lg"><MessageSquare className="mr-3 h-6 w-6" /> Automated Lead Nurturing</li>
                                 </ul>
-                                <button className="flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition-colors">
-                                    Start Chat <ArrowRight className="ml-2 h-4 w-4" />
+                                <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/50 rounded-xl text-white font-semibold hover:from-green-500/30 hover:to-green-600/30 hover:border-green-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+                                    Start Chat <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
                         </div>
