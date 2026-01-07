@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
+import { useToast } from "./Toast";
 
 export default function ContactForm() {
+    const { showToast } = useToast();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -14,28 +16,49 @@ export default function ContactForm() {
     });
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email";
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        } else if (!/^[0-9]{10,}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
+            newErrors.phone = "Please enter a valid phone number";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus("submitting");
 
-        // This URL will be replaced by the user after they deploy the script
-        // defaulting to a placeholder or checking for an env var would be ideal in production
-        // but for now we will ask the user to input it.
-        // For this implementation, I will use a const that the user needs to update, 
-        // or I can prompt them. 
-        // better: use a prop or environment variable. 
-        // effectively, I'll simulate success if no URL is present to show UI, 
-        // but warn the user they need to add the URL.
+        if (!validateForm()) {
+            showToast("error", "Please fix the errors in the form");
+            return;
+        }
+
+        setStatus("submitting");
 
         const WEBHOOK_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL;
 
         if (!WEBHOOK_URL) {
             console.warn("Google Sheets URL not found in environment variables.");
-            // Simulating success for UI demo if no URL provided yet
             setTimeout(() => {
                 setStatus("error");
                 setMessage("Integration Pending: Webhook URL missing.");
+                showToast("error", "Integration Pending: Webhook URL missing.");
             }, 1500);
             return;
         }
@@ -43,18 +66,18 @@ export default function ContactForm() {
         try {
             const response = await fetch(WEBHOOK_URL, {
                 method: "POST",
-                mode: "no-cors", // Required for Google Apps Script Webhooks
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
             });
 
-            // Since 'no-cors' returns an opaque response, we assume success if no error is thrown
             setStatus("success");
             setFormData({ name: "", email: "", phone: "", service: "Custom Website" });
+            setErrors({});
+            showToast("success", "Message sent successfully! We'll get back to you soon.");
 
-            // Trigger confetti celebration
             confetti({
                 particleCount: 100,
                 spread: 70,
@@ -64,6 +87,7 @@ export default function ContactForm() {
             console.error("Submission Error:", error);
             setStatus("error");
             setMessage("Something went wrong. Please try again.");
+            showToast("error", "Something went wrong. Please try again.");
         }
     };
 
@@ -91,30 +115,39 @@ export default function ContactForm() {
                 )}
             </AnimatePresence>
 
-            <input
-                type="text"
-                placeholder="Name"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-            />
-            <input
-                type="tel"
-                placeholder="Phone Number"
-                required
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-            />
+            <div>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className={`w-full px-4 py-3 bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    required
+                />
+                {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+            </div>
+            <div>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    required
+                />
+                {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+            </div>
+            <div>
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className={`w-full px-4 py-3 bg-white/5 border ${errors.phone ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    required
+                />
+                {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
+            </div>
             <select
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}

@@ -63,6 +63,7 @@ export default function Overlay() {
             <Navbar />
             {/* SECTION 1: HERO */}
             <section
+                id="main-content"
                 className="h-screen w-screen flex flex-col items-center justify-center p-8 pointer-events-none"
             >
                 <div className="text-center z-10 pointer-events-auto">

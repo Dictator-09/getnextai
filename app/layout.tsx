@@ -5,13 +5,58 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import FloatingParticles from "@/components/ui/FloatingParticles";
+import ScrollToTop from "@/components/ui/ScrollToTop";
+import SkipToContent from "@/components/ui/SkipToContent";
+import { ToastProvider } from "@/components/ui/Toast";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "GetNextAI | The Future",
-  description: "Rebuilding the future with Agentic AI.",
+  metadataBase: new URL('https://www.getnextai.tech'),
+  title: {
+    default: "GetNextAI | AI-Powered Business Solutions",
+    template: "%s | GetNextAI"
+  },
+  description: "Transform your business with custom websites, AI voice agents, and WhatsApp automation. Premium AI solutions for the post-labor economy.",
+  keywords: ["AI solutions", "custom websites", "AI voice agents", "WhatsApp automation", "business automation", "AI development"],
+  authors: [{ name: "GetNextAI" }],
+  creator: "GetNextAI",
+  publisher: "GetNextAI",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.getnextai.tech",
+    title: "GetNextAI | AI-Powered Business Solutions",
+    description: "Premium AI solutions for modern businesses. Custom websites, voice agents, and automation.",
+    siteName: "GetNextAI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GetNextAI | AI-Powered Business Solutions",
+    description: "Premium AI solutions for modern businesses",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -21,6 +66,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-[#030712] font-sans antialiased text-white",
@@ -28,10 +77,16 @@ export default function RootLayout({
           outfit.variable
         )}
       >
+        <SkipToContent />
         <ThemeProvider>
-          <ScrollProgress />
-          <FloatingParticles />
-          {children}
+          <ToastProvider>
+            <SmoothScroll>
+              <ScrollProgress />
+              <FloatingParticles />
+              <ScrollToTop />
+              {children}
+            </SmoothScroll>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
