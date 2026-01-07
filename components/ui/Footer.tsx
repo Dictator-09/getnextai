@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Footer() {
     return (
@@ -10,13 +11,8 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 mb-6">
-                            <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center text-black font-black text-lg">
-                                G
-                            </div>
-                            <span className="text-xl font-bold tracking-tight text-white">
-                                GETNEXT<span className="font-light">AI</span>
-                            </span>
+                        <Link href="/" className="inline-block mb-6">
+                            <Logo />
                         </Link>
                         <p className="text-gray-400 leading-relaxed max-w-md mb-8">
                             We build the digital infrastructure for the post-labor economy.

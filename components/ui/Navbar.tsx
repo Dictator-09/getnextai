@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -24,19 +25,14 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-                        ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-4"
-                        : "bg-transparent py-6"
+                    ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-4"
+                    : "bg-transparent py-6"
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center text-black font-black text-xl group-hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] transition-all duration-300">
-                            G
-                        </div>
-                        <span className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-                            GETNEXT<span className="font-light">AI</span>
-                        </span>
+                    <Link href="/" className="group">
+                        <Logo className="group-hover:scale-105 transition-transform duration-300" />
                     </Link>
 
                     {/* Desktop Links */}

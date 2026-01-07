@@ -166,59 +166,7 @@ export default function Overlay() {
                 </div>
             </section>
 
-            {/* TESTIMONIALS SECTION */}
-            <section className="py-32 bg-black border-t border-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
-                <div className="container mx-auto px-6 relative z-10">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                        Startups Scaling <span className="text-cyan-400">Faster</span>
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Testimonial 1 */}
-                        <div className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                            <div className="flex gap-1 text-cyan-400 mb-6">
-                                {[1, 2, 3, 4, 5].map((i) => <span key={i}>★</span>)}
-                            </div>
-                            <p className="text-gray-300 mb-6 leading-relaxed">"The AI voice agents handled 5,000+ calls during our launch week. It felt like magic. We couldn't have scaled without GetNextAI."</p>
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center font-bold text-white">S</div>
-                                <div>
-                                    <h4 className="font-bold text-white">Sarah Jenkins</h4>
-                                    <p className="text-sm text-gray-500">CTO, TechFlow</p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Testimonial 2 */}
-                        <div className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                            <div className="flex gap-1 text-cyan-400 mb-6">
-                                {[1, 2, 3, 4, 5].map((i) => <span key={i}>★</span>)}
-                            </div>
-                            <p className="text-gray-300 mb-6 leading-relaxed">"Our new 3D website increased conversion rates by 300%. The design is simply on another level compared to competitors."</p>
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center font-bold text-black">M</div>
-                                <div>
-                                    <h4 className="font-bold text-white">Michael Chen</h4>
-                                    <p className="text-sm text-gray-500">Founder, Orbit</p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Testimonial 3 */}
-                        <div className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                            <div className="flex gap-1 text-cyan-400 mb-6">
-                                {[1, 2, 3, 4, 5].map((i) => <span key={i}>★</span>)}
-                            </div>
-                            <p className="text-gray-300 mb-6 leading-relaxed">"WhatsApp automation turned our support team from overwhelmed to proactive. The setup was seamless and immediate."</p>
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center font-bold text-black">A</div>
-                                <div>
-                                    <h4 className="font-bold text-white">Alex Rivera</h4>
-                                    <p className="text-sm text-gray-500">COO, SwiftLogistics</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
             {/* SECTION 3: CONTACT */}
             <section
