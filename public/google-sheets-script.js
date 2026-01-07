@@ -4,7 +4,8 @@ function doPost(e) {
         var data = JSON.parse(e.postData.contents);
         var timestamp = new Date();
 
-        sheet.appendRow([timestamp, data.name, data.email, data.service]);
+        // Updated to include phone number
+        sheet.appendRow([timestamp, data.name, data.email, data.phone, data.service]);
 
         return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' })).setMimeType(ContentService.MimeType.JSON);
     } catch (error) {
@@ -12,7 +13,6 @@ function doPost(e) {
     }
 }
 
-// Optional: for testing a GET request to verify deployment
 function doGet(e) {
     return ContentService.createTextOutput("GetNextAI Webhook is Active");
 }

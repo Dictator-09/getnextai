@@ -8,6 +8,7 @@ export default function ContactForm() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
         service: "Custom Website",
     });
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -50,7 +51,7 @@ export default function ContactForm() {
 
             // Since 'no-cors' returns an opaque response, we assume success if no error is thrown
             setStatus("success");
-            setFormData({ name: "", email: "", service: "Custom Website" });
+            setFormData({ name: "", email: "", phone: "", service: "Custom Website" });
         } catch (error) {
             console.error("Submission Error:", error);
             setStatus("error");
@@ -96,6 +97,14 @@ export default function ContactForm() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+            />
+            <input
+                type="tel"
+                placeholder="Phone Number"
+                required
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors"
             />
             <select
