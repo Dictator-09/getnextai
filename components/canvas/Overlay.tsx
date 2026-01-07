@@ -137,9 +137,9 @@ export default function Overlay() {
             <section ref={containerRef} className="h-screen w-screen overflow-x-auto">
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-5xl relative group"
+                            className="w-full max-w-4xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -151,7 +151,7 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
@@ -160,7 +160,7 @@ export default function Overlay() {
                                     <span className="text-cyan-400 font-black text-xl">01</span>
                                 </div>
 
-                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     Custom<br />Websites
                                 </h2>
 
@@ -214,9 +214,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-5xl relative group"
+                            className="w-full max-w-4xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -227,14 +227,14 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
                                     <span className="text-purple-400 font-black text-xl">02</span>
                                 </div>
 
-                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     AI Voice<br />Agents
                                 </h2>
 
@@ -288,9 +288,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-5xl relative group"
+                            className="w-full max-w-4xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -301,14 +301,14 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 mb-8">
                                     <span className="text-green-400 font-black text-xl">03</span>
                                 </div>
 
-                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     WhatsApp<br />Automation
                                 </h2>
 
