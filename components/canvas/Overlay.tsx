@@ -134,7 +134,7 @@ export default function Overlay() {
             <TrustBadges />
 
             {/* HORIZONTAL SCROLL SECTION WITH GSAP */}
-            <section ref={containerRef} className="h-screen w-screen overflow-hidden">
+            <section ref={containerRef} className="h-screen w-screen overflow-x-auto">
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
