@@ -68,7 +68,7 @@ export default function Overlay() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-7xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-white to-purple-500 mb-4">
+                        <h1 className="text-7xl md:text-9xl font-heading font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-white to-purple-500 mb-4">
                             GETNEXT<br />AI
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-2xl mx-auto">
@@ -109,7 +109,7 @@ export default function Overlay() {
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-4xl">
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(6,182,212,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">Custom Websites</h2>
+                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">Custom Websites</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     3D-accelerated, high-performance web experiences that convert. We don't just build sites; we build digital worlds.
                                 </p>
@@ -129,7 +129,7 @@ export default function Overlay() {
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-4xl">
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(168,85,247,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">AI Voice Agents</h2>
+                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">AI Voice Agents</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     Replace your call center with intelligent, empathetic AI that works 24/7. Handle thousands of concurrent calls instantly.
                                 </p>
@@ -149,7 +149,7 @@ export default function Overlay() {
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <div className="w-full max-w-4xl">
                             <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(34,197,94,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-black mb-6 text-white tracking-tight">WhatsApp Automation</h2>
+                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">WhatsApp Automation</h2>
                                 <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
                                     Turn your most popular channel into a sales machine. Automated support, sales, and notifications on Autopilot.
                                 </p>
@@ -176,7 +176,7 @@ export default function Overlay() {
             >
                 <div className="bg-black/80 backdrop-blur-xl p-10 rounded-3xl border border-white/10 max-w-4xl w-full flex flex-col md:flex-row gap-10">
                     <div className="flex-1">
-                        <h2 className="text-5xl font-bold text-white mb-6">Let's Build<br />The Future.</h2>
+                        <h2 className="text-5xl font-heading font-bold text-white mb-6">Let's Build<br />The Future.</h2>
                         <div className="space-y-4">
                             <div className="flex items-center text-gray-400">
                                 <CheckCircle className="mr-3 h-6 w-6 text-cyan-500" />
