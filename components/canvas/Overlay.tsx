@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Globe, Mic, MessageSquare, CheckCircle, Code2, Cpu, Zap, Layout } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import ContactForm from "@/components/ui/ContactForm";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -198,19 +199,7 @@ export default function Overlay() {
                         </div>
                     </div>
 
-                    <form className="flex-1 space-y-4">
-                        <input type="text" placeholder="Name" className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors" />
-                        <input type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-cyan-500 transition-colors" />
-                        <select className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
-                            <option>Select Service</option>
-                            <option>Custom Website</option>
-                            <option>AI Voice Agent</option>
-                            <option>WhatsApp Automation</option>
-                        </select>
-                        <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 rounded-lg shadow-lg hover:opacity-90 transition-opacity">
-                            Send Request
-                        </button>
-                    </form>
+                    <ContactForm />
                 </div>
             </section>
             <Footer />
