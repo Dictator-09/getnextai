@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import FloatingParticles from "@/components/ui/FloatingParticles";
-import NoiseOverlay from "@/components/ui/NoiseOverlay";
-import SmoothScroll from "@/components/ui/SmoothScroll";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -31,12 +29,9 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
-          <SmoothScroll>
-            <ScrollProgress />
-            <NoiseOverlay />
-            <FloatingParticles />
-            {children}
-          </SmoothScroll>
+          <ScrollProgress />
+          <FloatingParticles />
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -13,7 +13,6 @@
     "@react-three/fiber": "^9.5.0",
     "@react-three/postprocessing": "^3.0.4",
     "@splinetool/react-spline": "^4.1.0",
-    "@studio-freight/lenis": "^1.0.42",
     "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.23",
     "canvas-confetti": "^1.9.4",
