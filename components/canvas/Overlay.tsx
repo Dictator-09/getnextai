@@ -138,38 +138,74 @@ export default function Overlay() {
                     {/* SERVICE 1: CUSTOM WEBSITES */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl"
+                            className="w-full max-w-5xl relative group"
                             whileHover={{
-                                rotateY: 5,
-                                rotateX: 5,
-                                scale: 1.02
+                                rotateY: 3,
+                                rotateX: 3,
+                                scale: 1.01
                             }}
-                            transition={{ type: "spring", stiffness: 300 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(6,182,212,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">Custom Websites</h2>
-                                <p className="text-gray-300 text-lg md:text-xl mb-6 leading-relaxed">
+                            {/* Glow effect */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
+                                {/* Decorative gradient orb */}
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
+
+                                {/* Service number badge */}
+                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/30 mb-8">
+                                    <span className="text-cyan-400 font-black text-xl">01</span>
+                                </div>
+
+                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                    Custom<br />Websites
+                                </h2>
+
+                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
                                     Modern, responsive websites built with cutting-edge tech. From landing pages to full web apps.
                                 </p>
-                                <div className="flex items-center gap-4 mb-8 text-sm text-gray-400">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-cyan-400" />
-                                        <span>2-3 weeks delivery</span>
+
+                                <div className="flex flex-wrap items-center gap-6 mb-12">
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl backdrop-blur-sm">
+                                        <Clock className="w-5 h-5 text-cyan-400" />
+                                        <span className="text-sm font-medium text-gray-300">2-3 weeks delivery</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Calendar className="w-4 h-4 text-cyan-400" />
-                                        <span>Free revisions</span>
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl backdrop-blur-sm">
+                                        <Calendar className="w-5 h-5 text-cyan-400" />
+                                        <span className="text-sm font-medium text-gray-300">Free revisions</span>
                                     </div>
                                 </div>
-                                <ul className="space-y-3 mb-10">
-                                    <li className="flex items-center text-cyan-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Responsive Design</li>
-                                    <li className="flex items-center text-cyan-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> SEO Optimized</li>
-                                    <li className="flex items-center text-cyan-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Hosting Setup Included</li>
+
+                                <ul className="space-y-4 mb-12">
+                                    <li className="flex items-center text-cyan-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Responsive Design
+                                    </li>
+                                    <li className="flex items-center text-cyan-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        SEO Optimized
+                                    </li>
+                                    <li className="flex items-center text-cyan-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Hosting Setup Included
+                                    </li>
                                 </ul>
+
                                 <a href="#contact">
-                                    <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 border border-cyan-500/50 rounded-xl text-white font-semibold hover:from-cyan-500/30 hover:to-cyan-600/30 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
-                                        Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] transition-all duration-300">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <span className="relative flex items-center">
+                                            Get Started
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                        </span>
                                     </button>
                                 </a>
                             </div>
@@ -179,38 +215,71 @@ export default function Overlay() {
                     {/* SERVICE 2: AI VOICE AGENTS */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl"
+                            className="w-full max-w-5xl relative group"
                             whileHover={{
-                                rotateY: 5,
-                                rotateX: 5,
-                                scale: 1.02
+                                rotateY: 3,
+                                rotateX: 3,
+                                scale: 1.01
                             }}
-                            transition={{ type: "spring", stiffness: 300 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(168,85,247,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">AI Voice Agents</h2>
-                                <p className="text-gray-300 text-lg md:text-xl mb-6 leading-relaxed">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
+
+                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
+                                    <span className="text-purple-400 font-black text-xl">02</span>
+                                </div>
+
+                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                    AI Voice<br />Agents
+                                </h2>
+
+                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
                                     Intelligent voice assistants that handle calls, bookings, and customer support 24/7.
                                 </p>
-                                <div className="flex items-center gap-4 mb-8 text-sm text-gray-400">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-purple-400" />
-                                        <span>1-2 weeks setup</span>
+
+                                <div className="flex flex-wrap items-center gap-6 mb-12">
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm">
+                                        <Clock className="w-5 h-5 text-purple-400" />
+                                        <span className="text-sm font-medium text-gray-300">1-2 weeks setup</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Calendar className="w-4 h-4 text-purple-400" />
-                                        <span>Custom training</span>
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm">
+                                        <Calendar className="w-5 h-5 text-purple-400" />
+                                        <span className="text-sm font-medium text-gray-300">Custom training</span>
                                     </div>
                                 </div>
-                                <ul className="space-y-3 mb-10">
-                                    <li className="flex items-center text-purple-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Natural Conversations</li>
-                                    <li className="flex items-center text-purple-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Multi-language Support</li>
-                                    <li className="flex items-center text-purple-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> CRM Integration</li>
+
+                                <ul className="space-y-4 mb-12">
+                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Natural Conversations
+                                    </li>
+                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Multi-language Support
+                                    </li>
+                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        CRM Integration
+                                    </li>
                                 </ul>
+
                                 <a href="#contact">
-                                    <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-500/50 rounded-xl text-white font-semibold hover:from-purple-500/30 hover:to-purple-600/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]">
-                                        Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:shadow-[0_0_50px_rgba(168,85,247,0.5)] transition-all duration-300">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <span className="relative flex items-center">
+                                            Get Started
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                        </span>
                                     </button>
                                 </a>
                             </div>
@@ -220,38 +289,71 @@ export default function Overlay() {
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
                     <div className="service-tile min-w-[100vw] h-screen flex items-center justify-center p-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl"
+                            className="w-full max-w-5xl relative group"
                             whileHover={{
-                                rotateY: 5,
-                                rotateX: 5,
-                                scale: 1.02
+                                rotateY: 3,
+                                rotateX: 3,
+                                scale: 1.01
                             }}
-                            transition={{ type: "spring", stiffness: 300 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] p-12 md:p-16 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(34,197,94,0.3)] transition-all duration-500">
-                                <h2 className="text-6xl md:text-7xl font-heading font-black mb-6 text-white tracking-tight">WhatsApp Automation</h2>
-                                <p className="text-gray-300 text-lg md:text-xl mb-6 leading-relaxed">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-14 md:p-20 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
+
+                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 mb-8">
+                                    <span className="text-green-400 font-black text-xl">03</span>
+                                </div>
+
+                                <h2 className="text-6xl md:text-8xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                    WhatsApp<br />Automation
+                                </h2>
+
+                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
                                     Automate customer support, sales, and notifications on the world's most popular messaging platform.
                                 </p>
-                                <div className="flex items-center gap-4 mb-8 text-sm text-gray-400">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-green-400" />
-                                        <span>1 week integration</span>
+
+                                <div className="flex flex-wrap items-center gap-6 mb-12">
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-green-500/10 border border-green-500/20 rounded-xl backdrop-blur-sm">
+                                        <Clock className="w-5 h-5 text-green-400" />
+                                        <span className="text-sm font-medium text-gray-300">1 week integration</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Calendar className="w-4 h-4 text-green-400" />
-                                        <span>Unlimited messages</span>
+                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-green-500/10 border border-green-500/20 rounded-xl backdrop-blur-sm">
+                                        <Calendar className="w-5 h-5 text-green-400" />
+                                        <span className="text-sm font-medium text-gray-300">Unlimited messages</span>
                                     </div>
                                 </div>
-                                <ul className="space-y-3 mb-10">
-                                    <li className="flex items-center text-green-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Auto-responses</li>
-                                    <li className="flex items-center text-green-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Lead Qualification</li>
-                                    <li className="flex items-center text-green-400 text-lg"><CheckCircle className="mr-3 h-6 w-6" /> Analytics Dashboard</li>
+
+                                <ul className="space-y-4 mb-12">
+                                    <li className="flex items-center text-green-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Auto-responses
+                                    </li>
+                                    <li className="flex items-center text-green-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Lead Qualification
+                                    </li>
+                                    <li className="flex items-center text-green-300 text-lg font-medium">
+                                        <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mr-4">
+                                            <CheckCircle className="w-5 h-5" />
+                                        </div>
+                                        Analytics Dashboard
+                                    </li>
                                 </ul>
+
                                 <a href="#contact">
-                                    <button className="group flex items-center px-6 py-3 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/50 rounded-xl text-white font-semibold hover:from-green-500/30 hover:to-green-600/30 hover:border-green-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]">
-                                        Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-all duration-300">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <span className="relative flex items-center">
+                                            Get Started
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                        </span>
                                     </button>
                                 </a>
                             </div>
