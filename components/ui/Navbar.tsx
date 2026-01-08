@@ -27,7 +27,7 @@ export default function Navbar() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
                     ? "bg-white/60 dark:bg-black/60 backdrop-blur-md border-b border-black/5 dark:border-white/5 py-3 shadow-sm dark:shadow-none"
-                    : "bg-transparent py-6"
+                    : "bg-white/20 dark:bg-transparent backdrop-blur-sm py-6"
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
