@@ -3,9 +3,17 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Zap } from "lucide-react";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "#services", label: "Services" },
+    { href: "#case-studies", label: "Case Studies" },
+    { href: "#audit", label: "AI Audit" },
+    { href: "#contact", label: "Contact" },
+];
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -26,8 +34,8 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-white/60 dark:bg-black/60 backdrop-blur-md border-b border-black/5 dark:border-white/5 py-3 shadow-sm dark:shadow-none"
-                    : "bg-white/20 dark:bg-transparent backdrop-blur-sm py-6"
+                    ? "bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 py-3 shadow-sm dark:shadow-none"
+                    : "bg-white/20 dark:bg-transparent backdrop-blur-sm py-5"
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -37,42 +45,41 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Links */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <Link
-                            href="/"
-                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="#services"
-                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                        >
-                            Services
-                        </Link>
-                        <Link
-                            href="#contact"
-                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                        >
-                            Contact
-                        </Link>
+                    <div className="hidden lg:flex items-center gap-6">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
 
                         <ThemeToggle />
 
-                        <Link href="#contact">
-                            <button className="px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black font-bold text-sm rounded-full hover:bg-cyan-500 dark:hover:bg-cyan-400 hover:scale-105 transition-all duration-300 flex items-center gap-2 shadow-lg">
-                                Book Strategy Call <ArrowRight className="w-4 h-4" />
-                            </button>
+                        <Link href="#audit">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-sm rounded-full hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300 flex items-center gap-2"
+                            >
+                                <Zap className="w-4 h-4" />
+                                Free AI Audit
+                            </motion.button>
                         </Link>
                     </div>
 
                     {/* Mobile Toggle */}
-                    <button
-                        className="md:hidden text-black dark:text-white p-2"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    >
-                        {mobileMenuOpen ? <X /> : <Menu />}
-                    </button>
+                    <div className="lg:hidden flex items-center gap-3">
+                        <ThemeToggle />
+                        <button
+                            className="text-black dark:text-white p-2"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
                 </div>
             </motion.nav>
 
@@ -83,41 +90,32 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 pt-24 px-6 pb-12 md:hidden overflow-y-auto"
+                        className="fixed inset-0 z-40 bg-white/98 dark:bg-black/98 pt-24 px-6 pb-12 lg:hidden overflow-y-auto"
                     >
-                        <div className="flex flex-col gap-6 text-2xl font-light">
-                            {/* Theme Toggle for Mobile */}
-                            <div className="flex items-center justify-between pb-4 border-b border-black/10 dark:border-white/10">
-                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Theme</span>
-                                <ThemeToggle />
-                            </div>
+                        <div className="flex flex-col gap-6 text-xl font-light">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors py-2 border-b border-gray-100 dark:border-white/5"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+
                             <Link
-                                href="/"
+                                href="#audit"
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
+                                className="mt-4"
                             >
-                                Home
-                            </Link>
-                            <Link
-                                href="#services"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                            >
-                                Services
-                            </Link>
-                            <Link
-                                href="#contact"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                            >
-                                Contact
-                            </Link>
-                            <Link
-                                href="#contact"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="mt-4 px-6 py-4 bg-cyan-500 text-black font-bold rounded-xl text-center"
-                            >
-                                Book Strategy Call
+                                <motion.button
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-xl text-center flex items-center justify-center gap-2 shadow-lg"
+                                >
+                                    <Zap className="w-5 h-5" />
+                                    Get Free AI Audit
+                                </motion.button>
                             </Link>
                         </div>
                     </motion.div>
