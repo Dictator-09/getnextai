@@ -137,9 +137,9 @@ export default function Overlay() {
             <section ref={containerRef} className="h-screen w-screen overflow-x-auto">
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] md:min-w-[800px] h-screen flex items-center justify-center pt-24 pb-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-[380px] md:max-w-xl relative group"
+                            className="w-full max-w-[90vw] md:max-w-xl h-auto relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -151,32 +151,27 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-cyan-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
-                                {/* Service number badge */}
-                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/30 mb-8">
-                                    <span className="text-cyan-400 font-black text-xl">01</span>
-                                </div>
-
-                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
-                                    Custom<br />Websites
-                                </h2>
-
-                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
-                                    Modern, responsive websites built with cutting-edge tech. From landing pages to full web apps.
-                                </p>
-
-                                <div className="flex flex-wrap items-center gap-6 mb-12">
-                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl backdrop-blur-sm">
-                                        <Clock className="w-5 h-5 text-cyan-400" />
-                                        <span className="text-sm font-medium text-gray-300">2-3 weeks delivery</span>
+                                <div>
+                                    <div className="flex items-center justify-between mb-8">
+                                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-bold text-xl">01</div>
+                                        <div className="flex gap-4">
+                                            <div className="flex items-center gap-2 text-xs font-medium text-cyan-300 uppercase tracking-wider px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-500/5">
+                                                <Clock className="w-3 h-3" /> 2-3 Weeks
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl backdrop-blur-sm">
-                                        <Calendar className="w-5 h-5 text-cyan-400" />
-                                        <span className="text-sm font-medium text-gray-300">Free revisions</span>
-                                    </div>
+
+                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-white tracking-tighter leading-[0.9]">
+                                        Custom<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600">Websites</span>
+                                    </h2>
+
+                                    <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                        Performance-driven digital experiences. We build fast, responsive, and SEO-ready websites that convert visitors into clients.
+                                    </p>
                                 </div>
 
                                 <ul className="space-y-4 mb-12">
@@ -214,9 +209,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] md:min-w-[800px] h-screen flex items-center justify-center pt-24 pb-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-[380px] md:max-w-xl relative group"
+                            className="w-full max-w-[90vw] md:max-w-xl h-auto relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -227,7 +222,7 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-purple-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
@@ -288,9 +283,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
+                    <div className="service-tile min-w-[100vw] md:min-w-[800px] h-screen flex items-center justify-center pt-24 pb-8 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-[380px] md:max-w-xl relative group"
+                            className="w-full max-w-[90vw] md:max-w-xl h-auto relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -301,30 +296,26 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-green-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
-                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 mb-8">
-                                    <span className="text-green-400 font-black text-xl">03</span>
-                                </div>
-
-                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
-                                    WhatsApp<br />Automation
-                                </h2>
-
-                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
-                                    Automate customer support, sales, and notifications on the world's most popular messaging platform.
-                                </p>
-
-                                <div className="flex flex-wrap items-center gap-6 mb-12">
-                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-green-500/10 border border-green-500/20 rounded-xl backdrop-blur-sm">
-                                        <Clock className="w-5 h-5 text-green-400" />
-                                        <span className="text-sm font-medium text-gray-300">1 week integration</span>
+                                <div>
+                                    <div className="flex items-center justify-between mb-8">
+                                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 font-bold text-xl">03</div>
+                                        <div className="flex gap-4">
+                                            <div className="flex items-center gap-2 text-xs font-medium text-green-300 uppercase tracking-wider px-3 py-1 rounded-full border border-green-500/20 bg-green-500/5">
+                                                <Clock className="w-3 h-3" /> 1 Week
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-2.5 px-4 py-2.5 bg-green-500/10 border border-green-500/20 rounded-xl backdrop-blur-sm">
-                                        <Calendar className="w-5 h-5 text-green-400" />
-                                        <span className="text-sm font-medium text-gray-300">Unlimited messages</span>
-                                    </div>
+
+                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-white tracking-tighter leading-[0.9]">
+                                        WhatsApp<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">Automation</span>
+                                    </h2>
+
+                                    <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                        Direct-to-consumer sales and support. Automate 90% of queries and recovery abandoned carts on WhatsApp.
+                                    </p>
                                 </div>
 
                                 <ul className="space-y-4 mb-12">
