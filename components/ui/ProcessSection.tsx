@@ -47,11 +47,11 @@ export default function ProcessSection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <p className="text-cyan-400 text-sm uppercase tracking-widest mb-4">How We Work</p>
-                    <h2 className="text-4xl md:text-5xl font-heading font-black text-white mb-4">
+                    <p className="text-cyan-600 dark:text-cyan-400 text-sm uppercase tracking-widest mb-4">How We Work</p>
+                    <h2 className="text-4xl md:text-5xl font-heading font-black text-black dark:text-white mb-4">
                         Simple, Transparent Process
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         From idea to launch, I'll guide you through every step
                     </p>
                 </motion.div>
@@ -67,15 +67,15 @@ export default function ProcessSection() {
                             className="relative group"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-                            <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300">
+                            <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-black/5 dark:border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300 shadow-lg dark:shadow-none">
                                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-${step.color}-500/20 to-${step.color}-500/5 mb-6`}>
-                                    <div className={`text-${step.color}-400`}>
+                                    <div className={`text-${step.color}-600 dark:text-${step.color}-400`}>
                                         {step.icon}
                                     </div>
                                 </div>
-                                <div className="text-6xl font-black text-white/10 mb-4">{step.number}</div>
-                                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+                                <div className="text-6xl font-black text-black/5 dark:text-white/10 mb-4">{step.number}</div>
+                                <h3 className="text-xl font-bold text-black dark:text-white mb-3">{step.title}</h3>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{step.description}</p>
                             </div>
                         </motion.div>
                     ))}

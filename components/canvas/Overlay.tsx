@@ -85,8 +85,8 @@ export default function Overlay() {
                                 cursor={false}
                             />
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-2xl mx-auto">
-                            The Agency for the <span className="text-cyan-400 font-bold">Post-Labor Economy</span>.
+                        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light mb-8 max-w-2xl mx-auto">
+                            The Agency for the <span className="text-cyan-600 dark:text-cyan-400 font-bold">Post-Labor Economy</span>.
                         </p>
                         <a href="#contact">
                             <motion.button
@@ -106,25 +106,25 @@ export default function Overlay() {
             </section>
 
             {/* PERSONAL STORY SECTION */}
-            <section className="py-20 bg-black/50 backdrop-blur-sm border-t border-b border-white/5 relative z-10">
+            <section className="py-20 bg-white/50 dark:bg-black/50 backdrop-blur-sm border-t border-b border-black/5 dark:border-white/5 relative z-10 transition-colors duration-500">
                 <div className="container mx-auto px-6 text-center">
-                    <p className="text-sm font-semibold text-gray-500 tracking-widest mb-10">MY JOURNEY</p>
+                    <p className="text-sm font-semibold text-gray-400 tracking-widest mb-10">MY JOURNEY</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div className="flex flex-col items-center">
-                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600 mb-2">2024</div>
-                            <p className="text-gray-400 text-sm">Building Since</p>
+                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-cyan-700 dark:from-cyan-400 dark:to-cyan-600 mb-2">2024</div>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Building Since</p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 mb-2">500+</div>
-                            <p className="text-gray-400 text-sm">Hours Coded</p>
+                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700 dark:from-purple-400 dark:to-purple-600 mb-2">500+</div>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Hours Coded</p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2">100%</div>
-                            <p className="text-gray-400 text-sm">Dedication</p>
+                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700 dark:from-green-400 dark:to-green-600 mb-2">100%</div>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Dedication</p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 mb-2">YOU</div>
-                            <p className="text-gray-400 text-sm">My Next Client</p>
+                            <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-700 dark:from-yellow-400 dark:to-yellow-600 mb-2">YOU</div>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">My Next Client</p>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-cyan-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
+                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-cyan-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
@@ -165,17 +165,17 @@ export default function Overlay() {
                                         </div>
                                     </div>
 
-                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-white tracking-tighter leading-[0.9]">
-                                        Custom<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600">Websites</span>
+                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
+                                        Custom<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-cyan-700 dark:from-cyan-400 dark:to-cyan-600">Websites</span>
                                     </h2>
 
-                                    <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                    <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
                                         Performance-driven digital experiences. We build fast, responsive, and SEO-ready websites that convert visitors into clients.
                                     </p>
                                 </div>
 
                                 <ul className="space-y-4 mb-12">
-                                    <li className="flex items-center text-cyan-300 text-lg font-medium">
+                                    <li className="flex items-center text-cyan-600 dark:text-cyan-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
                                         </div>
@@ -222,46 +222,46 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-purple-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
+                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-purple-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
                                     <span className="text-purple-400 font-black text-xl">02</span>
                                 </div>
 
-                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
-                                    AI Voice<br />Agents
+                                <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
+                                    AI Voice<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700 dark:from-purple-400 dark:to-purple-600">Agents</span>
                                 </h2>
 
-                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
-                                    Intelligent voice assistants that handle calls, bookings, and customer support 24/7.
+                                <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                    Intelligent voice assistants that sound human. Handle support calls, bookings, and inquiries 24/7 without lifting a finger.
                                 </p>
 
                                 <div className="flex flex-wrap items-center gap-6 mb-12">
                                     <div className="flex items-center gap-2.5 px-4 py-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm">
-                                        <Clock className="w-5 h-5 text-purple-400" />
-                                        <span className="text-sm font-medium text-gray-300">1-2 weeks setup</span>
+                                        <Clock className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                        <span className="text-sm font-medium text-purple-700 dark:text-purple-300">1-2 weeks setup</span>
                                     </div>
                                     <div className="flex items-center gap-2.5 px-4 py-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm">
-                                        <Calendar className="w-5 h-5 text-purple-400" />
-                                        <span className="text-sm font-medium text-gray-300">Custom training</span>
+                                        <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                        <span className="text-sm font-medium text-purple-700 dark:text-purple-300">Custom training</span>
                                     </div>
                                 </div>
 
                                 <ul className="space-y-4 mb-12">
-                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                    <li className="flex items-center text-purple-600 dark:text-purple-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
                                         </div>
                                         Natural Conversations
                                     </li>
-                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                    <li className="flex items-center text-purple-600 dark:text-purple-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
                                         </div>
                                         Multi-language Support
                                     </li>
-                                    <li className="flex items-center text-purple-300 text-lg font-medium">
+                                    <li className="flex items-center text-purple-600 dark:text-purple-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
                                         </div>
@@ -296,7 +296,7 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-[#030712]/80 md:bg-white/[0.02] backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl hover:border-green-500/30 transition-all duration-500 overflow-hidden group-hover:bg-white/[0.04]">
+                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-green-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div>
@@ -309,17 +309,17 @@ export default function Overlay() {
                                         </div>
                                     </div>
 
-                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-white tracking-tighter leading-[0.9]">
-                                        WhatsApp<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">Automation</span>
+                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
+                                        WhatsApp<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700 dark:from-green-400 dark:to-green-600">Automation</span>
                                     </h2>
 
-                                    <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                    <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
                                         Direct-to-consumer sales and support. Automate 90% of queries and recovery abandoned carts on WhatsApp.
                                     </p>
                                 </div>
 
                                 <ul className="space-y-4 mb-12">
-                                    <li className="flex items-center text-green-300 text-lg font-medium">
+                                    <li className="flex items-center text-green-600 dark:text-green-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
                                         </div>

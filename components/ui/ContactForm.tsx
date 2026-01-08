@@ -99,15 +99,15 @@ export default function ContactForm() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/90 z-10 flex flex-col items-center justify-center rounded-xl backdrop-blur-md"
+                        className="absolute inset-0 bg-white/95 dark:bg-black/90 z-10 flex flex-col items-center justify-center rounded-xl backdrop-blur-md"
                     >
                         <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-                        <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                        <p className="text-gray-400 text-center px-4">We'll be in touch shortly to build your future.</p>
+                        <h3 className="text-2xl font-bold text-black dark:text-white mb-2">Message Sent!</h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-center px-4">We'll be in touch shortly to build your future.</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}
-                            className="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm"
+                            className="mt-6 px-6 py-2 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-lg text-black dark:text-white text-sm transition-colors"
                         >
                             Send Another
                         </button>
@@ -121,7 +121,7 @@ export default function ContactForm() {
                     placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} rounded-lg text-black dark:text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
                     required
                 />
                 {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
@@ -132,7 +132,7 @@ export default function ContactForm() {
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} rounded-lg text-black dark:text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
                     required
                 />
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
@@ -143,7 +143,7 @@ export default function ContactForm() {
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.phone ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border ${errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-white/10'} rounded-lg text-black dark:text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
                     required
                 />
                 {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
@@ -151,7 +151,7 @@ export default function ContactForm() {
             <select
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-gray-400 focus:outline-none focus:border-cyan-500 transition-colors"
+                className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg p-4 text-gray-600 dark:text-gray-400 focus:outline-none focus:border-cyan-500 transition-colors"
             >
                 <option>Custom Website</option>
                 <option>AI Voice Agent</option>

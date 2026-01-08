@@ -16,7 +16,7 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <main className="relative min-h-screen w-full bg-black">
+    <main className="relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-500">
       {!loaded && <Loader onFinished={() => setLoaded(true)} />}
       {loaded && (
         <div className="animate-in fade-in duration-1000">

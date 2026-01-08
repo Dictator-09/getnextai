@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-black border-t border-white/10 pt-20 pb-10">
+        <footer className="w-full bg-gray-50 dark:bg-black border-t border-black/5 dark:border-white/10 pt-20 pb-10 transition-colors duration-500">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}
@@ -14,7 +14,7 @@ export default function Footer() {
                         <Link href="/" className="inline-block mb-6">
                             <Logo />
                         </Link>
-                        <p className="text-gray-400 leading-relaxed max-w-md mb-8">
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-md mb-8">
                             We build the digital infrastructure for the post-labor economy.
                             Specializing in high-performance web experiences, AI voice agents,
                             and automated workflows.
@@ -29,7 +29,7 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-white font-bold mb-6">Services</h3>
+                        <h3 className="text-black dark:text-white font-bold mb-6">Services</h3>
                         <ul className="space-y-4">
                             <FooterLink href="#services" label="Custom Websites" />
                             <FooterLink href="#services" label="AI Voice Agents" />
@@ -40,7 +40,7 @@ export default function Footer() {
 
                     {/* Legal/Company */}
                     <div>
-                        <h3 className="text-white font-bold mb-6">Company</h3>
+                        <h3 className="text-black dark:text-white font-bold mb-6">Company</h3>
                         <ul className="space-y-4">
                             <FooterLink href="#" label="About Us" />
                             <FooterLink href="#" label="Careers" />
