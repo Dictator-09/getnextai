@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Coffee, Cloud, Palette } from "lucide-react";
+import { Coffee, Cloud, Palette, ArrowRight } from "lucide-react";
 import CaseStudyCard, { CaseStudyData } from "./CaseStudyCard";
 
 const caseStudies: CaseStudyData[] = [
@@ -19,7 +19,7 @@ const caseStudies: CaseStudyData[] = [
             { value: "$12K", label: "Monthly Saved", trend: "up" }
         ],
         color: "cyan",
-        icon: <Coffee className="w-7 h-7" />
+        icon: <Coffee className="w-6 h-6 sm:w-7 sm:h-7" />
     },
     {
         id: "cloudsync",
@@ -35,7 +35,7 @@ const caseStudies: CaseStudyData[] = [
             { value: "24/7", label: "Coverage", trend: "up" }
         ],
         color: "purple",
-        icon: <Cloud className="w-7 h-7" />
+        icon: <Cloud className="w-6 h-6 sm:w-7 sm:h-7" />
     },
     {
         id: "horizon-creative",
@@ -51,45 +51,46 @@ const caseStudies: CaseStudyData[] = [
             { value: "70%", label: "Site Conversion", trend: "up" }
         ],
         color: "green",
-        icon: <Palette className="w-7 h-7" />
+        icon: <Palette className="w-6 h-6 sm:w-7 sm:h-7" />
     }
 ];
 
 export default function CaseStudies() {
     return (
-        <section id="case-studies" className="py-24 relative overflow-hidden">
-            {/* Background */}
+        <section id="case-studies" className="py-16 sm:py-24 relative overflow-hidden">
+            {/* Background - reduced effects on mobile */}
             <div className="absolute inset-0 bg-gradient-to-b from-black via-[#030308] to-black" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-3xl" />
+            <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-3xl" />
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-10 sm:mb-16"
                 >
-                    <p className="text-purple-400 text-sm uppercase tracking-widest mb-4">
+                    <p className="text-purple-400 text-xs sm:text-sm uppercase tracking-widest mb-3 sm:mb-4">
                         What's Possible
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-heading font-black text-white mb-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white mb-3 sm:mb-4">
                         AI Solutions{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
                             In Action
                         </span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto px-4">
                         See how businesses like yours could transform with AI.
-                        These demo cases showcase the potential results we can achieve together.
                     </p>
                 </motion.div>
 
-                {/* Case Study Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Case Study Grid - Horizontal scroll on mobile */}
+                <div className="flex overflow-x-auto sm:overflow-visible sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 snap-x-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
                     {caseStudies.map((study, index) => (
-                        <CaseStudyCard key={study.id} study={study} index={index} />
+                        <div key={study.id} className="min-w-[280px] sm:min-w-0 snap-center">
+                            <CaseStudyCard study={study} index={index} />
+                        </div>
                     ))}
                 </div>
 
@@ -99,18 +100,18 @@ export default function CaseStudies() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.5 }}
                     viewport={{ once: true }}
-                    className="text-center mt-16"
+                    className="text-center mt-10 sm:mt-16"
                 >
-                    <p className="text-gray-500 mb-6">
+                    <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">
                         Ready to create your own success story?
                     </p>
-                    <a href="#audit">
+                    <a href="#audit" className="inline-block w-full sm:w-auto max-w-md px-4 sm:px-0">
                         <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-full text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] transition-all duration-300"
+                            whileTap={{ scale: 0.97 }}
+                            className="w-full sm:w-auto min-h-[52px] px-6 sm:px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-2xl sm:rounded-full text-base sm:text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] active:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all duration-200 flex items-center justify-center gap-2 touch-feedback mx-auto"
                         >
                             Get Your Free AI Audit
+                            <ArrowRight className="w-5 h-5" />
                         </motion.button>
                     </a>
                 </motion.div>
