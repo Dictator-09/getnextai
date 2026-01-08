@@ -151,7 +151,7 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-cyan-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
+                            <div className="relative h-full flex flex-col justify-between bg-black/40 dark:bg-black/40 backdrop-blur-xl rounded-[2.5rem] p-12 md:p-16 border border-white/10 shadow-2xl hover:border-white/30 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)] transition-all duration-500 ease-out overflow-hidden">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
@@ -165,16 +165,28 @@ export default function Overlay() {
                                         </div>
                                     </div>
 
-                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
-                                        Custom<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-cyan-700 dark:from-cyan-400 dark:to-cyan-600">Websites</span>
-                                    </h2>
+                                    <motion.h2
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ type: "spring", stiffness: 100 }}
+                                        className="text-4xl md:text-6xl font-heading font-black mb-12 tracking-tighter leading-none"
+                                    >
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">Custom</span>
+                                        <br />
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600">Websites</span>
+                                    </motion.h2>
 
-                                    <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+                                        className="text-gray-300 text-base md:text-lg mb-12 leading-relaxed font-light max-w-sm"
+                                    >
                                         Performance-driven digital experiences. We build fast, responsive, and SEO-ready websites that convert visitors into clients.
-                                    </p>
+                                    </motion.p>
                                 </div>
 
-                                <ul className="space-y-4 mb-12">
+                                <ul className="space-y-6 mb-16">
                                     <li className="flex items-center text-cyan-600 dark:text-cyan-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
@@ -196,11 +208,11 @@ export default function Overlay() {
                                 </ul>
 
                                 <a href="#contact">
-                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] transition-all duration-300">
-                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] transition-all duration-500 ease-out">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
                                         <span className="relative flex items-center">
                                             Get Started
-                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-all duration-500 ease-out" />
                                         </span>
                                     </button>
                                 </a>
@@ -222,22 +234,34 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-purple-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
+                            <div className="relative h-full flex flex-col justify-between bg-black/40 dark:bg-black/40 backdrop-blur-xl rounded-[2.5rem] p-12 md:p-16 border border-white/10 shadow-2xl hover:border-white/30 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)] transition-all duration-500 ease-out overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
                                     <span className="text-purple-400 font-black text-xl">02</span>
                                 </div>
 
-                                <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
-                                    AI Voice<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700 dark:from-purple-400 dark:to-purple-600">Agents</span>
-                                </h2>
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ type: "spring", stiffness: 100 }}
+                                    className="text-4xl md:text-6xl font-heading font-black mb-12 tracking-tighter leading-none"
+                                >
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">AI Voice</span>
+                                    <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">Agents</span>
+                                </motion.h2>
 
-                                <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+                                    className="text-gray-300 text-base md:text-lg mb-12 leading-relaxed font-light max-w-sm"
+                                >
                                     Intelligent voice assistants that sound human. Handle support calls, bookings, and inquiries 24/7 without lifting a finger.
-                                </p>
+                                </motion.p>
 
-                                <div className="flex flex-wrap items-center gap-6 mb-12">
+                                <div className="flex flex-wrap items-center gap-6 mb-16">
                                     <div className="flex items-center gap-2.5 px-4 py-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm">
                                         <Clock className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                                         <span className="text-sm font-medium text-purple-700 dark:text-purple-300">1-2 weeks setup</span>
@@ -248,7 +272,7 @@ export default function Overlay() {
                                     </div>
                                 </div>
 
-                                <ul className="space-y-4 mb-12">
+                                <ul className="space-y-6 mb-16">
                                     <li className="flex items-center text-purple-600 dark:text-purple-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
@@ -270,11 +294,11 @@ export default function Overlay() {
                                 </ul>
 
                                 <a href="#contact">
-                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:shadow-[0_0_50px_rgba(168,85,247,0.5)] transition-all duration-300">
-                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:shadow-[0_0_50px_rgba(168,85,247,0.5)] transition-all duration-500 ease-out">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
                                         <span className="relative flex items-center">
                                             Get Started
-                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-all duration-500 ease-out" />
                                         </span>
                                     </button>
                                 </a>
@@ -296,7 +320,7 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative h-full flex flex-col justify-between bg-white/80 dark:bg-[#030712]/80 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 border border-black/5 dark:border-white/10 shadow-2xl hover:border-green-500/30 transition-all duration-500 overflow-hidden dark:group-hover:bg-white/[0.04] group-hover:bg-white/90">
+                            <div className="relative h-full flex flex-col justify-between bg-black/40 dark:bg-black/40 backdrop-blur-xl rounded-[2.5rem] p-12 md:p-16 border border-white/10 shadow-2xl hover:border-white/30 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)] transition-all duration-500 ease-out overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div>
@@ -309,16 +333,28 @@ export default function Overlay() {
                                         </div>
                                     </div>
 
-                                    <h2 className="text-4xl md:text-6xl font-heading font-black mb-6 text-black dark:text-white tracking-tighter leading-[0.9]">
-                                        WhatsApp<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700 dark:from-green-400 dark:to-green-600">Automation</span>
-                                    </h2>
+                                    <motion.h2
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ type: "spring", stiffness: 100 }}
+                                        className="text-4xl md:text-6xl font-heading font-black mb-12 tracking-tighter leading-none"
+                                    >
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">WhatsApp</span>
+                                        <br />
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">Automation</span>
+                                    </motion.h2>
 
-                                    <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 leading-relaxed font-light max-w-sm">
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+                                        className="text-gray-300 text-base md:text-lg mb-12 leading-relaxed font-light max-w-sm"
+                                    >
                                         Direct-to-consumer sales and support. Automate 90% of queries and recovery abandoned carts on WhatsApp.
-                                    </p>
+                                    </motion.p>
                                 </div>
 
-                                <ul className="space-y-4 mb-12">
+                                <ul className="space-y-6 mb-16">
                                     <li className="flex items-center text-green-600 dark:text-green-300 text-lg font-medium">
                                         <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center mr-4">
                                             <CheckCircle className="w-5 h-5" />
@@ -340,11 +376,11 @@ export default function Overlay() {
                                 </ul>
 
                                 <a href="#contact">
-                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-all duration-300">
-                                        <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <button className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl text-white font-bold text-lg overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-all duration-500 ease-out">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
                                         <span className="relative flex items-center">
                                             Get Started
-                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-all duration-500 ease-out" />
                                         </span>
                                     </button>
                                 </a>
