@@ -137,9 +137,9 @@ export default function Overlay() {
             <section ref={containerRef} className="h-screen w-screen overflow-x-auto">
                 <div ref={slidesRef} className="h-full flex">
                     {/* SERVICE 1: CUSTOM WEBSITES */}
-                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl relative group"
+                            className="w-full max-w-[380px] md:max-w-xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -151,7 +151,7 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
@@ -160,11 +160,11 @@ export default function Overlay() {
                                     <span className="text-cyan-400 font-black text-xl">01</span>
                                 </div>
 
-                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     Custom<br />Websites
                                 </h2>
 
-                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
+                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
                                     Modern, responsive websites built with cutting-edge tech. From landing pages to full web apps.
                                 </p>
 
@@ -214,9 +214,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 2: AI VOICE AGENTS */}
-                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl relative group"
+                            className="w-full max-w-[380px] md:max-w-xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -227,18 +227,18 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
                                     <span className="text-purple-400 font-black text-xl">02</span>
                                 </div>
 
-                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     AI Voice<br />Agents
                                 </h2>
 
-                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
+                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
                                     Intelligent voice assistants that handle calls, bookings, and customer support 24/7.
                                 </p>
 
@@ -288,9 +288,9 @@ export default function Overlay() {
                     </div>
 
                     {/* SERVICE 3: WHATSAPP AUTOMATION */}
-                    <div className="service-tile min-w-[85vw] md:min-w-[60vw] h-screen flex items-center justify-center p-4 md:p-8 flex-shrink-0">
+                    <div className="service-tile min-w-[90vw] md:min-w-[600px] h-screen flex items-center justify-center p-4 flex-shrink-0">
                         <motion.div
-                            className="w-full max-w-4xl relative group"
+                            className="w-full max-w-[380px] md:max-w-xl relative group"
                             whileHover={{
                                 rotateY: 3,
                                 rotateX: 3,
@@ -301,18 +301,18 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2rem] p-6 md:p-12 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 mb-8">
                                     <span className="text-green-400 font-black text-xl">03</span>
                                 </div>
 
-                                <h2 className="text-5xl md:text-7xl font-heading font-black mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
+                                <h2 className="text-3xl md:text-5xl font-heading font-black mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-300 tracking-tighter leading-none">
                                     WhatsApp<br />Automation
                                 </h2>
 
-                                <p className="text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed font-light">
+                                <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-light">
                                     Automate customer support, sales, and notifications on the world's most popular messaging platform.
                                 </p>
 
