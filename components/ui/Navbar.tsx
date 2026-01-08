@@ -83,9 +83,14 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 pt-24 px-6 md:hidden"
+                        className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 pt-24 px-6 pb-12 md:hidden overflow-y-auto"
                     >
                         <div className="flex flex-col gap-6 text-2xl font-light">
+                            {/* Theme Toggle for Mobile */}
+                            <div className="flex items-center justify-between pb-4 border-b border-black/10 dark:border-white/10">
+                                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Theme</span>
+                                <ThemeToggle />
+                            </div>
                             <Link
                                 href="/"
                                 onClick={() => setMobileMenuOpen(false)}
