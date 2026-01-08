@@ -151,7 +151,7 @@ export default function Overlay() {
                             {/* Glow effect */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-cyan-400/20 to-cyan-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(6,182,212,0.4)] transition-all duration-700 overflow-hidden">
                                 {/* Decorative gradient orb */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl" />
 
@@ -227,7 +227,7 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(168,85,247,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 mb-8">
@@ -301,7 +301,7 @@ export default function Overlay() {
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-green-400/20 to-green-600/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                            <div className="relative bg-gradient-to-br from-white/[0.15] via-white/[0.08] to-white/[0.05] backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
+                            <div className="relative bg-[#030712]/90 md:bg-gradient-to-br md:from-white/[0.15] md:via-white/[0.08] md:to-white/[0.05] md:backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 border border-white/20 md:border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_80px_-15px_rgba(34,197,94,0.4)] transition-all duration-700 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-3xl" />
 
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 mb-8">

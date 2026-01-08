@@ -24,15 +24,16 @@ export default function FloatingParticles() {
             opacity: number;
         }> = [];
 
-        const particleCount = 50;
+        const isMobile = window.innerWidth < 768;
+        const particleCount = isMobile ? 20 : 50;
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 1,
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * (isMobile ? 1.5 : 2) + 0.5,
+                speedX: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
+                speedY: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
                 opacity: Math.random() * 0.5 + 0.2
             });
         }
