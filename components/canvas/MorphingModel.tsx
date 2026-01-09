@@ -19,14 +19,21 @@ export default function MorphingModel() {
 
     // Delay Spline loading until after initial paint
     useEffect(() => {
-        // Wait for page to be interactive before loading heavy 3D
-        const timer = requestIdleCallback
-            ? requestIdleCallback(() => setShouldLoad(true), { timeout: 2000 })
-            : setTimeout(() => setShouldLoad(true), 100);
+        // Use requestIdleCallback if available (not in Safari), otherwise setTimeout
+        let timerId: ReturnType<typeof setTimeout> | number;
+
+        if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+            timerId = window.requestIdleCallback(() => setShouldLoad(true), { timeout: 2000 });
+        } else {
+            // Fallback for Safari and older browsers
+            timerId = setTimeout(() => setShouldLoad(true), 100);
+        }
 
         return () => {
-            if (typeof timer === 'number') {
-                cancelIdleCallback ? cancelIdleCallback(timer) : clearTimeout(timer);
+            if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof timerId === 'number') {
+                window.cancelIdleCallback(timerId);
+            } else {
+                clearTimeout(timerId as ReturnType<typeof setTimeout>);
             }
         };
     }, []);

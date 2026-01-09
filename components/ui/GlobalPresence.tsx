@@ -117,7 +117,7 @@ export default function GlobalPresence() {
                         ))}
 
                         {/* Connection lines */}
-                        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.1 }}>
+                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ opacity: 0.1 }}>
                             <defs>
                                 <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                     <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
@@ -125,23 +125,23 @@ export default function GlobalPresence() {
                                     <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
                                 </linearGradient>
                             </defs>
-                            {/* Lines connecting regions */}
+                            {/* Lines connecting regions - using numeric coordinates with viewBox */}
                             <path
-                                d="M 22% 35% Q 35% 20% 47% 28%"
+                                d="M 22 35 Q 35 20 47 28"
                                 stroke="url(#line-gradient)"
-                                strokeWidth="1"
+                                strokeWidth="0.5"
                                 fill="none"
                             />
                             <path
-                                d="M 47% 28% Q 55% 35% 60% 42%"
+                                d="M 47 28 Q 55 35 60 42"
                                 stroke="url(#line-gradient)"
-                                strokeWidth="1"
+                                strokeWidth="0.5"
                                 fill="none"
                             />
                             <path
-                                d="M 60% 42% Q 70% 55% 82% 65%"
+                                d="M 60 42 Q 70 55 82 65"
                                 stroke="url(#line-gradient)"
-                                strokeWidth="1"
+                                strokeWidth="0.5"
                                 fill="none"
                             />
                         </svg>
