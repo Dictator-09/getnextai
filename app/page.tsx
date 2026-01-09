@@ -1,29 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import Loader from "@/components/ui/Loader";
 
-import Overlay from "@/components/canvas/Overlay";
+// Dynamic imports - content loads after hydration, 3D loads when idle
+const Overlay = dynamic(() => import("@/components/canvas/Overlay"), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen w-full bg-black flex items-center justify-center">
+      <div className="text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">
+        GETNEXT<span className="text-white">AI</span>
+      </div>
+    </div>
+  )
+});
 
-// Dynamic import for the 3D Scene to avoid SSR issues
 const Scene = dynamic(() => import("@/components/canvas/Scene"), {
   ssr: false,
-  loading: () => <div className="fixed inset-0 bg-black" />
+  loading: () => null
 });
 
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-
   return (
     <main className="relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-500">
-      {!loaded && <Loader onFinished={() => setLoaded(true)} />}
-      {loaded && (
-        <div className="animate-in fade-in duration-1000">
-          <Scene />
-          <Overlay />
-        </div>
-      )}
+      {/* Content loads immediately after hydration */}
+      <Overlay />
+
+      {/* 3D model loads in background - doesn't block page */}
+      <Suspense fallback={null}>
+        <Scene />
+      </Suspense>
     </main>
   );
 }
+

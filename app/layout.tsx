@@ -4,11 +4,12 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-import FloatingParticles from "@/components/ui/FloatingParticles";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import SkipToContent from "@/components/ui/SkipToContent";
 import { ToastProvider } from "@/components/ui/Toast";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -90,7 +91,7 @@ export default function RootLayout({
           <ToastProvider>
             <SmoothScroll>
               <ScrollProgress />
-              <FloatingParticles />
+              <LazyFloatingParticles />
               <ScrollToTop />
               {children}
             </SmoothScroll>
