@@ -121,7 +121,7 @@ export default function Navbar() {
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0f] rounded-t-3xl pt-6 pb-8 px-6 lg:hidden safe-bottom border-t border-white/10"
+                            className="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl rounded-t-3xl pt-6 pb-8 px-6 lg:hidden safe-bottom border-t border-white/20"
                         >
                             {/* Handle bar */}
                             <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-6" />

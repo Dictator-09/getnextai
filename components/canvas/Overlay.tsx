@@ -85,7 +85,7 @@ export default function Overlay() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
-                            className="grid grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-white/10 w-full max-w-lg sm:max-w-none mx-auto"
+                            className="grid grid-cols-3 gap-2 sm:gap-8 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-white/10 w-full max-w-lg sm:max-w-none mx-auto"
                         >
                             <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-3">
                                 <div className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-cyan-500/10 flex items-center justify-center">
@@ -148,9 +148,9 @@ export default function Overlay() {
             {/* SECTION: CONTACT */}
             <section
                 id="contact"
-                className="min-h-screen w-screen flex flex-col items-center justify-center p-8"
+                className="min-h-screen w-screen flex flex-col items-center justify-center p-4 sm:p-8"
             >
-                <div className="bg-black/80 backdrop-blur-xl p-10 rounded-3xl border border-white/10 max-w-4xl w-full flex flex-col md:flex-row gap-10">
+                <div className="bg-black/40 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-white/20 max-w-4xl w-full flex flex-col md:flex-row gap-8 md:gap-10">
                     <div className="flex-1">
                         <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
                             Let&apos;s Build<br />
