@@ -124,7 +124,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             <motion.div
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className={`relative h-full flex flex-col bg-white/5 backdrop-blur-md rounded-[2rem] p-8 ${service.featured ? 'md:p-12' : 'md:p-8'} border border-white/10 hover:border-white/20 transition-all duration-500`}
+                className={`relative h-full flex flex-col bg-black/40 backdrop-blur-xl rounded-[2rem] p-8 ${service.featured ? 'md:p-12' : 'md:p-8'} border border-white/20 hover:border-white/30 transition-all duration-500`}
             >
                 {/* Decorative gradient orb */}
                 <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${colors.gradientLight} rounded-full blur-3xl opacity-50`} />
@@ -225,10 +225,7 @@ export default function ServicesGrid() {
                         What We Build
                     </p>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white mb-4">
-                        AI Solutions{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500">
-                            That Deliver
-                        </span>
+                        AI Solutions <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">That Deliver</span>
                     </h2>
                     <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
                         Enterprise-grade AI systems, delivered in weeks, not months.
@@ -248,7 +245,7 @@ export default function ServicesGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 p-6 md:p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl"
+                    className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 p-6 md:p-8 bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl"
                 >
                     <div className="text-center">
                         <div className="flex items-center justify-center gap-2 mb-2">
