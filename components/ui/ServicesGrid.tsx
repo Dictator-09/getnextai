@@ -30,7 +30,7 @@ const services = [
         ],
         color: "cyan",
         icon: Globe,
-        featured: true
+        featured: false
     },
     {
         id: "voice-agents",
