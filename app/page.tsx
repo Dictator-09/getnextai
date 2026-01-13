@@ -22,7 +22,7 @@ const Scene = dynamic(() => import("@/components/canvas/Scene"), {
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-500">
+    <main className="relative min-h-screen w-full transition-colors duration-500">
       {/* Content loads immediately after hydration */}
       <Overlay />
 

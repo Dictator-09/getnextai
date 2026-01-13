@@ -148,7 +148,7 @@ export default function Overlay() {
             {/* SECTION: CONTACT */}
             <section
                 id="contact"
-                className="min-h-screen w-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-black to-[#050505]"
+                className="min-h-screen w-screen flex flex-col items-center justify-center p-8"
             >
                 <div className="bg-black/80 backdrop-blur-xl p-10 rounded-3xl border border-white/10 max-w-4xl w-full flex flex-col md:flex-row gap-10">
                     <div className="flex-1">

@@ -99,7 +99,7 @@ export default function ContactForm() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-white/95 dark:bg-black/90 z-10 flex flex-col items-center justify-center rounded-xl backdrop-blur-md"
+                        className="absolute inset-0 bg-white/5 dark:bg-black/40 z-10 flex flex-col items-center justify-center rounded-xl backdrop-blur-xl"
                     >
                         <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
                         <h3 className="text-2xl font-bold text-black dark:text-white mb-2">Message Sent!</h3>

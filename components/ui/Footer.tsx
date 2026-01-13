@@ -22,7 +22,7 @@ const regions = ["US", "UK", "UAE", "AU", "EU"];
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-gray-50 dark:bg-black border-t border-black/5 dark:border-white/10 pt-20 pb-10 transition-colors duration-500">
+        <footer className="w-full bg-black/20 backdrop-blur-lg border-t border-white/5 pt-20 pb-10 transition-colors duration-500">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}

@@ -124,7 +124,7 @@ export default function AuditForm() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/95 z-10 flex flex-col items-center justify-center rounded-2xl backdrop-blur-md p-8"
+                        className="absolute inset-0 bg-black/40 z-10 flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl p-8"
                     >
                         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500/20 to-green-600/10 flex items-center justify-center mb-6">
                             <CheckCircle className="w-10 h-10 text-green-500" />

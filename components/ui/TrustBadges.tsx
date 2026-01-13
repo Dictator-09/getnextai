@@ -38,7 +38,7 @@ const badges = [
 
 export default function TrustBadges() {
     return (
-        <section className="py-16 bg-gray-50/50 dark:bg-black/50 border-y border-black/5 dark:border-white/5 transition-colors duration-500 relative overflow-hidden">
+        <section className="py-16 bg-transparent border-y border-white/5 relative overflow-hidden">
             {/* Subtle background gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-purple-500/5" />
 
