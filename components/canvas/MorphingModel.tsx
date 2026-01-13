@@ -1,8 +1,8 @@
 "use client";
 
-import ThreeJsMorphingOrb from "./ThreeJsMorphingOrb";
+import NeuralNetwork3D from "./NeuralNetwork3D";
 
 export default function MorphingModel() {
-    return <ThreeJsMorphingOrb />;
+    return <NeuralNetwork3D />;
 }
 
