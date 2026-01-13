@@ -7,7 +7,6 @@ import Footer from "@/components/ui/Footer";
 import ContactForm from "@/components/ui/ContactForm";
 import ProcessSection from "@/components/ui/ProcessSection";
 import TrustBadges from "@/components/ui/TrustBadges";
-import AIAuditSection from "@/components/ui/AIAuditSection";
 import CaseStudies from "@/components/ui/CaseStudies";
 import GlobalPresence from "@/components/ui/GlobalPresence";
 import TechStack from "@/components/ui/TechStack";
@@ -60,7 +59,7 @@ export default function Overlay() {
 
                         {/* Dual CTA Buttons - Touch Optimized */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
-                            <a href="#audit" className="w-full sm:w-auto">
+                            <a href="/audit" className="w-full sm:w-auto">
                                 <motion.button
                                     whileTap={{ scale: 0.97 }}
                                     className="w-full sm:w-auto min-h-[52px] px-6 sm:px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-2xl sm:rounded-full text-base sm:text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] active:shadow-[0_0_20px_rgba(6,182,212,0.6)] transition-all duration-200 flex items-center justify-center gap-2 touch-feedback"
@@ -127,8 +126,6 @@ export default function Overlay() {
             {/* TRUST BADGES (Enhanced) */}
             <TrustBadges />
 
-            {/* AI AUDIT SECTION (NEW) */}
-            <AIAuditSection />
 
             {/* PREMIUM SERVICES GRID */}
             <ServicesGrid />

@@ -35,7 +35,7 @@ export default function StickyAuditCTA() {
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-50 safe-bottom"
                 >
-                    <a href="#audit" className="block">
+                    <a href="/audit" className="block">
                         <motion.div
                             whileTap={{ scale: 0.98 }}
                             className="relative flex items-center justify-between gap-3 px-5 py-4 sm:px-6 sm:py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl shadow-[0_10px_40px_rgba(6,182,212,0.4)] touch-feedback"

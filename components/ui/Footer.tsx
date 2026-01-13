@@ -8,7 +8,7 @@ const services = [
     { href: "#services", label: "AI Websites" },
     { href: "#services", label: "Voice Agents" },
     { href: "#services", label: "Automation" },
-    { href: "#audit", label: "Free AI Audit" },
+    { href: "/audit", label: "Free AI Audit" },
 ];
 
 const company = [
@@ -80,7 +80,7 @@ export default function Footer() {
 
                         {/* CTA */}
                         <Link
-                            href="#audit"
+                            href="/audit"
                             className="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 rounded-lg text-cyan-500 text-sm font-medium hover:border-cyan-500/40 transition-colors"
                         >
                             Get Free AI Audit

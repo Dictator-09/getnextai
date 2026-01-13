@@ -105,7 +105,7 @@ export default function CaseStudies() {
                     <p className="text-gray-500 text-sm sm:text-base mb-4 sm:mb-6">
                         Ready to create your own success story?
                     </p>
-                    <a href="#audit" className="inline-block w-full sm:w-auto max-w-md px-4 sm:px-0">
+                    <a href="/audit" className="inline-block w-full sm:w-auto max-w-md px-4 sm:px-0">
                         <motion.button
                             whileTap={{ scale: 0.97 }}
                             className="w-full sm:w-auto min-h-[52px] px-6 sm:px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-2xl sm:rounded-full text-base sm:text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] active:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all duration-200 flex items-center justify-center gap-2 touch-feedback mx-auto"

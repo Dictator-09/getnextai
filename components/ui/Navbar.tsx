@@ -11,7 +11,7 @@ const navLinks = [
     { href: "/", label: "Home" },
     { href: "#services", label: "Services" },
     { href: "#case-studies", label: "Case Studies" },
-    { href: "#audit", label: "AI Audit" },
+    { href: "/audit", label: "AI Audit" },
     { href: "#contact", label: "Contact" },
 ];
 
@@ -74,7 +74,7 @@ export default function Navbar() {
 
                         <ThemeToggle />
 
-                        <Link href="#audit">
+                        <Link href="/audit">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -151,7 +151,7 @@ export default function Navbar() {
                                     className="mt-4"
                                 >
                                     <Link
-                                        href="#audit"
+                                        href="/audit"
                                         onClick={handleLinkClick}
                                     >
                                         <button

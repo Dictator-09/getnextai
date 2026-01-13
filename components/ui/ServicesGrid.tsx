@@ -188,7 +188,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </ul>
 
                 {/* CTA Button */}
-                <a href="#audit" className="relative z-10 mt-auto">
+                <a href="/audit" className="relative z-10 mt-auto">
                     <motion.button
                         whileTap={{ scale: 0.97 }}
                         className={`group/btn relative w-full md:w-auto px-6 py-3.5 bg-gradient-to-r ${colors.gradient} rounded-xl text-white font-bold text-sm overflow-hidden ${colors.glow} ${colors.glowHover} transition-all duration-500`}

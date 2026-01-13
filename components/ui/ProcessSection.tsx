@@ -107,7 +107,7 @@ export default function ProcessSection() {
                     viewport={{ once: true }}
                     className="text-center mt-16"
                 >
-                    <a href="#audit">
+                    <a href="/audit">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
