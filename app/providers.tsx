@@ -1,22 +1,36 @@
 "use client";
 
-import ScrollToTop from "@/components/ui/ScrollToTop";
-import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
-import { ToastProvider } from "@/components/ui/Toast";
-import WebVitalsReporter from "@/components/ui/WebVitalsReporter";
+import { ReactNode, Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 import { CursorProvider } from "@/components/ui/CustomCursor";
+import { ToastProvider } from "@/components/ui/Toast";
 import PreLoader from "@/components/ui/PreLoader";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+    children: ReactNode;
+}
+
+export default function Providers({ children }: ProvidersProps) {
     return (
-        <CursorProvider>
-            <ToastProvider>
-                <PreLoader />
-                <WebVitalsReporter />
-                <LazyFloatingParticles />
-                <ScrollToTop />
-                {children}
-            </ToastProvider>
-        </CursorProvider>
+        <AnimatePresence mode="wait">
+            <CursorProvider>
+                <ToastProvider>
+                    <PreLoader />
+                    <Suspense fallback={<LoadingFallback />}>
+                        <ScrollToTop />
+                        {children}
+                    </Suspense>
+                </ToastProvider>
+            </CursorProvider>
+        </AnimatePresence>
+    );
+}
+
+function LoadingFallback() {
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-[#050508]">
+            <div className="text-[#B8FF00] text-xl font-mono">Loading...</div>
+        </div>
     );
 }
