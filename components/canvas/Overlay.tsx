@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import CinematicHero from "@/components/hero/CinematicHero";
@@ -15,7 +13,7 @@ import StickyAuditCTA from "@/components/ui/StickyAuditCTA";
 
 export default function Overlay() {
     return (
-        <div className="absolute top-0 left-0 w-full z-20 safe-top">
+        <div className="w-full z-20 safe-top">
             <Navbar />
 
             {/* CINEMATIC HERO SECTION */}

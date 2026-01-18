@@ -1,17 +1,4 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const AIAuditSection = dynamic(() => import("@/components/ui/AIAuditSection"), {
-    ssr: false,
-    loading: () => (
-        <div className="min-h-screen w-full bg-black flex items-center justify-center">
-            <div className="text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">
-                Loading...
-            </div>
-        </div>
-    )
-});
+import AIAuditSection from "@/components/ui/AIAuditSection";
 
 export default function AuditPage() {
     return (
