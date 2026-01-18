@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -11,21 +11,10 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
 
 
+// Font configuration
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
   display: "swap",
 });
 
@@ -88,9 +77,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-[#030712] font-sans antialiased text-white",
-          inter.variable,
-          outfit.variable,
-          spaceGrotesk.variable
+          inter.variable
         )}
       >
         <SkipToContent />

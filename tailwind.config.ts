@@ -45,8 +45,11 @@ const config: Config = {
             },
             fontFamily: {
                 sans: ["var(--font-inter)", "sans-serif"],
-                heading: ["var(--font-outfit)", "sans-serif"],
-                display: ["var(--font-space)", "sans-serif"],
+                heading: ["Neue Montreal", "Helvetica Neue", "Arial", "sans-serif"],
+                display: ["Neue Montreal", "Helvetica Neue", "Arial", "sans-serif"],
+            },
+            letterSpacing: {
+                "tighter-neg": "-0.05em",
             },
             keyframes: {
                 "accordion-down": {
