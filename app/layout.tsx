@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import SkipToContent from "@/components/ui/SkipToContent";
-import Providers from "./providers";
 
 // Font configuration
 const inter = Inter({
@@ -75,9 +74,7 @@ export default function RootLayout({
         )}
       >
         <SkipToContent />
-        <Providers>
-          {children}
-        </Providers>
+        {children}
       </body>
     </html>
   );

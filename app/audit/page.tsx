@@ -1,9 +1,12 @@
 import AIAuditSection from "@/components/ui/AIAuditSection";
+import Providers from "../providers";
 
 export default function AuditPage() {
     return (
-        <main className="relative min-h-screen w-full bg-[#030305]">
-            <AIAuditSection />
-        </main>
+        <Providers>
+            <main className="relative min-h-screen w-full bg-[#030305]">
+                <AIAuditSection />
+            </main>
+        </Providers>
     );
 }
