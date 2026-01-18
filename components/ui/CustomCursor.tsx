@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 // ============================================
@@ -177,6 +177,77 @@ export function CursorTrigger({ variant, children, className }: CursorTriggerPro
         >
             {children}
         </div>
+    );
+}
+
+// ============================================
+// MAGNETIC BUTTON COMPONENT
+// ============================================
+
+interface MagneticButtonProps {
+    children: React.ReactNode;
+    className?: string;
+    onClick?: () => void;
+    strength?: number;
+}
+
+export function MagneticButton({
+    children,
+    className = "",
+    onClick,
+    strength = 0.3,
+}: MagneticButtonProps) {
+    const ref = useRef<HTMLButtonElement>(null);
+    const { setVariant } = useCursor();
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const springConfig = { damping: 20, stiffness: 300 };
+    const xSpring = useSpring(x, springConfig);
+    const ySpring = useSpring(y, springConfig);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!ref.current) return;
+
+        const rect = ref.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const distanceX = e.clientX - centerX;
+        const distanceY = e.clientY - centerY;
+
+        // Magnetic effect - pull towards cursor
+        x.set(distanceX * strength);
+        y.set(distanceY * strength);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+        setVariant("default");
+    };
+
+    const handleMouseEnter = () => {
+        setVariant("button");
+    };
+
+    return (
+        <motion.button
+            ref={ref}
+            className={`magnetic-button ${className}`}
+            style={{
+                x: xSpring,
+                y: ySpring,
+            }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onClick={onClick}
+            whileTap={{ scale: 0.95 }}
+        >
+            {children}
+        </motion.button>
     );
 }
 
