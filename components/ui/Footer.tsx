@@ -22,7 +22,7 @@ const regions = ["US", "UK", "UAE", "AU", "EU"];
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-black/20 backdrop-blur-lg border-t border-white/5 pt-20 pb-10 transition-colors duration-500">
+        <footer className="w-full bg-black/20 backdrop-blur-lg border-t border-white/5 pt-20 pb-10">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}
@@ -30,7 +30,7 @@ export default function Footer() {
                         <Link href="/" className="inline-block mb-6">
                             <Logo />
                         </Link>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-md mb-6">
+                        <p className="text-gray-400 leading-relaxed max-w-md mb-6">
                             We help global businesses automate operations, convert more leads,
                             and scale faster using AI. Built for the future. Delivered today.
                         </p>
@@ -61,7 +61,7 @@ export default function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h3 className="text-black dark:text-white font-bold mb-6">Solutions</h3>
+                        <h3 className="text-white font-bold mb-6">Solutions</h3>
                         <ul className="space-y-4">
                             {services.map((item) => (
                                 <FooterLink key={item.label} href={item.href} label={item.label} />
@@ -71,7 +71,7 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h3 className="text-black dark:text-white font-bold mb-6">Company</h3>
+                        <h3 className="text-white font-bold mb-6">Company</h3>
                         <ul className="space-y-4">
                             {company.map((item) => (
                                 <FooterLink key={item.label} href={item.href} label={item.label} />
@@ -90,7 +90,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-500 text-sm">
                         © {new Date().getFullYear()} GetNextAI. All rights reserved.
                     </p>
@@ -111,7 +111,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
+            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
         >
             {icon}
         </a>
@@ -123,7 +123,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
         <li>
             <Link
                 href={href}
-                className="text-gray-500 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors text-sm"
+                className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
             >
                 {label}
             </Link>

@@ -6,7 +6,6 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import SkipToContent from "@/components/ui/SkipToContent";
 import { ToastProvider } from "@/components/ui/Toast";
-import SmoothScroll from "@/components/ui/SmoothScroll";
 import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
 
 
@@ -81,12 +80,10 @@ export default function RootLayout({
       >
         <SkipToContent />
         <ToastProvider>
-          <SmoothScroll>
-            <ScrollProgress />
-            <LazyFloatingParticles />
-            <ScrollToTop />
-            {children}
-          </SmoothScroll>
+          <ScrollProgress />
+          <LazyFloatingParticles />
+          <ScrollToTop />
+          {children}
         </ToastProvider>
       </body>
     </html>

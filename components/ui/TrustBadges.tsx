@@ -48,7 +48,7 @@ export default function TrustBadges() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
-                    className="text-center text-gray-500 dark:text-gray-500 text-sm uppercase tracking-widest mb-10"
+                    className="text-center text-gray-500 text-sm uppercase tracking-widest mb-10"
                 >
                     Why businesses trust us
                 </motion.p>
@@ -63,13 +63,13 @@ export default function TrustBadges() {
                             viewport={{ once: true }}
                             className="flex flex-col items-center text-center group"
                         >
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-white/10 dark:to-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:border-cyan-500/30 transition-all duration-300 shadow-sm dark:shadow-none">
-                                <div className="text-cyan-600 dark:text-cyan-400">
+                            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:border-cyan-500/30 transition-all duration-300">
+                                <div className="text-cyan-400">
                                     {badge.icon}
                                 </div>
                             </div>
-                            <h4 className="text-black dark:text-white font-bold text-sm mb-1">{badge.title}</h4>
-                            <p className="text-gray-500 dark:text-gray-500 text-xs">{badge.description}</p>
+                            <h4 className="text-white font-bold text-sm mb-1">{badge.title}</h4>
+                            <p className="text-gray-500 text-xs">{badge.description}</p>
                         </motion.div>
                     ))}
                 </div>
