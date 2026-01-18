@@ -39,8 +39,8 @@ const badges = [
 export default function TrustBadges() {
     return (
         <section className="py-16 bg-transparent border-y border-white/5 relative overflow-hidden">
-            {/* Subtle background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-purple-500/5" />
+            {/* Aurora gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-transparent to-[#00C9A7]/5" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <motion.p
@@ -63,8 +63,8 @@ export default function TrustBadges() {
                             viewport={{ once: true }}
                             className="flex flex-col items-center text-center group"
                         >
-                            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:border-cyan-500/30 transition-all duration-300">
-                                <div className="text-cyan-400">
+                            <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:border-[#00C9A7]/30 transition-all duration-300">
+                                <div className="text-[#00C9A7]">
                                     {badge.icon}
                                 </div>
                             </div>

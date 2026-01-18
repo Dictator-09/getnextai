@@ -48,7 +48,7 @@ export default function HeroStatic() {
                     </span>
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
                         Running on{" "}
-                        <span className="text-[#B8FF00]">Intelligence.</span>
+                        <span className="text-[#00C9A7]">Intelligence.</span>
                     </span>
                 </h1>
 

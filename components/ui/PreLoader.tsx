@@ -48,14 +48,14 @@ export default function PreLoader() {
                         className="mb-8"
                     >
                         <span className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                            GETNEXT<span className="text-[#B8FF00]">AI</span>
+                            GETNEXT<span className="text-[#00C9A7]">AI</span>
                         </span>
                     </motion.div>
 
                     {/* Progress bar */}
                     <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
                         <motion.div
-                            className="h-full bg-[#B8FF00]"
+                            className="h-full bg-[#00C9A7]"
                             initial={{ width: 0 }}
                             animate={{ width: `${Math.min(progress, 100)}%` }}
                             transition={{ duration: 0.1 }}

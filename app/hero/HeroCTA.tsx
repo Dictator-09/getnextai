@@ -18,7 +18,7 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
                 {/* Main button */}
-                <div className="relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-[#B8FF00] to-[#8BC34A] overflow-hidden">
+                <div className="relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#8BC34A] overflow-hidden">
                     {/* Animated shine effect */}
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
@@ -56,7 +56,7 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
 
                 {/* Pulsing ring */}
                 <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-[#B8FF00] -z-10"
+                    className="absolute inset-0 rounded-full border-2 border-[#00C9A7] -z-10"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                 />

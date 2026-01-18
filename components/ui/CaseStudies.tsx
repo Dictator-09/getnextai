@@ -60,7 +60,7 @@ export default function CaseStudies() {
         <section id="case-studies" className="py-24 md:py-32 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-[#030305]" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8FF00]/20 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00C9A7]/20 to-transparent" />
 
             {/* Simple Grid Background */}
             <div

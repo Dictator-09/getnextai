@@ -47,7 +47,7 @@ export default function AccessRequest() {
             particleCount: 60,
             spread: 50,
             origin: { y: 0.7 },
-            colors: ["#B8FF00", "#ffffff"],
+            colors: ["#00C9A7", "#ffffff"],
         });
     };
 
@@ -80,8 +80,8 @@ export default function AccessRequest() {
                         className="text-center mb-12 md:mb-16"
                     >
                         <div className="inline-flex items-center gap-2 mb-4">
-                            <div className="w-2 h-2 bg-[#B8FF00] rounded-full animate-pulse" />
-                            <span className="font-mono text-xs text-[#B8FF00] tracking-widest uppercase">
+                            <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
+                            <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
                                 Request Access
                             </span>
                         </div>
@@ -108,9 +108,9 @@ export default function AccessRequest() {
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                                    className="w-20 h-20 mx-auto mb-8 rounded-full bg-[#B8FF00]/10 border border-[#B8FF00]/30 flex items-center justify-center"
+                                    className="w-20 h-20 mx-auto mb-8 rounded-full bg-[#00C9A7]/10 border border-[#00C9A7]/30 flex items-center justify-center"
                                 >
-                                    <div className="w-10 h-10 bg-[#B8FF00] rounded-full" />
+                                    <div className="w-10 h-10 bg-[#00C9A7] rounded-full" />
                                 </motion.div>
 
                                 <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
@@ -119,7 +119,7 @@ export default function AccessRequest() {
                                 <p className="text-white/50 mb-2">
                                     {selectedDayData?.date} at {selectedSlotData?.time} {selectedSlotData?.zone}
                                 </p>
-                                <p className="text-[#B8FF00]/80 text-sm font-mono">
+                                <p className="text-[#00C9A7]/80 text-sm font-mono">
                                     Expect direct confirmation within 2 hours.
                                 </p>
 
@@ -168,11 +168,11 @@ export default function AccessRequest() {
                                                 transition={{ delay: index * 0.1 }}
                                                 onClick={() => setSelectedDay(day.id)}
                                                 className={`relative p-4 md:p-6 rounded-xl border transition-all duration-300 ${selectedDay === day.id
-                                                        ? "bg-[#B8FF00]/10 border-[#B8FF00]/50 shadow-[0_0_30px_rgba(184,255,0,0.1)]"
+                                                        ? "bg-[#00C9A7]/10 border-[#00C9A7]/50 shadow-[0_0_30px_rgba(0,201,167,0.1)]"
                                                         : "bg-white/5 border-white/10 hover:border-white/20"
                                                     }`}
                                             >
-                                                <span className={`block text-xs font-mono uppercase mb-1 ${selectedDay === day.id ? "text-[#B8FF00]" : "text-white/30"
+                                                <span className={`block text-xs font-mono uppercase mb-1 ${selectedDay === day.id ? "text-[#00C9A7]" : "text-white/30"
                                                     }`}>
                                                     {day.label}
                                                 </span>
@@ -184,7 +184,7 @@ export default function AccessRequest() {
                                                 {selectedDay === day.id && (
                                                     <motion.div
                                                         layoutId="dayIndicator"
-                                                        className="absolute -top-1 -right-1 w-3 h-3 bg-[#B8FF00] rounded-full"
+                                                        className="absolute -top-1 -right-1 w-3 h-3 bg-[#00C9A7] rounded-full"
                                                     />
                                                 )}
                                             </motion.button>
@@ -216,7 +216,7 @@ export default function AccessRequest() {
                                                         className={`relative p-4 rounded-xl border transition-all duration-300 ${!slot.available
                                                                 ? "bg-white/5 border-white/5 opacity-30 cursor-not-allowed"
                                                                 : selectedSlot === slot.id
-                                                                    ? "bg-[#B8FF00]/10 border-[#B8FF00]/50 shadow-[0_0_20px_rgba(184,255,0,0.1)]"
+                                                                    ? "bg-[#00C9A7]/10 border-[#00C9A7]/50 shadow-[0_0_20px_rgba(0,201,167,0.1)]"
                                                                     : "bg-white/5 border-white/10 hover:border-white/20"
                                                             }`}
                                                     >
@@ -231,7 +231,7 @@ export default function AccessRequest() {
                                                         {selectedSlot === slot.id && (
                                                             <motion.div
                                                                 layoutId="slotIndicator"
-                                                                className="absolute -top-1 -right-1 w-3 h-3 bg-[#B8FF00] rounded-full"
+                                                                className="absolute -top-1 -right-1 w-3 h-3 bg-[#00C9A7] rounded-full"
                                                             />
                                                         )}
                                                     </motion.button>
@@ -260,7 +260,7 @@ export default function AccessRequest() {
                                                     placeholder="Name"
                                                     value={formData.name}
                                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#B8FF00]/50 transition-colors"
+                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
                                                     required
                                                 />
                                                 <input
@@ -268,7 +268,7 @@ export default function AccessRequest() {
                                                     placeholder="Email"
                                                     value={formData.email}
                                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#B8FF00]/50 transition-colors"
+                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
                                                     required
                                                 />
                                             </div>
@@ -277,7 +277,7 @@ export default function AccessRequest() {
                                                 placeholder="Company (optional)"
                                                 value={formData.company}
                                                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#B8FF00]/50 transition-colors"
+                                                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
                                             />
                                         </motion.div>
                                     )}
@@ -296,7 +296,7 @@ export default function AccessRequest() {
                                                 disabled={status === "submitting"}
                                                 whileHover={{ scale: 1.02 }}
                                                 whileTap={{ scale: 0.98 }}
-                                                className="w-full md:w-auto px-10 py-5 bg-[#B8FF00] text-[#050508] font-display font-bold text-lg rounded-full transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3"
+                                                className="w-full md:w-auto px-10 py-5 bg-[#00C9A7] text-[#050508] font-display font-bold text-lg rounded-full transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3"
                                                 style={{
                                                     boxShadow: "0 0 40px rgba(184, 255, 0, 0.3)",
                                                 }}

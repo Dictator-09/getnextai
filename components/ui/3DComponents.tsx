@@ -44,10 +44,10 @@ export function Logo3D() {
                 style={{ transformStyle: "preserve-3d" }}
             >
                 {/* Logo Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#B8FF00]/20 to-[#B8FF00]/5 blur-xl" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00C9A7]/20 to-[#00C9A7]/5 blur-xl" />
 
                 {/* Logo Icon */}
-                <div className="relative flex items-center gap-2 p-3 rounded-xl bg-black/40 backdrop-blur-sm border border-[#B8FF00]/30">
+                <div className="relative flex items-center gap-2 p-3 rounded-xl bg-black/40 backdrop-blur-sm border border-[#00C9A7]/30">
                     {/* Hexagon Icon */}
                     <div className="relative">
                         <svg
@@ -55,21 +55,21 @@ export function Logo3D() {
                             height="32"
                             viewBox="0 0 32 32"
                             fill="none"
-                            className="drop-shadow-[0_0_12px_rgba(184,255,0,0.8)]"
+                            className="drop-shadow-[0_0_12px_rgba(0,201,167,0.8)]"
                         >
                             <path
                                 d="M16 2L28 9V23L16 30L4 23V9L16 2Z"
                                 fill="rgba(184, 255, 0, 0.2)"
-                                stroke="#B8FF00"
+                                stroke="#00C9A7"
                                 strokeWidth="2"
                             />
                             <circle cx="16" cy="16" r="6" fill="rgba(184, 255, 0, 0.4)" />
-                            <circle cx="16" cy="16" r="4" fill="#B8FF00" />
+                            <circle cx="16" cy="16" r="4" fill="#00C9A7" />
                         </svg>
 
                         {/* Floating particles */}
                         <motion.div
-                            className="absolute -top-1 -right-1 w-2 h-2 bg-[#B8FF00] rounded-full"
+                            className="absolute -top-1 -right-1 w-2 h-2 bg-[#00C9A7] rounded-full"
                             animate={{ y: [-2, 2, -2], opacity: [0.5, 1, 0.5] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         />
@@ -77,7 +77,7 @@ export function Logo3D() {
 
                     {/* Text */}
                     <div className="relative">
-                        <span className="text-2xl font-bold text-[#B8FF00] drop-shadow-[0_0_8px_rgba(184,255,0,0.5)]">
+                        <span className="text-2xl font-bold text-[#00C9A7] drop-shadow-[0_0_8px_rgba(0,201,167,0.5)]">
                             GETNEXT
                         </span>
                         <span className="text-2xl font-bold text-white">AI</span>
@@ -126,7 +126,7 @@ export function Button3D({
 
     const variants = {
         primary: {
-            background: "linear-gradient(135deg, #B8FF00 0%, #8BC34A 100%)",
+            background: "linear-gradient(135deg, #00C9A7 0%, #8BC34A 100%)",
             glow: "0 0 40px rgba(184, 255, 0, 0.6), 0 0 80px rgba(184, 255, 0, 0.3)",
             border: "2px solid rgba(184, 255, 0, 0.5)",
             color: "#000",
@@ -135,7 +135,7 @@ export function Button3D({
             background: "linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)",
             glow: "0 0 40px rgba(184, 255, 0, 0.3)",
             border: "2px solid rgba(184, 255, 0, 0.5)",
-            color: "#B8FF00",
+            color: "#00C9A7",
         },
     };
 
@@ -185,7 +185,7 @@ export function FloatingElements() {
                     key={i}
                     className="absolute w-64 h-64 rounded-full blur-3xl"
                     style={{
-                        background: "radial-gradient(circle, rgba(184,255,0,0.1) 0%, transparent 70%)",
+                        background: "radial-gradient(circle, rgba(0,201,167,0.1) 0%, transparent 70%)",
                         left: `${20 + i * 15}%`,
                         top: `${10 + i * 20}%`,
                     }}

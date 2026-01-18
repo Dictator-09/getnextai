@@ -59,8 +59,8 @@ export default function ProcessSection() {
                     className="text-center mb-16 md:mb-24"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="w-2 h-2 bg-[#B8FF00] rounded-full animate-pulse" />
-                        <span className="font-mono text-xs text-[#B8FF00] tracking-widest uppercase">
+                        <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
+                        <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
                             Operational Workflow
                         </span>
                     </div>
@@ -84,16 +84,16 @@ export default function ProcessSection() {
                         >
                             {/* Connector Line (Desktop) */}
                             {index < steps.length - 1 && (
-                                <div className="hidden lg:block absolute top-12 left-[60%] w-[120%] h-px bg-gradient-to-r from-[#B8FF00]/30 to-transparent z-0" />
+                                <div className="hidden lg:block absolute top-12 left-[60%] w-[120%] h-px bg-gradient-to-r from-[#00C9A7]/30 to-transparent z-0" />
                             )}
 
-                            <div className="relative bg-[#050508]/80 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:border-[#B8FF00]/30 transition-all duration-300 h-full flex flex-col z-10">
+                            <div className="relative bg-[#050508]/80 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:border-[#00C9A7]/30 transition-all duration-300 h-full flex flex-col z-10">
                                 {/* Hover Glow */}
-                                <div className="absolute inset-0 bg-[#B8FF00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                                <div className="absolute inset-0 bg-[#00C9A7]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
 
                                 <div className="relative">
                                     {/* Icon Box */}
-                                    <div className="w-12 h-12 rounded-lg bg-[#B8FF00]/10 border border-[#B8FF00]/30 flex items-center justify-center text-[#B8FF00] mb-6 mb-8 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-12 h-12 rounded-lg bg-[#00C9A7]/10 border border-[#00C9A7]/30 flex items-center justify-center text-[#00C9A7] mb-6 mb-8 group-hover:scale-110 transition-transform duration-300">
                                         {step.icon}
                                     </div>
 
@@ -101,7 +101,7 @@ export default function ProcessSection() {
                                         {step.number}
                                     </div>
 
-                                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-[#B8FF00] transition-colors">
+                                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-[#00C9A7] transition-colors">
                                         {step.title}
                                     </h3>
                                     <p className="text-white/40 text-sm leading-relaxed mb-6">
@@ -109,7 +109,7 @@ export default function ProcessSection() {
                                     </p>
 
                                     <div className="mt-auto">
-                                        <div className="inline-flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-[#B8FF00]/70 uppercase tracking-wider">
+                                        <div className="inline-flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-[#00C9A7]/70 uppercase tracking-wider">
                                             {step.status}
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@ export default function ProcessSection() {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-transparent border border-[#B8FF00]/30 text-[#B8FF00] font-display font-bold rounded-full text-lg hover:bg-[#B8FF00]/10 transition-all duration-300 flex items-center gap-2 mx-auto shadow-[0_0_20px_rgba(184,255,0,0.1)]"
+                            className="px-8 py-4 bg-transparent border border-[#00C9A7]/30 text-[#00C9A7] font-display font-bold rounded-full text-lg hover:bg-[#00C9A7]/10 transition-all duration-300 flex items-center gap-2 mx-auto shadow-[0_0_20px_rgba(0,201,167,0.1)]"
                         >
                             Initialize Sequence
                             <ArrowRight className="w-5 h-5" />

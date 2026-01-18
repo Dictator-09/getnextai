@@ -70,18 +70,18 @@ function SystemModule({ module, index, isActive, onActivate }: ModuleProps) {
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className={`relative flex items-stretch gap-6 p-6 md:p-8 rounded-2xl border transition-all duration-500 cursor-pointer ${isActive
-                        ? "bg-[#0A0A0F] border-[#B8FF00]/30 shadow-[0_0_60px_rgba(184,255,0,0.1)]"
-                        : "bg-[#050508]/80 border-white/5 hover:border-white/10"
+                    ? "bg-[#0A0A0F] border-[#00C9A7]/30 shadow-[0_0_60px_rgba(0,201,167,0.1)]"
+                    : "bg-[#050508]/80 border-white/5 hover:border-white/10"
                     }`}
             >
                 {/* Left: Status indicator */}
                 <div className="flex flex-col items-center gap-4">
                     {/* Vertical line with pulse */}
                     <div className="relative h-full w-px">
-                        <div className={`absolute inset-0 ${isActive ? "bg-[#B8FF00]" : "bg-white/10"} transition-colors duration-300`} />
+                        <div className={`absolute inset-0 ${isActive ? "bg-[#00C9A7]" : "bg-white/10"} transition-colors duration-300`} />
                         {isActive && (
                             <motion.div
-                                className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-[#B8FF00] to-transparent"
+                                className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-[#00C9A7] to-transparent"
                                 animate={{ y: [0, 100, 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                             />
@@ -93,10 +93,10 @@ function SystemModule({ module, index, isActive, onActivate }: ModuleProps) {
                 <div className="flex-1 min-w-0">
                     {/* Module label */}
                     <div className="flex items-center gap-3 mb-3">
-                        <span className={`font-mono text-xs tracking-widest ${isActive ? "text-[#B8FF00]" : "text-white/30"} transition-colors`}>
+                        <span className={`font-mono text-xs tracking-widest ${isActive ? "text-[#00C9A7]" : "text-white/30"} transition-colors`}>
                             {module.label}
                         </span>
-                        <span className={`px-2 py-0.5 text-[10px] font-mono rounded ${isActive ? "bg-[#B8FF00]/20 text-[#B8FF00]" : "bg-white/5 text-white/30"
+                        <span className={`px-2 py-0.5 text-[10px] font-mono rounded ${isActive ? "bg-[#00C9A7]/20 text-[#00C9A7]" : "bg-white/5 text-white/30"
                             } transition-colors`}>
                             {module.status}
                         </span>
@@ -106,7 +106,7 @@ function SystemModule({ module, index, isActive, onActivate }: ModuleProps) {
                     <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-1 tracking-tight">
                         {module.title}
                     </h3>
-                    <p className={`text-sm ${isActive ? "text-[#B8FF00]/80" : "text-white/40"} mb-4 transition-colors`}>
+                    <p className={`text-sm ${isActive ? "text-[#00C9A7]/80" : "text-white/40"} mb-4 transition-colors`}>
                         {module.subtitle}
                     </p>
 
@@ -150,18 +150,18 @@ function SystemModule({ module, index, isActive, onActivate }: ModuleProps) {
                             scale: isActive ? 1.1 : 1,
                         }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className={`w-16 h-16 border ${isActive ? "border-[#B8FF00]/50" : "border-white/10"} transition-colors`}
+                        className={`w-16 h-16 border ${isActive ? "border-[#00C9A7]/50" : "border-white/10"} transition-colors`}
                         style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
                     >
                         {isActive && (
-                            <div className="absolute inset-0 bg-[#B8FF00]/10" />
+                            <div className="absolute inset-0 bg-[#00C9A7]/10" />
                         )}
                     </motion.div>
 
                     {/* Orbiting dot */}
                     {isActive && (
                         <motion.div
-                            className="absolute w-2 h-2 bg-[#B8FF00] rounded-full"
+                            className="absolute w-2 h-2 bg-[#00C9A7] rounded-full"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                             style={{ transformOrigin: "40px 40px" }}
@@ -229,8 +229,8 @@ export default function SystemModules() {
                     className="mb-16 md:mb-24"
                 >
                     <div className="flex items-center gap-3 mb-4">
-                        <div className="w-2 h-2 bg-[#B8FF00] rounded-full animate-pulse" />
-                        <span className="font-mono text-xs text-[#B8FF00] tracking-widest uppercase">
+                        <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
+                        <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
                             System Modules
                         </span>
                     </div>
@@ -267,7 +267,7 @@ export default function SystemModules() {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="px-8 py-4 bg-[#B8FF00] text-[#050508] font-display font-bold rounded-full transition-all duration-300"
+                            className="px-8 py-4 bg-[#00C9A7] text-[#050508] font-display font-bold rounded-full transition-all duration-300"
                             style={{
                                 boxShadow: "0 0 30px rgba(184, 255, 0, 0.3)",
                             }}

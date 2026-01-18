@@ -37,7 +37,7 @@ export default function Footer() {
 
                         {/* Global Presence */}
                         <div className="flex items-center gap-2 mb-6">
-                            <Globe className="w-4 h-4 text-cyan-500" />
+                            <Globe className="w-4 h-4 text-#00C9A7" />
                             <span className="text-gray-500 text-sm">Serving clients globally:</span>
                             <div className="flex gap-2">
                                 {regions.map((region) => (
@@ -81,7 +81,7 @@ export default function Footer() {
                         {/* CTA */}
                         <Link
                             href="/audit"
-                            className="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 rounded-lg text-cyan-500 text-sm font-medium hover:border-cyan-500/40 transition-colors"
+                            className="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-#00C9A7/10 to-#FF6B35/10 border border-#00C9A7/20 rounded-lg text-#00C9A7 text-sm font-medium hover:border-#00C9A7/40 transition-colors"
                         >
                             Get Free AI Audit
                             <ArrowUpRight className="w-4 h-4" />
@@ -111,7 +111,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
+            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-#00C9A7 hover:text-white hover:border-#00C9A7 transition-all duration-300"
         >
             {icon}
         </a>
@@ -123,7 +123,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
         <li>
             <Link
                 href={href}
-                className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
+                className="text-gray-400 hover:text-#00C9A7 transition-colors text-sm"
             >
                 {label}
             </Link>
