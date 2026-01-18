@@ -8,6 +8,7 @@ import WebVitalsReporter from "@/components/ui/WebVitalsReporter";
 import { CursorProvider } from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import PreLoader from "@/components/ui/PreLoader";
+import PageTransition from "@/components/ui/PageTransition";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -15,11 +16,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             <ToastProvider>
                 <PreLoader />
                 <WebVitalsReporter />
+                <ScrollProgress />
                 <SmoothScroll>
-                    <ScrollProgress />
-                    <LazyFloatingParticles />
-                    <ScrollToTop />
-                    {children}
+                    <PageTransition>
+                        <LazyFloatingParticles />
+                        <ScrollToTop />
+                        {children}
+                    </PageTransition>
                 </SmoothScroll>
             </ToastProvider>
         </CursorProvider>

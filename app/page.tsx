@@ -13,52 +13,48 @@ import GlobalPresence from "@/components/ui/GlobalPresence";
 import TechStack from "@/components/ui/TechStack";
 import StickyAuditCTA from "@/components/ui/StickyAuditCTA";
 
-// Static generation
 export const revalidate = false;
 
 export default function Home() {
   return (
-    <>
+    <Providers>
       {/* HERO FIRST - SSR critical */}
       <HeroStatic />
       <HeroClient />
 
-      {/* PROVIDERS AFTER HERO - client boundary */}
-      <Providers>
-        <Navbar />
+      {/* MAIN CONTENT */}
+      <Navbar />
 
-        <SectionTransition depth="shallow" overlap={false}>
-          <TrustBadges />
-        </SectionTransition>
+      <SectionTransition depth="shallow" overlap={false}>
+        <TrustBadges />
+      </SectionTransition>
 
-        <SectionTransition depth="deep">
-          <SystemModules />
-        </SectionTransition>
+      <SectionTransition depth="deep">
+        <SystemModules />
+      </SectionTransition>
 
-        <SectionTransition depth="medium">
-          <CaseStudies />
-        </SectionTransition>
+      <SectionTransition depth="medium">
+        <CaseStudies />
+      </SectionTransition>
 
-        <SectionTransition depth="medium">
-          <ProcessSection />
-        </SectionTransition>
+      <SectionTransition depth="medium">
+        <ProcessSection />
+      </SectionTransition>
 
-        <SectionTransition depth="shallow">
-          <GlobalPresence />
-        </SectionTransition>
+      <SectionTransition depth="shallow">
+        <GlobalPresence />
+      </SectionTransition>
 
-        <SectionTransition depth="shallow">
-          <TechStack />
-        </SectionTransition>
+      <SectionTransition depth="shallow">
+        <TechStack />
+      </SectionTransition>
 
-        <SectionTransition depth="deep">
-          <AccessRequest />
-        </SectionTransition>
+      <SectionTransition depth="deep">
+        <AccessRequest />
+      </SectionTransition>
 
-        <Footer />
-
-        <StickyAuditCTA />
-      </Providers>
-    </>
+      <Footer />
+      <StickyAuditCTA />
+    </Providers>
   );
 }
