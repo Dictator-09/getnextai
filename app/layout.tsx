@@ -2,12 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import ScrollToTop from "@/components/ui/ScrollToTop";
 import SkipToContent from "@/components/ui/SkipToContent";
-import { ToastProvider } from "@/components/ui/Toast";
-import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
-
+import Providers from "./providers";
 
 // Font configuration
 const inter = Inter({
@@ -79,12 +75,9 @@ export default function RootLayout({
         )}
       >
         <SkipToContent />
-        <ToastProvider>
-          <ScrollProgress />
-          <LazyFloatingParticles />
-          <ScrollToTop />
+        <Providers>
           {children}
-        </ToastProvider>
+        </Providers>
       </body>
     </html>
   );
