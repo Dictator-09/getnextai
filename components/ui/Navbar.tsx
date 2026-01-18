@@ -1,10 +1,126 @@
 "use client";
 
-import Link from "next/link";
+import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
-import Logo from "./Logo";
+import { Menu, X } from "lucide-react";
+import { MagneticButton } from "./CustomCursor";
+import Link from "next/link";
+
+// ============================================
+// 3D LOGO WITH GLOW
+// ============================================
+
+function Logo3D() {
+    return (
+        <motion.div
+            className="logo-container relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+            <Link href="/" className="flex items-center gap-3">
+                {/* 3D Hexagon Icon */}
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-[#B8FF00]/20 blur-xl rounded-full scale-150 group-hover:bg-[#B8FF00]/40 transition-all duration-300" />
+
+                    <motion.div
+                        className="relative w-10 h-10 flex items-center justify-center"
+                        animate={{ rotateY: [0, 360] }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        style={{ transformStyle: "preserve-3d" }}
+                    >
+                        <svg
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            fill="none"
+                            className="drop-shadow-[0_0_12px_rgba(184,255,0,0.8)]"
+                        >
+                            <path
+                                d="M20 3L34 11.5V28.5L20 37L6 28.5V11.5L20 3Z"
+                                fill="rgba(184, 255, 0, 0.2)"
+                                stroke="#B8FF00"
+                                strokeWidth="2"
+                            />
+                            <circle cx="20" cy="20" r="6" fill="rgba(184, 255, 0, 0.4)" />
+                            <circle cx="20" cy="20" r="4" fill="#B8FF00" />
+                        </svg>
+                    </motion.div>
+                </div>
+
+                {/* Text Logo */}
+                <div className="flex items-baseline">
+                    <span className="text-2xl font-bold text-[#B8FF00] tracking-tight drop-shadow-[0_0_8px_rgba(184,255,0,0.5)]">
+                        GETNEXT
+                    </span>
+                    <span className="text-2xl font-bold text-white tracking-tight">AI</span>
+                </div>
+            </Link>
+        </motion.div>
+    );
+}
+
+// ============================================
+// THEMED AI AUDIT BUTTON
+// ============================================
+
+function AIAuditButton() {
+    return (
+        <MagneticButton
+            className="relative group overflow-hidden"
+            href="/audit"
+        >
+            <div className="relative px-6 py-3 rounded-full bg-[#B8FF00] group-hover:bg-[#a8ef00] transition-colors">
+                <div className="flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <motion.path
+                            d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"
+                            fill="#050508"
+                            animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                    </svg>
+                    <span className="font-bold text-[#050508]">Free AI Audit</span>
+                </div>
+            </div>
+
+            {/* Glow effect */}
+            <motion.div
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10"
+                style={{ background: "radial-gradient(circle, rgba(184,255,0,0.4) 0%, transparent 70%)" }}
+            />
+        </MagneticButton>
+    );
+}
+
+// ============================================
+// NAV LINK COMPONENT
+// ============================================
+
+function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
+    return (
+        <motion.a
+            href={href}
+            className="relative text-sm font-medium text-gray-300 group"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            onClick={onClick}
+        >
+            <span className="relative z-10 group-hover:text-white transition-colors">
+                {children}
+            </span>
+            <motion.div
+                className="absolute -bottom-1 left-0 h-0.5 bg-[#B8FF00]"
+                initial={{ width: 0 }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.3 }}
+            />
+        </motion.a>
+    );
+}
+
+// ============================================
+// NAVBAR COMPONENT
+// ============================================
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -19,151 +135,80 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 50);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Lock body scroll when mobile menu is open
     useEffect(() => {
-        if (mobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-        return () => {
-            document.body.style.overflow = "";
-        };
+        document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
     }, [mobileMenuOpen]);
 
-    const handleLinkClick = useCallback(() => {
-        setMobileMenuOpen(false);
-    }, []);
+    const handleLinkClick = useCallback(() => setMobileMenuOpen(false), []);
 
     return (
         <>
             <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 safe-top ${isScrolled
-                    ? "bg-black/20 backdrop-blur-md border-b border-white/5 py-2 sm:py-3"
-                    : "bg-transparent backdrop-blur-sm py-3 sm:py-5"
+                className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 ${isScrolled ? "py-3 bg-black/60 backdrop-blur-md border-b border-white/5" : "py-6 bg-transparent"
                     }`}
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
             >
-                <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-                    {/* Logo */}
-                    <Link href="/" className="group touch-feedback">
-                        <Logo className="group-hover:scale-105 transition-transform duration-300" />
-                    </Link>
+                <div className="relative max-w-7xl mx-auto flex items-center justify-between">
+                    <Logo3D />
 
-                    {/* Desktop Links */}
-                    <div className="hidden lg:flex items-center gap-6">
+                    {/* Desktop Nav */}
+                    <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-sm font-medium text-gray-300 hover:text-white transition-colors py-2"
-                            >
+                            <NavLink key={link.href} href={link.href}>
                                 {link.label}
-                            </Link>
+                            </NavLink>
                         ))}
-
-
-                        <Link href="/audit">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-sm rounded-full hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300 flex items-center gap-2"
-                            >
-                                <Zap className="w-4 h-4" />
-                                Free AI Audit
-                            </motion.button>
-                        </Link>
                     </div>
 
-                    {/* Mobile Toggle - Touch Target 44px */}
-                    <div className="lg:hidden flex items-center">
-                        <button
-                            className="w-11 h-11 flex items-center justify-center text-white touch-feedback rounded-lg active:bg-white/10"
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                            aria-expanded={mobileMenuOpen}
-                        >
-                            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
+                    {/* CTA Button */}
+                    <div className="hidden md:block">
+                        <AIAuditButton />
                     </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden p-2 text-white"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu - Sheet Style from Bottom */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
-                            onClick={handleLinkClick}
-                        />
-
-                        {/* Sheet Menu */}
-                        <motion.div
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "100%" }}
-                            transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl rounded-t-3xl pt-6 pb-8 px-6 lg:hidden safe-bottom border-t border-white/20"
-                        >
-                            {/* Handle bar */}
-                            <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-6" />
-
-                            <div className="flex flex-col gap-1">
-                                {navLinks.map((link, index) => (
-                                    <motion.div
-                                        key={link.href}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.05 }}
-                                    >
-                                        <Link
-                                            href={link.href}
-                                            onClick={handleLinkClick}
-                                            className="flex items-center text-white text-lg font-medium py-4 px-4 rounded-xl active:bg-white/10 transition-colors touch-feedback"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </motion.div>
-                                ))}
-
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: navLinks.length * 0.05 }}
-                                    className="mt-4"
-                                >
-                                    <Link
-                                        href="/audit"
-                                        onClick={handleLinkClick}
-                                    >
-                                        <button
-                                            className="w-full min-h-[52px] px-6 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-2xl text-center flex items-center justify-center gap-2 shadow-lg touch-feedback active:scale-[0.98] transition-transform"
-                                        >
-                                            <Zap className="w-5 h-5" />
-                                            Get Free AI Audit
-                                        </button>
-                                    </Link>
-                                </motion.div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+                <motion.div
+                    className="fixed inset-0 z-40 bg-black/95 backdrop-blur-lg pt-24 px-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <div className="flex flex-col gap-6">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="text-2xl font-bold text-white hover:text-[#B8FF00] transition-colors"
+                                onClick={handleLinkClick}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                        <div className="pt-4">
+                            <AIAuditButton />
+                        </div>
+                    </div>
+                </motion.div>
+            )}
         </>
     );
 }
