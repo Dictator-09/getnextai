@@ -62,7 +62,7 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
                         alt="GetNextAI"
                         width={sizes[size].iconWidth}
                         height={sizes[size].iconHeight}
-                        className="drop-shadow-[0_0_6px_rgba(0,201,167,0.5)]"
+                        className=""
                         style={{ height: sizes[size].iconHeight, width: "auto" }}
                         priority
                     />
@@ -91,7 +91,7 @@ export function LogoIcon({ size = 24 }: { size?: number }) {
             alt="GetNextAI"
             width={size * 2}
             height={size}
-            className="drop-shadow-[0_0_6px_rgba(0,201,167,0.5)]"
+            className=""
             style={{ height: size, width: "auto" }}
         />
     );
