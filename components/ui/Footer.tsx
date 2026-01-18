@@ -27,9 +27,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="inline-block mb-6">
-                            <Logo />
-                        </Link>
+                        <div className="mb-6">
+                            <Logo size="lg" />
+                        </div>
                         <p className="text-gray-400 leading-relaxed max-w-md mb-6">
                             We help global businesses automate operations, convert more leads,
                             and scale faster using AI. Built for the future. Delivered today.

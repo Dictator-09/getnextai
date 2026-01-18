@@ -15,10 +15,11 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
+    // Size configurations - icon height matches text height
     const sizes = {
-        sm: { icon: 32, text: "text-lg" },
-        md: { icon: 40, text: "text-xl" },
-        lg: { icon: 56, text: "text-2xl" },
+        sm: { iconHeight: 20, iconWidth: 40, text: "text-lg" },
+        md: { iconHeight: 24, iconWidth: 48, text: "text-xl" },
+        lg: { iconHeight: 32, iconWidth: 64, text: "text-2xl" },
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -28,9 +29,9 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Parallax tilt effect (no rotation, just subtle 3D tilt)
-        const rotX = ((y - centerY) / centerY) * -8;
-        const rotY = ((x - centerX) / centerX) * 8;
+        // Subtle parallax tilt (no rotation)
+        const rotX = ((y - centerY) / centerY) * -6;
+        const rotY = ((x - centerX) / centerX) * 6;
 
         setRotateX(rotX);
         setRotateY(rotY);
@@ -42,62 +43,56 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
     };
 
     return (
-        <Link href="/" className={`flex items-center gap-3 ${className}`}>
+        <Link href="/" className={`flex items-center gap-2 ${className}`}>
             <motion.div
-                className="relative"
+                className="relative flex items-center"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ perspective: 800 }}
             >
                 <motion.div
+                    className="flex items-center gap-2"
                     animate={{ rotateX, rotateY }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     style={{ transformStyle: "preserve-3d" }}
                 >
-                    {/* Glow effect behind logo */}
-                    <div
-                        className="absolute inset-0 blur-xl opacity-50"
-                        style={{
-                            background: "radial-gradient(circle, rgba(0,201,167,0.4) 0%, rgba(255,107,53,0.2) 50%, transparent 70%)",
-                            transform: "scale(1.5)",
-                        }}
-                    />
-
-                    {/* Logo image */}
+                    {/* Infinity icon - inline with text */}
                     <Image
                         src="/logo.png"
-                        alt="GetNextAI Logo"
-                        width={sizes[size].icon}
-                        height={sizes[size].icon}
-                        className="relative z-10 drop-shadow-[0_0_8px_rgba(0,201,167,0.6)]"
+                        alt="GetNextAI"
+                        width={sizes[size].iconWidth}
+                        height={sizes[size].iconHeight}
+                        className="drop-shadow-[0_0_6px_rgba(0,201,167,0.5)]"
+                        style={{ height: sizes[size].iconHeight, width: "auto" }}
                         priority
                     />
+
+                    {showText && (
+                        <div className="flex items-baseline">
+                            <span className={`${sizes[size].text} font-bold bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] bg-clip-text text-transparent tracking-tight`}>
+                                GETNEXT
+                            </span>
+                            <span className={`${sizes[size].text} font-bold text-white tracking-tight`}>
+                                AI
+                            </span>
+                        </div>
+                    )}
                 </motion.div>
             </motion.div>
-
-            {showText && (
-                <div className="flex items-baseline">
-                    <span className={`${sizes[size].text} font-bold bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] bg-clip-text text-transparent tracking-tight`}>
-                        GETNEXT
-                    </span>
-                    <span className={`${sizes[size].text} font-bold text-white tracking-tight`}>
-                        AI
-                    </span>
-                </div>
-            )}
         </Link>
     );
 }
 
-// Icon-only version for favicon/small uses
-export function LogoIcon({ size = 40 }: { size?: number }) {
+// Icon-only version
+export function LogoIcon({ size = 24 }: { size?: number }) {
     return (
         <Image
             src="/logo.png"
             alt="GetNextAI"
-            width={size}
+            width={size * 2}
             height={size}
-            className="drop-shadow-[0_0_8px_rgba(0,201,167,0.6)]"
+            className="drop-shadow-[0_0_6px_rgba(0,201,167,0.5)]"
+            style={{ height: size, width: "auto" }}
         />
     );
 }
