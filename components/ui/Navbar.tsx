@@ -4,67 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import { MagneticButton } from "./CustomCursor";
-import Link from "next/link";
-
-// ============================================
-// 3D LOGO - AURORA THEME
-// ============================================
-
-function Logo3D() {
-    return (
-        <motion.div
-            className="logo-container relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-            <Link href="/" className="flex items-center gap-3">
-                {/* 3D Hexagon Icon */}
-                <div className="relative group">
-                    <div className="absolute inset-0 bg-[#00C9A7]/20 blur-xl rounded-full scale-150 group-hover:bg-[#00C9A7]/40 transition-all duration-300" />
-
-                    <motion.div
-                        className="relative w-10 h-10 flex items-center justify-center"
-                        animate={{ rotateY: [0, 360] }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        style={{ transformStyle: "preserve-3d" }}
-                    >
-                        <svg
-                            width="40"
-                            height="40"
-                            viewBox="0 0 40 40"
-                            fill="none"
-                            className="drop-shadow-[0_0_12px_rgba(0,201,167,0.8)]"
-                        >
-                            <defs>
-                                <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#FF6B35" />
-                                    <stop offset="50%" stopColor="#C41E3A" />
-                                    <stop offset="100%" stopColor="#00C9A7" />
-                                </linearGradient>
-                            </defs>
-                            <path
-                                d="M20 3L34 11.5V28.5L20 37L6 28.5V11.5L20 3Z"
-                                fill="rgba(0, 201, 167, 0.2)"
-                                stroke="url(#logo-gradient)"
-                                strokeWidth="2"
-                            />
-                            <circle cx="20" cy="20" r="6" fill="rgba(0, 201, 167, 0.4)" />
-                            <circle cx="20" cy="20" r="4" fill="#00C9A7" />
-                        </svg>
-                    </motion.div>
-                </div>
-
-                {/* Text Logo */}
-                <div className="flex items-baseline">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] bg-clip-text text-transparent tracking-tight">
-                        GETNEXT
-                    </span>
-                    <span className="text-2xl font-bold text-white tracking-tight">AI</span>
-                </div>
-            </Link>
-        </motion.div>
-    );
-}
+import Logo from "./Logo";
 
 // ============================================
 // AI AUDIT BUTTON - AURORA THEME
@@ -161,7 +101,8 @@ export default function Navbar() {
                 transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
             >
                 <div className="relative max-w-7xl mx-auto flex items-center justify-between">
-                    <Logo3D />
+                    {/* Logo with 3D parallax */}
+                    <Logo size={isScrolled ? "sm" : "md"} />
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
