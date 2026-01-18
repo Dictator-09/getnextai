@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Zap } from "lucide-react";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -72,7 +71,6 @@ export default function Navbar() {
                             </Link>
                         ))}
 
-                        <ThemeToggle />
 
                         <Link href="/audit">
                             <motion.button
@@ -87,8 +85,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile Toggle - Touch Target 44px */}
-                    <div className="lg:hidden flex items-center gap-2">
-                        <ThemeToggle />
+                    <div className="lg:hidden flex items-center">
                         <button
                             className="w-11 h-11 flex items-center justify-center text-white touch-feedback rounded-lg active:bg-white/10"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

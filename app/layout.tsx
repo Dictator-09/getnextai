@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import SkipToContent from "@/components/ui/SkipToContent";
@@ -81,16 +80,14 @@ export default function RootLayout({
         )}
       >
         <SkipToContent />
-        <ThemeProvider>
-          <ToastProvider>
-            <SmoothScroll>
-              <ScrollProgress />
-              <LazyFloatingParticles />
-              <ScrollToTop />
-              {children}
-            </SmoothScroll>
-          </ToastProvider>
-        </ThemeProvider>
+        <ToastProvider>
+          <SmoothScroll>
+            <ScrollProgress />
+            <LazyFloatingParticles />
+            <ScrollToTop />
+            {children}
+          </SmoothScroll>
+        </ToastProvider>
       </body>
     </html>
   );
