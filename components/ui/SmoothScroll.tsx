@@ -1,29 +1,31 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Lenis from "lenis";
+import { useEffect, useRef, ReactNode } from "react";
+import Lenis from "@studio-freight/lenis";
 
 interface SmoothScrollProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
-        // Initialize Lenis smooth scroll
-        lenisRef.current = new Lenis({
+        // Initialize Lenis
+        const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo easing
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
             touchMultiplier: 2,
         });
 
-        // RAF loop for Lenis
+        lenisRef.current = lenis;
+
+        // Animation frame
         function raf(time: number) {
-            lenisRef.current?.raf(time);
+            lenis.raf(time);
             requestAnimationFrame(raf);
         }
 
@@ -31,14 +33,14 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
         // Cleanup
         return () => {
-            lenisRef.current?.destroy();
+            lenis.destroy();
         };
     }, []);
 
-    return <>{children}</>;
+    return <div data-lenis-prevent-wheel-scroll="true">{children}</div>;
 }
 
 // Hook to access Lenis instance
 export function useLenis() {
-    return null; // Will be enhanced with context if needed
+    return null; // Can be enhanced with context if needed
 }
