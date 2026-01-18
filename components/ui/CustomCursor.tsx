@@ -31,8 +31,8 @@ export function CustomCursor() {
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     // Use RAF for smooth 60fps animation
-    const requestRef = useRef<number>();
-    const previousTimeRef = useRef<number>();
+    const requestRef = useRef<number | null>(null);
+    const previousTimeRef = useRef<number | null>(null);
     const targetPosition = useRef({ x: 0, y: 0 });
     const currentPosition = useRef({ x: 0, y: 0 });
 
