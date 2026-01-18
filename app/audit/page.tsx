@@ -13,21 +13,10 @@ const AIAuditSection = dynamic(() => import("@/components/ui/AIAuditSection"), {
     )
 });
 
-const Scene = dynamic(() => import("@/components/canvas/Scene"), {
-    ssr: false,
-    loading: () => null
-});
-
 export default function AuditPage() {
     return (
-        <main className="relative min-h-screen w-full">
-            {/* 3D Background */}
-            <Scene />
-
-            {/* AI Audit Section as full page */}
-            <div className="relative z-20">
-                <AIAuditSection />
-            </div>
+        <main className="relative min-h-screen w-full bg-[#030305]">
+            <AIAuditSection />
         </main>
     );
 }

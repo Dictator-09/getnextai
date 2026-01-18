@@ -1,9 +1,8 @@
 "use client";
 
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamic imports - content loads after hydration, 3D loads when idle
+// Dynamic import - content loads after hydration
 const Overlay = dynamic(() => import("@/components/canvas/Overlay"), {
   ssr: false,
   loading: () => (
@@ -15,22 +14,10 @@ const Overlay = dynamic(() => import("@/components/canvas/Overlay"), {
   )
 });
 
-const Scene = dynamic(() => import("@/components/canvas/Scene"), {
-  ssr: false,
-  loading: () => null
-});
-
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full transition-colors duration-500">
-      {/* Content loads immediately after hydration */}
       <Overlay />
-
-      {/* 3D model loads in background - doesn't block page */}
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
     </main>
   );
 }
-
