@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HeroCTA from "./HeroCTA";
 
 /**
  * HeroStatic - Server-rendered hero section
@@ -59,23 +59,8 @@ export default function HeroStatic() {
                     compress decision time, and scale without friction.
                 </p>
 
-                {/* CTA */}
-                <div className="flex flex-col items-center gap-3">
-                    <Link
-                        href="/audit"
-                        className="group relative px-8 py-4 md:px-10 md:py-5 bg-[#B8FF00] text-[#050508] font-heading font-bold text-base md:text-lg rounded-full transition-all duration-300 overflow-hidden"
-                        style={{
-                            boxShadow: "0 0 30px rgba(184, 255, 0, 0.3)",
-                        }}
-                    >
-                        <span className="relative z-10">Book a Strategy Call</span>
-                    </Link>
-
-                    {/* Microcopy */}
-                    <span className="text-[#6B6B73] text-sm font-sans">
-                        15 minutes · No sales pitch
-                    </span>
-                </div>
+                {/* CTA - Client component for magnetic effect */}
+                <HeroCTA />
             </div>
 
             {/* Scroll indicator */}
