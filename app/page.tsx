@@ -18,16 +18,14 @@ export const revalidate = false;
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full">
-      <Navbar />
-
-      {/* HERO SECTION */}
+      {/* HERO MUST BE FIRST */}
       <section className="relative">
-        {/* Server-rendered hero text (visible in view-source) */}
-        <HeroStatic />
-
-        {/* Client-only motion layer (hydrated) */}
-        <HeroClient />
+        <HeroStatic />      {/* SSR-critical */}
+        <HeroClient />      {/* client-only motion */}
       </section>
+
+      {/* CLIENT UI COMES AFTER */}
+      <Navbar />
 
       {/* TRUST BADGES */}
       <SectionTransition depth="shallow" overlap={false}>

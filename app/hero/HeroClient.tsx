@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-// Client-only motion - dynamically imported with ssr: false
+// Client-only motion
 const HeroMotion = dynamic(() => import("./HeroMotion"), {
     ssr: false,
     loading: () => null,
