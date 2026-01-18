@@ -183,7 +183,7 @@ export function MagneticButton({
     const ref = useRef<HTMLButtonElement>(null);
     const { setVariant } = useCursor();
     const [offset, setOffset] = useState({ x: 0, y: 0 });
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | null>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (!ref.current) return;
