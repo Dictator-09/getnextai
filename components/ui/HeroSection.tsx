@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/CustomCursor";
 
 // ============================================
-// HERO CTA BUTTON
+// HERO CTA BUTTON - AURORA THEME
 // ============================================
 
 export function HeroCTAButton({ children, href = "/audit" }: { children: React.ReactNode; href?: string }) {
@@ -16,8 +16,8 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-                {/* Main button */}
-                <div className="relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-[#B8FF00] to-[#84cc16] overflow-hidden">
+                {/* Main button with aurora gradient */}
+                <div className="relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#0D5C63] overflow-hidden">
                     {/* Animated shine effect */}
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
@@ -26,7 +26,7 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
                     />
 
                     {/* Button text */}
-                    <span className="relative z-10 font-bold text-[#050508] text-base md:text-lg flex items-center gap-2">
+                    <span className="relative z-10 font-bold text-white text-base md:text-lg flex items-center gap-2">
                         {children}
 
                         {/* Arrow icon */}
@@ -47,15 +47,15 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
                     </span>
                 </div>
 
-                {/* Massive glow effect */}
+                {/* Glow effect */}
                 <motion.div
                     className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                    style={{ boxShadow: "0 0 60px 20px rgba(184, 255, 0, 0.5), 0 0 100px 40px rgba(184, 255, 0, 0.2)" }}
+                    style={{ boxShadow: "0 0 60px 20px rgba(0, 201, 167, 0.5), 0 0 100px 40px rgba(0, 201, 167, 0.2)" }}
                 />
 
                 {/* Pulsing ring */}
                 <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-[#B8FF00] -z-10"
+                    className="absolute inset-0 rounded-full border-2 border-[#00C9A7] -z-10"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                 />
@@ -65,12 +65,37 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
 }
 
 // ============================================
-// COMPLETE HERO SECTION
+// AURORA HERO SECTION
 // ============================================
 
 export default function HeroSection() {
     return (
         <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050508]">
+            {/* Aurora gradient background */}
+            <div className="absolute inset-0">
+                {/* Left warm glow */}
+                <div
+                    className="absolute -left-1/4 top-0 w-1/2 h-full"
+                    style={{
+                        background: "radial-gradient(ellipse at left, rgba(255, 107, 53, 0.15) 0%, transparent 60%)",
+                    }}
+                />
+                {/* Center red/dark */}
+                <div
+                    className="absolute left-1/4 top-0 w-1/2 h-full"
+                    style={{
+                        background: "radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, transparent 50%)",
+                    }}
+                />
+                {/* Right teal glow */}
+                <div
+                    className="absolute -right-1/4 top-0 w-1/2 h-full"
+                    style={{
+                        background: "radial-gradient(ellipse at right, rgba(0, 201, 167, 0.15) 0%, transparent 60%)",
+                    }}
+                />
+            </div>
+
             {/* Animated background grid */}
             <div className="absolute inset-0 opacity-[0.03]">
                 <div
@@ -85,12 +110,13 @@ export default function HeroSection() {
                 />
             </div>
 
-            {/* Floating gradient orbs */}
+            {/* Floating aurora orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[
-                    { color: "rgba(184, 255, 0, 0.15)", delay: 0, x: "20%", y: "30%" },
-                    { color: "rgba(184, 255, 0, 0.1)", delay: 2, x: "80%", y: "60%" },
-                    { color: "rgba(184, 255, 0, 0.08)", delay: 4, x: "50%", y: "80%" },
+                    { color: "rgba(255, 107, 53, 0.12)", delay: 0, x: "15%", y: "25%" },
+                    { color: "rgba(0, 201, 167, 0.12)", delay: 2, x: "75%", y: "35%" },
+                    { color: "rgba(196, 30, 58, 0.08)", delay: 4, x: "50%", y: "70%" },
+                    { color: "rgba(0, 201, 167, 0.08)", delay: 6, x: "85%", y: "75%" },
                 ].map((orb, i) => (
                     <motion.div
                         key={i}
@@ -104,15 +130,6 @@ export default function HeroSection() {
                         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: orb.delay }}
                     />
                 ))}
-
-                {/* Main radial glow */}
-                <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-20"
-                    style={{
-                        background: "radial-gradient(circle, rgba(184, 255, 0, 0.15) 0%, transparent 60%)",
-                        filter: "blur(80px)",
-                    }}
-                />
             </div>
 
             {/* Grain texture overlay */}
@@ -138,8 +155,8 @@ export default function HeroSection() {
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
                         Running on{" "}
                         <span
-                            className="text-[#B8FF00]"
-                            style={{ textShadow: "0 0 40px rgba(184, 255, 0, 0.5), 0 0 80px rgba(184, 255, 0, 0.3)" }}
+                            className="bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent"
+                            style={{ textShadow: "0 0 40px rgba(0, 201, 167, 0.4)" }}
                         >
                             Intelligence.
                         </span>
@@ -190,7 +207,7 @@ export default function HeroSection() {
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div
-                    className="w-2 h-2 rounded-full bg-[#B8FF00]"
+                    className="w-2 h-2 rounded-full bg-[#00C9A7]"
                     animate={{ y: [0, 12, 0] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 />

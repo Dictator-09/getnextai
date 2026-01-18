@@ -22,23 +22,20 @@ const CursorContext = createContext<CursorContextType>({
 export const useCursor = () => useContext(CursorContext);
 
 // ============================================
-// INSTANT CURSOR - NO LAG
+// INSTANT CURSOR - AURORA THEME
 // ============================================
 
 export function CustomCursor() {
     const [variant, setVariant] = useState<CursorVariant>("default");
     const [isVisible, setIsVisible] = useState(false);
 
-    // Instant dot position
     const dotX = useMotionValue(0);
     const dotY = useMotionValue(0);
 
-    // Ring follows with MINIMAL delay using spring
     const ringX = useSpring(dotX, { stiffness: 500, damping: 28 });
     const ringY = useSpring(dotY, { stiffness: 500, damping: 28 });
 
     useEffect(() => {
-        // Only show on desktop
         const isFinePointer = window.matchMedia("(pointer: fine)").matches;
         if (!isFinePointer) return;
 
@@ -59,32 +56,31 @@ export function CustomCursor() {
         };
     }, [dotX, dotY, isVisible]);
 
-    // Cursor sizes
+    // Aurora cursor colors
     const cursorSize = {
         default: 40,
         hover: 60,
         button: 70,
     };
 
-    // Cursor colors (acid green theme)
     const cursorColors = {
         default: {
-            ring: "rgba(184, 255, 0, 0.5)",
-            fill: "rgba(184, 255, 0, 0.1)",
-            glow: "0 0 20px rgba(184, 255, 0, 0.3)",
-            dot: "#B8FF00",
+            ring: "rgba(0, 201, 167, 0.5)",
+            fill: "rgba(0, 201, 167, 0.1)",
+            glow: "0 0 20px rgba(0, 201, 167, 0.3)",
+            dot: "#00C9A7",
         },
         hover: {
-            ring: "rgba(184, 255, 0, 0.8)",
-            fill: "rgba(184, 255, 0, 0.15)",
-            glow: "0 0 30px rgba(184, 255, 0, 0.5)",
-            dot: "#B8FF00",
+            ring: "rgba(255, 107, 53, 0.8)",
+            fill: "rgba(255, 107, 53, 0.15)",
+            glow: "0 0 30px rgba(255, 107, 53, 0.5)",
+            dot: "#FF6B35",
         },
         button: {
-            ring: "rgba(184, 255, 0, 1)",
-            fill: "rgba(184, 255, 0, 0.2)",
-            glow: "0 0 40px rgba(184, 255, 0, 0.7)",
-            dot: "#B8FF00",
+            ring: "rgba(0, 201, 167, 1)",
+            fill: "rgba(0, 201, 167, 0.2)",
+            glow: "0 0 40px rgba(0, 201, 167, 0.7)",
+            dot: "#00C9A7",
         },
     };
 
@@ -113,7 +109,7 @@ export function CustomCursor() {
                 }}
             />
 
-            {/* Center Dot - Instant response */}
+            {/* Center Dot */}
             <motion.div
                 className="cursor-dot"
                 style={{
@@ -129,7 +125,7 @@ export function CustomCursor() {
                     x: "-50%",
                     y: "-50%",
                     opacity: isVisible ? 1 : 0,
-                    boxShadow: "0 0 10px rgba(184, 255, 0, 0.8)",
+                    boxShadow: "0 0 10px rgba(0, 201, 167, 0.8)",
                 }}
             />
 
@@ -139,7 +135,7 @@ export function CustomCursor() {
                     cursor: none !important;
                 }
                 ::selection {
-                    background: rgba(184, 255, 0, 0.2);
+                    background: rgba(0, 201, 167, 0.2);
                 }
             `}</style>
         </CursorContext.Provider>

@@ -7,7 +7,7 @@ import { MagneticButton } from "./CustomCursor";
 import Link from "next/link";
 
 // ============================================
-// 3D LOGO WITH GLOW
+// 3D LOGO - AURORA THEME
 // ============================================
 
 function Logo3D() {
@@ -20,7 +20,7 @@ function Logo3D() {
             <Link href="/" className="flex items-center gap-3">
                 {/* 3D Hexagon Icon */}
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-[#B8FF00]/20 blur-xl rounded-full scale-150 group-hover:bg-[#B8FF00]/40 transition-all duration-300" />
+                    <div className="absolute inset-0 bg-[#00C9A7]/20 blur-xl rounded-full scale-150 group-hover:bg-[#00C9A7]/40 transition-all duration-300" />
 
                     <motion.div
                         className="relative w-10 h-10 flex items-center justify-center"
@@ -33,23 +33,30 @@ function Logo3D() {
                             height="40"
                             viewBox="0 0 40 40"
                             fill="none"
-                            className="drop-shadow-[0_0_12px_rgba(184,255,0,0.8)]"
+                            className="drop-shadow-[0_0_12px_rgba(0,201,167,0.8)]"
                         >
+                            <defs>
+                                <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#FF6B35" />
+                                    <stop offset="50%" stopColor="#C41E3A" />
+                                    <stop offset="100%" stopColor="#00C9A7" />
+                                </linearGradient>
+                            </defs>
                             <path
                                 d="M20 3L34 11.5V28.5L20 37L6 28.5V11.5L20 3Z"
-                                fill="rgba(184, 255, 0, 0.2)"
-                                stroke="#B8FF00"
+                                fill="rgba(0, 201, 167, 0.2)"
+                                stroke="url(#logo-gradient)"
                                 strokeWidth="2"
                             />
-                            <circle cx="20" cy="20" r="6" fill="rgba(184, 255, 0, 0.4)" />
-                            <circle cx="20" cy="20" r="4" fill="#B8FF00" />
+                            <circle cx="20" cy="20" r="6" fill="rgba(0, 201, 167, 0.4)" />
+                            <circle cx="20" cy="20" r="4" fill="#00C9A7" />
                         </svg>
                     </motion.div>
                 </div>
 
                 {/* Text Logo */}
                 <div className="flex items-baseline">
-                    <span className="text-2xl font-bold text-[#B8FF00] tracking-tight drop-shadow-[0_0_8px_rgba(184,255,0,0.5)]">
+                    <span className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] bg-clip-text text-transparent tracking-tight">
                         GETNEXT
                     </span>
                     <span className="text-2xl font-bold text-white tracking-tight">AI</span>
@@ -60,40 +67,37 @@ function Logo3D() {
 }
 
 // ============================================
-// THEMED AI AUDIT BUTTON
+// AI AUDIT BUTTON - AURORA THEME
 // ============================================
 
 function AIAuditButton() {
     return (
-        <MagneticButton
-            className="relative group overflow-hidden"
-            href="/audit"
-        >
-            <div className="relative px-6 py-3 rounded-full bg-[#B8FF00] group-hover:bg-[#a8ef00] transition-colors">
+        <MagneticButton className="relative group overflow-hidden" href="/audit">
+            <div className="relative px-6 py-3 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#0D5C63] group-hover:from-[#00DDB8] group-hover:to-[#00C9A7] transition-all duration-300">
                 <div className="flex items-center gap-2">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                         <motion.path
                             d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"
-                            fill="#050508"
+                            fill="white"
                             animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                         />
                     </svg>
-                    <span className="font-bold text-[#050508]">Free AI Audit</span>
+                    <span className="font-bold text-white">Free AI Audit</span>
                 </div>
             </div>
 
             {/* Glow effect */}
             <motion.div
                 className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10"
-                style={{ background: "radial-gradient(circle, rgba(184,255,0,0.4) 0%, transparent 70%)" }}
+                style={{ background: "radial-gradient(circle, rgba(0,201,167,0.4) 0%, transparent 70%)" }}
             />
         </MagneticButton>
     );
 }
 
 // ============================================
-// NAV LINK COMPONENT
+// NAV LINK - AURORA THEME
 // ============================================
 
 function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
@@ -109,7 +113,7 @@ function NavLink({ href, children, onClick }: { href: string; children: React.Re
                 {children}
             </span>
             <motion.div
-                className="absolute -bottom-1 left-0 h-0.5 bg-[#B8FF00]"
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#FF6B35] to-[#00C9A7]"
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
@@ -197,7 +201,7 @@ export default function Navbar() {
                             <a
                                 key={link.href}
                                 href={link.href}
-                                className="text-2xl font-bold text-white hover:text-[#B8FF00] transition-colors"
+                                className="text-2xl font-bold text-white hover:text-[#00C9A7] transition-colors"
                                 onClick={handleLinkClick}
                             >
                                 {link.label}

@@ -19,6 +19,18 @@
     --text-4xl: clamp(2.25rem, 1rem + 6.25vw, 4rem);
     --text-5xl: clamp(3rem, 1rem + 10vw, 6rem);
 
+    /* Aurora Gradient Colors */
+    --aurora-cream: #FFF5E0;
+    --aurora-orange: #FF6B35;
+    --aurora-red: #C41E3A;
+    --aurora-dark: #050508;
+    --aurora-teal: #0D5C63;
+    --aurora-cyan: #00C9A7;
+
+    /* Primary accent is now cyan/teal */
+    --accent-primary: #00C9A7;
+    --accent-warm: #FF6B35;
+
     /* Color tokens */
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -26,9 +38,9 @@
     --card-foreground: 210 20% 98%;
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
-    --primary: 180 100% 50%;
+    --primary: 168 100% 39%;
     --primary-foreground: 0 0% 0%;
-    --secondary: 300 100% 50%;
+    --secondary: 22 100% 60%;
     --secondary-foreground: 210 20% 98%;
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
@@ -38,7 +50,7 @@
     --destructive-foreground: 210 20% 98%;
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
-    --ring: 180 100% 50%;
+    --ring: 168 100% 39%;
   }
 
   html {
