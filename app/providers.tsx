@@ -5,11 +5,11 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 import LazyFloatingParticles from "@/components/ui/LazyFloatingParticles";
 import { ToastProvider } from "@/components/ui/Toast";
 import WebVitalsReporter from "@/components/ui/WebVitalsReporter";
-import CustomCursor from "@/components/ui/CustomCursor";
+import { CursorProvider } from "@/components/ui/CustomCursor";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (
-        <CustomCursor>
+        <CursorProvider>
             <ToastProvider>
                 <WebVitalsReporter />
                 <ScrollProgress />
@@ -17,6 +17,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                 <ScrollToTop />
                 {children}
             </ToastProvider>
-        </CustomCursor>
+        </CursorProvider>
     );
 }

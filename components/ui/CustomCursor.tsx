@@ -180,4 +180,16 @@ export function CursorTrigger({ variant, children, className }: CursorTriggerPro
     );
 }
 
+// ============================================
+// CURSOR PROVIDER (WRAPPER)
+// ============================================
+
+export function CursorProvider({ children }: { children: React.ReactNode }) {
+    return (
+        <CustomCursor>
+            {children}
+        </CustomCursor>
+    );
+}
+
 export default CustomCursor;
