@@ -7,19 +7,18 @@ import Link from "next/link";
 
 interface LogoProps {
     className?: string;
-    showText?: boolean;
     size?: "sm" | "md" | "lg";
 }
 
-export default function Logo({ className = "", showText = true, size = "md" }: LogoProps) {
+export default function Logo({ className = "", size = "md" }: LogoProps) {
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
-    // Size configurations - icon height matches text height
+    // Size configurations
     const sizes = {
-        sm: { iconHeight: 20, iconWidth: 40, text: "text-lg" },
-        md: { iconHeight: 24, iconWidth: 48, text: "text-xl" },
-        lg: { iconHeight: 32, iconWidth: 64, text: "text-2xl" },
+        sm: { height: 28, width: 140 },
+        md: { height: 36, width: 180 },
+        lg: { height: 48, width: 240 },
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,9 +28,9 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Subtle parallax tilt (no rotation)
-        const rotX = ((y - centerY) / centerY) * -6;
-        const rotY = ((x - centerX) / centerX) * 6;
+        // Subtle parallax tilt
+        const rotX = ((y - centerY) / centerY) * -4;
+        const rotY = ((x - centerX) / centerX) * 4;
 
         setRotateX(rotX);
         setRotateY(rotY);
@@ -43,55 +42,40 @@ export default function Logo({ className = "", showText = true, size = "md" }: L
     };
 
     return (
-        <Link href="/" className={`flex items-center gap-2 ${className}`}>
+        <Link href="/" className={`inline-block ${className}`}>
             <motion.div
-                className="relative flex items-center"
+                className="relative"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ perspective: 800 }}
             >
                 <motion.div
-                    className="flex items-center gap-2"
                     animate={{ rotateX, rotateY }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     style={{ transformStyle: "preserve-3d" }}
                 >
-                    {/* Infinity icon - inline with text */}
                     <Image
                         src="/logo.png"
                         alt="GetNextAI"
-                        width={sizes[size].iconWidth}
-                        height={sizes[size].iconHeight}
-                        className=""
-                        style={{ height: sizes[size].iconHeight, width: "auto" }}
+                        width={sizes[size].width}
+                        height={sizes[size].height}
+                        style={{ height: sizes[size].height, width: "auto" }}
                         priority
                     />
-
-                    {showText && (
-                        <div className="flex items-baseline">
-                            <span className={`${sizes[size].text} font-bold bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] bg-clip-text text-transparent tracking-tight`}>
-                                GETNEXT
-                            </span>
-                            <span className={`${sizes[size].text} font-bold text-white tracking-tight`}>
-                                AI
-                            </span>
-                        </div>
-                    )}
                 </motion.div>
             </motion.div>
         </Link>
     );
 }
 
-// Icon-only version
-export function LogoIcon({ size = 24 }: { size?: number }) {
+// Icon-only version for favicon/small uses
+export function LogoIcon({ size = 32 }: { size?: number }) {
     return (
         <Image
             src="/logo.png"
             alt="GetNextAI"
-            width={size * 2}
+            width={size * 3}
             height={size}
-            className=""
             style={{ height: size, width: "auto" }}
         />
     );
