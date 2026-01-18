@@ -6,6 +6,20 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from "fram
 // Custom easing matching specs
 const heroEasing = [0.16, 1, 0.3, 1] as const;
 
+// Debounced requestAnimationFrame wrapper
+function useRAFThrottle(callback: (e: MouseEvent) => void) {
+    const rafId = useRef<number | null>(null);
+
+    return (e: MouseEvent) => {
+        if (rafId.current !== null) return;
+
+        rafId.current = requestAnimationFrame(() => {
+            callback(e);
+            rafId.current = null;
+        });
+    };
+}
+
 export default function HeroMotion() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMounted, setIsMounted] = useState(false);
@@ -25,35 +39,44 @@ export default function HeroMotion() {
     const coreScale = useTransform(scrollY, [0, 400], [1, 0.8]);
     const coreOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-    // Autonomous rotation
+    // Autonomous rotation with RAF
     const [rotation, setRotation] = useState(0);
 
     useEffect(() => {
         setIsMounted(true);
 
-        // Autonomous slow rotation
-        const interval = setInterval(() => {
-            setRotation((prev) => prev + 0.5);
-        }, 50);
+        let animationId: number;
+        let lastTime = 0;
 
-        return () => clearInterval(interval);
-    }, []);
-
-    // Mouse move handler for parallax (≤8px)
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            const { clientX, clientY } = e;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const x = ((clientX - centerX) / centerX) * 8;
-            const y = ((clientY - centerY) / centerY) * 8;
-            mouseX.set(x);
-            mouseY.set(y);
+        const animate = (time: number) => {
+            if (lastTime) {
+                const delta = (time - lastTime) / 1000;
+                setRotation((prev) => prev + delta * 10); // 10 degrees per second
+            }
+            lastTime = time;
+            animationId = requestAnimationFrame(animate);
         };
 
+        animationId = requestAnimationFrame(animate);
+
+        return () => cancelAnimationFrame(animationId);
+    }, []);
+
+    // Debounced mouse move handler for parallax (≤8px)
+    const handleMouseMove = useRAFThrottle((e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const x = ((clientX - centerX) / centerX) * 8;
+        const y = ((clientY - centerY) / centerY) * 8;
+        mouseX.set(x);
+        mouseY.set(y);
+    });
+
+    useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX, mouseY]);
+    }, [handleMouseMove]);
 
     if (!isMounted) return null;
 
