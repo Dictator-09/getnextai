@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -20,6 +20,12 @@ const inter = Inter({
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
   display: "swap",
 });
 
@@ -83,7 +89,8 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-[#030712] font-sans antialiased text-white",
           inter.variable,
-          outfit.variable
+          outfit.variable,
+          spaceGrotesk.variable
         )}
       >
         <SkipToContent />

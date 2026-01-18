@@ -1,119 +1,139 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Lightbulb, Video, Code, Rocket, CheckCircle, ArrowRight } from "lucide-react";
+import { Lightbulb, Video, Code, Rocket, ArrowRight } from "lucide-react";
 
 const steps = [
     {
         number: "01",
         title: "Free AI Audit",
-        description: "Submit your info and receive a personalized Loom video analyzing your AI opportunities",
-        icon: <Lightbulb className="w-8 h-8" />,
-        color: "cyan"
+        description: "Submit your info and receive a personalized Loom video analyzing your AI opportunities.",
+        icon: <Lightbulb className="w-6 h-6" />,
+        status: "INITIATED"
     },
     {
         number: "02",
-        title: "Strategy Call",
-        description: "30-minute deep dive into your business goals, timeline, and budget",
-        icon: <Video className="w-8 h-8" />,
-        color: "purple"
+        title: "Strategy Calibration",
+        description: "30-minute deep dive into your business goals, timeline, and budget parameters.",
+        icon: <Video className="w-6 h-6" />,
+        status: "PENDING"
     },
     {
         number: "03",
-        title: "Development",
-        description: "We build your AI solution with regular updates and preview demos",
-        icon: <Code className="w-8 h-8" />,
-        color: "green"
+        title: "System Development",
+        description: "We build your AI solution with regular updates and preview demos.",
+        icon: <Code className="w-6 h-6" />,
+        status: "LOCKED"
     },
     {
         number: "04",
         title: "Launch & Scale",
-        description: "Deployment, training, and ongoing support to ensure your success",
-        icon: <Rocket className="w-8 h-8" />,
-        color: "yellow"
+        description: "Deployment, training, and ongoing support to ensure your success.",
+        icon: <Rocket className="w-6 h-6" />,
+        status: "LOCKED"
     }
 ];
 
-const colorClasses: Record<string, { bg: string; border: string; text: string }> = {
-    cyan: { bg: "bg-cyan-500/20", border: "border-cyan-500/30", text: "text-cyan-400" },
-    purple: { bg: "bg-purple-500/20", border: "border-purple-500/30", text: "text-purple-400" },
-    green: { bg: "bg-green-500/20", border: "border-green-500/30", text: "text-green-400" },
-    yellow: { bg: "bg-yellow-500/20", border: "border-yellow-500/30", text: "text-yellow-400" }
-};
-
 export default function ProcessSection() {
     return (
-        <section className="py-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent" />
+        <section className="py-24 md:py-32 relative overflow-hidden">
+            {/* Background */}
+            <div className="absolute inset-0 bg-[#030305]" />
+            <div
+                className="absolute inset-0 opacity-10"
+                style={{
+                    backgroundImage: `
+                        linear-gradient(rgba(184, 255, 0, 0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(184, 255, 0, 0.05) 1px, transparent 1px)
+                    `,
+                    backgroundSize: "60px 60px",
+                }}
+            />
 
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 md:mb-24"
                 >
-                    <p className="text-cyan-600 dark:text-cyan-400 text-sm uppercase tracking-widest mb-4">How We Work</p>
-                    <h2 className="text-4xl md:text-5xl font-heading font-black text-black dark:text-white mb-4">
-                        Simple, Transparent{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                            Process
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                        <div className="w-2 h-2 bg-[#B8FF00] rounded-full animate-pulse" />
+                        <span className="font-mono text-xs text-[#B8FF00] tracking-widest uppercase">
+                            Operational Workflow
                         </span>
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+                        Execution <span className="text-white/40">Protocol</span>
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        From initial audit to launch, we keep you informed every step of the way
+                    <p className="text-white/40 max-w-2xl mx-auto font-light">
+                        From initial audit to deployment, we maintain total transparency.
                     </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {steps.map((step, index) => {
-                        const colors = colorClasses[step.color];
-                        return (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="relative group"
-                            >
-                                {/* Connector line */}
-                                {index < steps.length - 1 && (
-                                    <div className="hidden lg:block absolute top-10 -right-4 w-8 h-0.5 bg-gradient-to-r from-white/10 to-transparent" />
-                                )}
+                    {steps.map((step, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.15 }}
+                            viewport={{ once: true }}
+                            className="group relative"
+                        >
+                            {/* Connector Line (Desktop) */}
+                            {index < steps.length - 1 && (
+                                <div className="hidden lg:block absolute top-12 left-[60%] w-[120%] h-px bg-gradient-to-r from-[#B8FF00]/30 to-transparent z-0" />
+                            )}
 
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-                                <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-black/5 dark:border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300 shadow-lg dark:shadow-none h-full flex flex-col">
-                                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${colors.bg} border ${colors.border} mb-6`}>
-                                        <div className={colors.text}>
-                                            {step.icon}
+                            <div className="relative bg-[#050508]/80 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:border-[#B8FF00]/30 transition-all duration-300 h-full flex flex-col z-10">
+                                {/* Hover Glow */}
+                                <div className="absolute inset-0 bg-[#B8FF00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+
+                                <div className="relative">
+                                    {/* Icon Box */}
+                                    <div className="w-12 h-12 rounded-lg bg-[#B8FF00]/10 border border-[#B8FF00]/30 flex items-center justify-center text-[#B8FF00] mb-6 mb-8 group-hover:scale-110 transition-transform duration-300">
+                                        {step.icon}
+                                    </div>
+
+                                    <div className="absolute top-0 right-0 font-mono text-4xl font-bold text-white/5 group-hover:text-white/10 transition-colors">
+                                        {step.number}
+                                    </div>
+
+                                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-[#B8FF00] transition-colors">
+                                        {step.title}
+                                    </h3>
+                                    <p className="text-white/40 text-sm leading-relaxed mb-6">
+                                        {step.description}
+                                    </p>
+
+                                    <div className="mt-auto">
+                                        <div className="inline-flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-[#B8FF00]/70 uppercase tracking-wider">
+                                            {step.status}
                                         </div>
                                     </div>
-                                    <div className="text-5xl font-black text-black/5 dark:text-white/10 mb-4">{step.number}</div>
-                                    <h3 className="text-xl font-bold text-black dark:text-white mb-3">{step.title}</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed flex-grow">{step.description}</p>
                                 </div>
-                            </motion.div>
-                        );
-                    })}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
                 {/* Bottom CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mt-16"
+                    className="text-center mt-20"
                 >
                     <a href="/audit">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-transparent border-2 border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-bold rounded-full text-lg hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all duration-300 flex items-center gap-2 mx-auto"
+                            className="px-8 py-4 bg-transparent border border-[#B8FF00]/30 text-[#B8FF00] font-display font-bold rounded-full text-lg hover:bg-[#B8FF00]/10 transition-all duration-300 flex items-center gap-2 mx-auto shadow-[0_0_20px_rgba(184,255,0,0.1)]"
                         >
-                            Start with a Free Audit
+                            Initialize Sequence
                             <ArrowRight className="w-5 h-5" />
                         </motion.button>
                     </a>
