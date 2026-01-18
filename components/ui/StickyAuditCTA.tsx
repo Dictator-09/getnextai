@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 
 export default function StickyAuditCTA() {
     const [isVisible, setIsVisible] = useState(false);
@@ -38,31 +38,28 @@ export default function StickyAuditCTA() {
                     <a href="/audit" className="block">
                         <motion.div
                             whileTap={{ scale: 0.98 }}
-                            className="relative flex items-center justify-between gap-3 px-5 py-4 sm:px-6 sm:py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl shadow-[0_10px_40px_rgba(6,182,212,0.4)] touch-feedback"
+                            className="relative flex items-center justify-between gap-4 px-5 py-3 sm:px-6 sm:py-4 bg-[#0a0a0a]/90 backdrop-blur-md border border-[#B8FF00]/40 rounded-full touch-feedback group hover:border-[#B8FF00]/80 transition-all duration-300"
                         >
                             {/* Content */}
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
-                                    <Zap className="w-5 h-5 text-white" />
-                                </div>
-                                <div className="text-left">
-                                    <p className="text-white font-bold text-sm sm:text-base">Free AI Audit</p>
-                                    <p className="text-white/80 text-xs sm:text-sm hidden sm:block">Get your personalized analysis</p>
-                                    <p className="text-white/80 text-xs sm:hidden">Personalized analysis</p>
-                                </div>
+                                <div className="w-2 h-2 rounded-full bg-[#B8FF00] animate-pulse" />
+                                <p className="text-[#E8E8ED] font-semibold text-sm sm:text-base">
+                                    Free AI Audit
+                                </p>
                             </div>
 
-                            {/* Dismiss button */}
-                            <button
-                                onClick={handleDismiss}
-                                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-white active:bg-white/20 transition-colors flex-shrink-0 touch-feedback"
-                                aria-label="Dismiss"
-                            >
-                                <X className="w-4 h-4" />
-                            </button>
+                            {/* Arrow + Dismiss */}
+                            <div className="flex items-center gap-2">
+                                <ArrowRight className="w-4 h-4 text-[#B8FF00] group-hover:translate-x-1 transition-transform" />
 
-                            {/* Subtle pulse ring */}
-                            <div className="absolute inset-0 rounded-2xl animate-ping bg-cyan-500/20 -z-10" style={{ animationDuration: "3s" }} />
+                                <button
+                                    onClick={handleDismiss}
+                                    className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center text-[#6B6B73] hover:text-[#B8FF00] hover:bg-white/10 transition-colors ml-2"
+                                    aria-label="Dismiss"
+                                >
+                                    <X className="w-3 h-3" />
+                                </button>
+                            </div>
                         </motion.div>
                     </a>
                 </motion.div>
