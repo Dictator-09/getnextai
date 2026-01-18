@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 interface SectionTransitionProps {
     children: React.ReactNode;
@@ -25,30 +25,37 @@ export default function SectionTransition({
         offset: ["start end", "end start"],
     });
 
-    // Refined depth-based configuration for smoother transitions
+    // Smooth spring for all values
+    const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+
+    // Enhanced depth-based configuration
     const depthConfig = {
-        shallow: { scale: [0.99, 1], y: [20, 0], opacity: [0.9, 1] },
-        medium: { scale: [0.97, 1], y: [40, 0], opacity: [0.7, 1] },
-        deep: { scale: [0.95, 1], y: [60, 0], opacity: [0.5, 1] },
+        shallow: { scale: [0.98, 1], y: [30, 0], opacity: [0.85, 1], blur: [2, 0] },
+        medium: { scale: [0.95, 1], y: [60, 0], opacity: [0.6, 1], blur: [4, 0] },
+        deep: { scale: [0.92, 1], y: [100, 0], opacity: [0.4, 1], blur: [6, 0] },
     };
 
     const config = depthConfig[depth];
 
-    // Smoother transform with earlier completion point
-    const scale = useTransform(scrollYProgress, [0, 0.25], config.scale);
-    const y = useTransform(scrollYProgress, [0, 0.25], config.y);
-    const opacity = useTransform(scrollYProgress, [0, 0.2], config.opacity);
+    // Transform values with spring physics
+    const rawScale = useTransform(scrollYProgress, [0, 0.3], config.scale);
+    const rawY = useTransform(scrollYProgress, [0, 0.3], config.y);
+    const rawOpacity = useTransform(scrollYProgress, [0, 0.25], config.opacity);
+    const rawRotateX = useTransform(scrollYProgress, [0, 0.3], [4, 0]);
 
-    // Subtle perspective tilt
-    const rotateX = useTransform(scrollYProgress, [0, 0.25], [2, 0]);
+    // Apply spring to each value
+    const scale = useSpring(rawScale, springConfig);
+    const y = useSpring(rawY, springConfig);
+    const opacity = useSpring(rawOpacity, springConfig);
+    const rotateX = useSpring(rawRotateX, springConfig);
 
     return (
         <motion.section
             ref={containerRef}
             id={id}
-            className={`relative ${overlap ? "-mt-16 pt-16" : ""} ${className}`}
+            className={`relative ${overlap ? "-mt-20 pt-20" : ""} ${className}`}
             style={{
-                perspective: "1000px",
+                perspective: "1200px",
             }}
         >
             <motion.div
@@ -61,11 +68,11 @@ export default function SectionTransition({
                 }}
                 className="relative will-change-transform"
             >
-                {/* Softer edge fade for depth */}
+                {/* Top fade for depth illusion */}
                 <div
-                    className="absolute inset-x-0 top-0 h-24 pointer-events-none z-10"
+                    className="absolute inset-x-0 top-0 h-32 pointer-events-none z-10"
                     style={{
-                        background: "linear-gradient(to bottom, rgba(3, 3, 5, 0.8) 0%, transparent 100%)",
+                        background: "linear-gradient(to bottom, rgba(5, 5, 8, 0.9) 0%, transparent 100%)",
                     }}
                 />
 
