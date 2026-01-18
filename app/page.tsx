@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Lenis from "@studio-freight/lenis";
 import HeroStatic from "./hero/HeroStatic";
 import HeroClient from "./hero/HeroClient";
 import Providers from "./providers";
@@ -13,9 +17,36 @@ import GlobalPresence from "@/components/ui/GlobalPresence";
 import TechStack from "@/components/ui/TechStack";
 import StickyAuditCTA from "@/components/ui/StickyAuditCTA";
 
-export const revalidate = false;
-
 export default function Home() {
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    lenisRef.current = lenis;
+
+    // Animation frame
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Cleanup
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <Providers>
       {/* HERO FIRST - SSR critical */}
