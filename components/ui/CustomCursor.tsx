@@ -252,6 +252,24 @@ export function MagneticButton({
 }
 
 // ============================================
+// CURSOR-AWARE TEXT COMPONENT
+// ============================================
+
+export function CursorText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+    const { setVariant } = useCursor();
+
+    return (
+        <span
+            className={className}
+            onMouseEnter={() => setVariant("text")}
+            onMouseLeave={() => setVariant("default")}
+        >
+            {children}
+        </span>
+    );
+}
+
+// ============================================
 // CURSOR PROVIDER (WRAPPER)
 // ============================================
 
