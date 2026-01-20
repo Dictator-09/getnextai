@@ -94,7 +94,9 @@ export default function Navbar() {
     return (
         <>
             <motion.nav
-                className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 ${isScrolled ? "py-3 bg-black/60 backdrop-blur-md border-b border-white/5" : "py-6 bg-transparent"
+                className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 ${isScrolled
+                    ? "py-2 bg-[#0a0a0f]/90 backdrop-blur-sm border-b border-white/5"
+                    : "py-4 bg-transparent"
                     }`}
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
