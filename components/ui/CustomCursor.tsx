@@ -22,120 +22,88 @@ const CursorContext = createContext<CursorContextType>({
 export const useCursor = () => useContext(CursorContext);
 
 // ============================================
-// INSTANT CURSOR - AURORA THEME
+// SIMPLE PERFORMANT CURSOR
 // ============================================
 
 export function CustomCursor() {
     const [variant, setVariant] = useState<CursorVariant>("default");
     const [isVisible, setIsVisible] = useState(false);
-
-    const dotX = useMotionValue(0);
-    const dotY = useMotionValue(0);
-
-    const ringX = useSpring(dotX, { stiffness: 500, damping: 28 });
-    const ringY = useSpring(dotY, { stiffness: 500, damping: 28 });
+    const cursorRef = useRef<HTMLDivElement>(null);
+    const dotRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const isFinePointer = window.matchMedia("(pointer: fine)").matches;
         if (!isFinePointer) return;
 
         const moveCursor = (e: MouseEvent) => {
-            dotX.set(e.clientX);
-            dotY.set(e.clientY);
+            if (cursorRef.current && dotRef.current) {
+                // Use direct transform for 60fps performance
+                cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            }
             if (!isVisible) setIsVisible(true);
         };
 
         const hideCursor = () => setIsVisible(false);
 
-        window.addEventListener("mousemove", moveCursor);
+        window.addEventListener("mousemove", moveCursor, { passive: true });
         window.addEventListener("mouseleave", hideCursor);
 
         return () => {
             window.removeEventListener("mousemove", moveCursor);
             window.removeEventListener("mouseleave", hideCursor);
         };
-    }, [dotX, dotY, isVisible]);
+    }, [isVisible]);
 
-    // Aurora cursor colors
-    const cursorSize = {
-        default: 40,
-        hover: 60,
-        button: 70,
-    };
-
-    const cursorColors = {
-        default: {
-            ring: "rgba(0, 201, 167, 0.5)",
-            fill: "rgba(0, 201, 167, 0.1)",
-            glow: "0 0 20px rgba(0, 201, 167, 0.3)",
-            dot: "#00C9A7",
-        },
-        hover: {
-            ring: "rgba(255, 107, 53, 0.8)",
-            fill: "rgba(255, 107, 53, 0.15)",
-            glow: "0 0 30px rgba(255, 107, 53, 0.5)",
-            dot: "#FF6B35",
-        },
-        button: {
-            ring: "rgba(0, 201, 167, 1)",
-            fill: "rgba(0, 201, 167, 0.2)",
-            glow: "0 0 40px rgba(0, 201, 167, 0.7)",
-            dot: "#00C9A7",
-        },
-    };
+    const cursorSize = variant === "button" ? 50 : variant === "hover" ? 40 : 32;
+    const cursorColor = variant === "button" || variant === "default" ? "#00C9A7" : "#FF6B35";
 
     return (
         <CursorContext.Provider value={{ variant, setVariant }}>
-            {/* Main Cursor Ring */}
-            <motion.div
-                className="cursor-ring"
+            {/* Simple Cursor Ring */}
+            <div
+                ref={cursorRef}
                 style={{
                     position: "fixed",
-                    left: ringX,
-                    top: ringY,
-                    width: cursorSize[variant],
-                    height: cursorSize[variant],
-                    border: `2px solid ${cursorColors[variant].ring}`,
-                    backgroundColor: cursorColors[variant].fill,
+                    left: 0,
+                    top: 0,
+                    width: cursorSize,
+                    height: cursorSize,
+                    border: `2px solid ${cursorColor}`,
                     borderRadius: "50%",
                     pointerEvents: "none",
                     zIndex: 9999,
-                    x: "-50%",
-                    y: "-50%",
-                    mixBlendMode: "screen",
-                    boxShadow: cursorColors[variant].glow,
-                    opacity: isVisible ? 1 : 0,
-                    transition: "width 0.2s ease, height 0.2s ease, border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease",
+                    opacity: isVisible ? 0.6 : 0,
+                    transition: "width 0.15s, height 0.15s, opacity 0.15s, border-color 0.15s",
+                    willChange: "transform",
                 }}
             />
 
             {/* Center Dot */}
-            <motion.div
-                className="cursor-dot"
+            <div
+                ref={dotRef}
                 style={{
                     position: "fixed",
-                    left: dotX,
-                    top: dotY,
+                    left: 0,
+                    top: 0,
                     width: 6,
                     height: 6,
-                    backgroundColor: cursorColors[variant].dot,
+                    backgroundColor: cursorColor,
                     borderRadius: "50%",
                     pointerEvents: "none",
                     zIndex: 10000,
-                    x: "-50%",
-                    y: "-50%",
                     opacity: isVisible ? 1 : 0,
-                    boxShadow: "0 0 10px rgba(0, 201, 167, 0.8)",
+                    transition: "opacity 0.15s, background-color 0.15s",
+                    willChange: "transform",
                 }}
             />
 
             {/* Hide default cursor */}
             <style jsx global>{`
-                * {
-                    cursor: none !important;
-                }
-                ::selection {
-                    background: rgba(0, 201, 167, 0.2);
+                @media (pointer: fine) {
+                    * {
+                        cursor: none !important;
+                    }
                 }
             `}</style>
         </CursorContext.Provider>
