@@ -19,9 +19,9 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     // Compact rectangular logo sizes for navbar
     // Logo is horizontal rectangle (approximately 3.5:1 aspect ratio)
     const sizes = {
-        sm: { width: 120, height: 34 },   // Navbar scrolled - compact
-        md: { width: 150, height: 42 },   // Navbar default
-        lg: { width: 200, height: 56 },   // Footer/hero
+        sm: { width: 100, height: 28 },   // Navbar scrolled - very compact
+        md: { width: 130, height: 36 },   // Navbar default
+        lg: { width: 180, height: 50 },   // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
