@@ -16,12 +16,12 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
-    // Very large size configurations for maximum impact
-    // Logo contains both icon and text
+    // Rectangular logo size configurations (width-based for proper aspect ratio)
+    // Logo is approximately 3.5:1 aspect ratio (horizontal rectangle)
     const sizes = {
-        sm: { height: 120 },  // Navbar scrolled
-        md: { height: 140 },  // Navbar default
-        lg: { height: 180 },  // Footer/hero
+        sm: { width: 200, height: 56 },   // Navbar scrolled
+        md: { width: 240, height: 68 },   // Navbar default
+        lg: { width: 320, height: 90 },   // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -80,11 +80,11 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
                     <Image
                         src="/logo.png"
                         alt="GetNextAI - AI Solutions Agency"
-                        width={currentSize.height * 4}
+                        width={currentSize.width}
                         height={currentSize.height}
                         style={{
-                            height: currentSize.height,
-                            width: "auto",
+                            width: currentSize.width,
+                            height: "auto",
                             objectFit: "contain",
                         }}
                         priority
