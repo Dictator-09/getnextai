@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/CustomCursor";
+import ScrambleText from "@/components/ui/ScrambleText";
 
 // ============================================
 // HERO CTA BUTTON - AURORA THEME
@@ -142,6 +143,7 @@ export default function HeroSection() {
 
             {/* Content */}
             <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl">
+
                 {/* Main headline */}
                 <motion.h1
                     className="font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8"
@@ -150,7 +152,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
                 >
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
-                        Your Business.
+                        <ScrambleText text="Your Business." delay={0.2} />
                     </span>
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
                         Running on{" "}
@@ -158,7 +160,7 @@ export default function HeroSection() {
                             className="bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent"
                             style={{ textShadow: "0 0 40px rgba(0, 201, 167, 0.4)" }}
                         >
-                            Intelligence.
+                            <ScrambleText text="Intelligence." delay={0.8} />
                         </span>
                     </span>
                 </motion.h1>

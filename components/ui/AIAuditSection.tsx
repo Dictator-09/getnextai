@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FileSearch, Video, Lightbulb, CheckCircle } from "lucide-react";
 import AuditForm from "./AuditForm";
+import SpotlightCard from "./SpotlightCard";
 
 const processSteps = [
     {
@@ -79,13 +80,13 @@ export default function AIAuditSection() {
                 >
                     <div className="flex overflow-x-auto sm:overflow-visible sm:grid sm:grid-cols-3 gap-4 sm:gap-6 pb-4 sm:pb-0 snap-x-mandatory no-scrollbar">
                         {processSteps.map((step, index) => (
-                            <div key={index} className="relative group min-w-[260px] sm:min-w-0 snap-center">
+                            <div key={index} className="relative min-w-[260px] sm:min-w-0 snap-center h-full">
                                 {/* Connector line - desktop only */}
                                 {index < processSteps.length - 1 && (
-                                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-cyan-500/50 to-transparent" />
+                                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-cyan-500/50 to-transparent z-0" />
                                 )}
 
-                                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-cyan-500/30 active:bg-white/10 transition-all duration-300 h-full touch-feedback">
+                                <SpotlightCard className="h-full p-5 sm:p-6 backdrop-blur-sm rounded-2xl hover:border-cyan-500/30 transition-colors duration-300">
                                     <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
                                             {step.icon}
@@ -94,7 +95,7 @@ export default function AIAuditSection() {
                                     </div>
                                     <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2">{step.title}</h3>
                                     <p className="text-gray-400 text-sm">{step.description}</p>
-                                </div>
+                                </SpotlightCard>
                             </div>
                         ))}
                     </div>

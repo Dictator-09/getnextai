@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google"; // Import Outfit
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import SkipToContent from "@/components/ui/SkipToContent";
@@ -8,6 +8,12 @@ import SkipToContent from "@/components/ui/SkipToContent";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -70,7 +76,8 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-[#030712] font-sans antialiased text-white",
-          inter.variable
+          inter.variable,
+          outfit.variable
         )}
       >
         <SkipToContent />
