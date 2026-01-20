@@ -16,12 +16,12 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
-    // Much larger size configurations for better visibility
+    // Maximum size configurations for best visibility
     // Logo contains both icon and text
     const sizes = {
-        sm: { height: 72 },   // Navbar scrolled
-        md: { height: 80 },   // Navbar default
-        lg: { height: 100 },  // Footer/hero
+        sm: { height: 90 },   // Navbar scrolled
+        md: { height: 100 },  // Navbar default
+        lg: { height: 120 },  // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
