@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/CustomCursor";
-import Link from "next/link";
 
 // ============================================
 // HERO CTA BUTTON

@@ -111,7 +111,7 @@ export default function AIAuditSection() {
                         className="order-2 lg:order-1"
                     >
                         <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-                            What's Included
+                            What&apos;s Included
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
                             {auditIncludes.map((item, index) => (
@@ -134,8 +134,8 @@ export default function AIAuditSection() {
                         {/* Testimonial - Hidden on mobile for space */}
                         <div className="hidden sm:block mt-8 p-5 sm:p-6 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl">
                             <p className="text-gray-300 italic mb-4 text-sm sm:text-base">
-                                "The audit revealed opportunities we never knew existed.
-                                Within a month, we automated 60% of our customer support."
+                                &quot;The audit revealed opportunities we never knew existed.
+                                Within a month, we automated 60% of our customer support.&quot;
                             </p>
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">

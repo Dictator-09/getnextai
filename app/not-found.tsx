@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, Search, ArrowLeft } from "lucide-react";
+import { Home, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
     return (
@@ -23,7 +23,7 @@ export default function NotFound() {
                         Page Not Found
                     </h2>
                     <p className="text-gray-400 text-lg mb-12 max-w-md mx-auto">
-                        The page you're looking for doesn't exist or has been moved to a new location.
+                        The page you&apos;re looking for doesn&apos;t exist or has been moved to a new location.
                     </p>
 
                     {/* Actions */}
