@@ -16,12 +16,12 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
-    // Reasonable rectangular logo sizes for navbar
+    // Compact rectangular logo sizes for navbar
     // Logo is horizontal rectangle (approximately 3.5:1 aspect ratio)
     const sizes = {
-        sm: { width: 160, height: 44 },   // Navbar scrolled
-        md: { width: 180, height: 50 },   // Navbar default
-        lg: { width: 220, height: 62 },   // Footer/hero
+        sm: { width: 120, height: 34 },   // Navbar scrolled - compact
+        md: { width: 150, height: 42 },   // Navbar default
+        lg: { width: 200, height: 56 },   // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
