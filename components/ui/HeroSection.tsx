@@ -110,24 +110,24 @@ export default function HeroSection() {
                 />
             </div>
 
-            {/* Floating aurora orbs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Floating aurora orbs - optimized with CSS transforms */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ contain: "layout paint" }}>
                 {[
-                    { color: "rgba(255, 107, 53, 0.12)", delay: 0, x: "15%", y: "25%" },
-                    { color: "rgba(0, 201, 167, 0.12)", delay: 2, x: "75%", y: "35%" },
-                    { color: "rgba(196, 30, 58, 0.08)", delay: 4, x: "50%", y: "70%" },
-                    { color: "rgba(0, 201, 167, 0.08)", delay: 6, x: "85%", y: "75%" },
+                    { color: "rgba(255, 107, 53, 0.10)", x: "15%", y: "25%" },
+                    { color: "rgba(0, 201, 167, 0.10)", x: "75%", y: "35%" },
+                    { color: "rgba(196, 30, 58, 0.06)", x: "50%", y: "70%" },
                 ].map((orb, i) => (
-                    <motion.div
+                    <div
                         key={i}
-                        className="absolute w-96 h-96 rounded-full blur-3xl"
+                        className="absolute w-80 h-80 rounded-full animate-float-slow"
                         style={{
                             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
                             left: orb.x,
                             top: orb.y,
+                            filter: "blur(60px)",
+                            willChange: "transform",
+                            animationDelay: `${i * 2}s`,
                         }}
-                        animate={{ x: [0, 50, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: orb.delay }}
                     />
                 ))}
             </div>

@@ -374,9 +374,28 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* Disable float on mobile for battery */
+/* Slow floating animation for aurora orbs - GPU optimized */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+/* Disable float animations on mobile for battery */
 @media (max-width: 768px) {
-  .animate-float {
+
+  .animate-float,
+  .animate-float-slow {
     animation: none;
   }
 }

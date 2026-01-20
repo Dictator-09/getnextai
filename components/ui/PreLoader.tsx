@@ -8,22 +8,23 @@ export default function PreLoader() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Simulate loading progress
+        // Fast loading progress - optimized for speed
         const interval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => setIsLoading(false), 300);
+                    setTimeout(() => setIsLoading(false), 150);
                     return 100;
                 }
-                return prev + Math.random() * 15;
+                // Faster progress increments
+                return prev + Math.random() * 20 + 10;
             });
-        }, 100);
+        }, 60); // Faster interval
 
-        // Fallback: hide after 2s max
+        // Fallback: hide after 1s max (reduced from 2s)
         const timeout = setTimeout(() => {
             setIsLoading(false);
-        }, 2000);
+        }, 1000);
 
         return () => {
             clearInterval(interval);
@@ -37,7 +38,7 @@ export default function PreLoader() {
                 <motion.div
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     className="fixed inset-0 z-[9999] bg-[#050508] flex flex-col items-center justify-center"
                 >
                     {/* Logo */}
