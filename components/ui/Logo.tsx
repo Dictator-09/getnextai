@@ -19,9 +19,9 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     // Much larger size configurations for better visibility
     // Logo contains both icon and text
     const sizes = {
-        sm: { height: 52 },   // Navbar scrolled
-        md: { height: 60 },   // Navbar default
-        lg: { height: 80 },   // Footer/hero
+        sm: { height: 72 },   // Navbar scrolled
+        md: { height: 80 },   // Navbar default
+        lg: { height: 100 },  // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
