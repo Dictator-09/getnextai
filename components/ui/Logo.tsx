@@ -16,12 +16,12 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
 
-    // Smart size configurations - optimized for the horizontal logo aspect ratio
-    // The logo is approximately 3:1 aspect ratio (icon + text)
+    // Larger size configurations for better visibility
+    // Logo contains both icon and text, so we show the full image
     const sizes = {
-        sm: { height: 36, containerWidth: 160 },  // Navbar scrolled
-        md: { height: 44, containerWidth: 200 },  // Navbar default
-        lg: { height: 56, containerWidth: 260 },  // Footer/hero
+        sm: { height: 40 },   // Navbar scrolled - larger for visibility
+        md: { height: 48 },   // Navbar default
+        lg: { height: 64 },   // Footer/hero
     };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -31,7 +31,6 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Subtle parallax tilt
         const rotX = ((y - centerY) / centerY) * -3;
         const rotY = ((x - centerX) / centerX) * 3;
 
@@ -50,7 +49,7 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
     return (
         <Link href="/" className={`inline-flex items-center ${className}`}>
             <motion.div
-                className="relative"
+                className="relative flex items-center"
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={handleMouseLeave}
@@ -59,15 +58,14 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
                 {/* Glow effect behind logo */}
                 {showGlow && (
                     <motion.div
-                        className="absolute inset-0 rounded-lg pointer-events-none"
+                        className="absolute -inset-3 rounded-xl pointer-events-none"
                         style={{
-                            background: "radial-gradient(ellipse at center, rgba(0,201,167,0.2) 0%, rgba(255,107,53,0.1) 60%, transparent 80%)",
-                            filter: "blur(16px)",
-                            transform: "scale(1.4)",
+                            background: "radial-gradient(ellipse at center, rgba(0,201,167,0.2) 0%, rgba(255,107,53,0.12) 50%, transparent 70%)",
+                            filter: "blur(14px)",
                         }}
                         animate={{
                             opacity: isHovered ? 0.9 : 0.5,
-                            scale: isHovered ? 1.6 : 1.4,
+                            scale: isHovered ? 1.05 : 1,
                         }}
                         transition={{ duration: 0.3 }}
                     />
@@ -77,12 +75,12 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
                     animate={{ rotateX, rotateY }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     style={{ transformStyle: "preserve-3d" }}
-                    className="relative z-10"
+                    className="relative z-10 flex items-center"
                 >
                     <Image
                         src="/logo.png"
                         alt="GetNextAI - AI Solutions Agency"
-                        width={currentSize.containerWidth}
+                        width={currentSize.height * 4}
                         height={currentSize.height}
                         style={{
                             height: currentSize.height,
