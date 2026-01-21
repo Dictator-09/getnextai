@@ -10,12 +10,12 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
         gsap.registerPlugin(ScrollTrigger);
 
         const lenisInstance = new Lenis({
-            duration: 0.7, // Matches our vetted Awwwards feel
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            duration: 1.5, // Slower, heavier feel (Junoon style)
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease out
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
-            wheelMultiplier: 1.5,
+            wheelMultiplier: 1.2, // Slightly reduced to prevent jumpiness with high duration
             touchMultiplier: 2,
         });
 
