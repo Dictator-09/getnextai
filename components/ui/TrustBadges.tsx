@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield, RefreshCw, Lock, FileText, Globe, Clock } from "lucide-react";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const badges = [
     {
@@ -43,15 +44,11 @@ export default function TrustBadges() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-transparent to-[#00C9A7]/5" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="text-center text-gray-500 text-sm uppercase tracking-widest mb-10"
-                >
-                    Why businesses trust us
-                </motion.p>
+                <ScrollReveal>
+                    <p className="text-center text-gray-500 text-sm uppercase tracking-widest mb-10">
+                        Why businesses trust us
+                    </p>
+                </ScrollReveal>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {badges.map((badge, index) => (

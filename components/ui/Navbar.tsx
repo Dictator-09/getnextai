@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import { MagneticButton } from "./CustomCursor";
+import { StaggeredText } from "./StaggeredText";
 import Logo from "./Logo";
 
 // ============================================
@@ -42,23 +43,21 @@ function AIAuditButton() {
 
 function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
     return (
-        <motion.a
+        <MagneticButton
             href={href}
-            className="relative text-sm font-medium text-gray-300 group"
-            whileHover={{ y: -2 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="relative px-2 py-1 text-sm font-medium text-gray-300 group"
             onClick={onClick}
         >
             <span className="relative z-10 group-hover:text-white transition-colors">
                 {children}
             </span>
             <motion.div
-                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#FF6B35] to-[#00C9A7]"
+                className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#FF6B35] to-[#00C9A7]"
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
             />
-        </motion.a>
+        </MagneticButton>
     );
 }
 
@@ -131,31 +130,49 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <motion.div
-                    className="fixed inset-0 z-40 bg-black/95 backdrop-blur-lg pt-24 px-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <div className="flex flex-col gap-6">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="text-2xl font-bold text-white hover:text-[#00C9A7] transition-colors"
-                                onClick={handleLinkClick}
-                            >
-                                {link.label}
-                            </a>
-                        ))}
-                        <div className="pt-4">
-                            <AIAuditButton />
+            {/* Cinematic Mobile Menu */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        className="fixed inset-0 z-40 bg-[#050508]/98 backdrop-blur-xl flex items-center justify-center overflow-hidden"
+                        initial={{ opacity: 0, y: "-100%" }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: "-100%" }}
+                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                    >
+                        {/* Background Watermark */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03]">
+                            <h1 className="text-[20vw] font-bold text-white leading-none">MENU</h1>
                         </div>
-                    </div>
-                </motion.div>
-            )}
+
+                        {/* Menu Links */}
+                        <div className="flex flex-col gap-8 text-center relative z-10">
+                            {navLinks.map((link, index) => (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    className="group relative block overflow-hidden"
+                                    onClick={handleLinkClick}
+                                >
+                                    <div className="text-5xl sm:text-7xl font-display font-bold text-white group-hover:text-[#00C9A7] transition-colors duration-300">
+                                        <StaggeredText text={link.label} delay={0.3 + index * 0.1} />
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00C9A7] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+                                </a>
+                            ))}
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.8 }}
+                                className="pt-8"
+                            >
+                                <AIAuditButton />
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }

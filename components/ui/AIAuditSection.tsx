@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { motion } from "framer-motion";
 import { FileSearch, Video, Lightbulb, CheckCircle } from "lucide-react";
 import AuditForm from "./AuditForm";
@@ -111,9 +113,22 @@ export default function AIAuditSection() {
                         viewport={{ once: true }}
                         className="order-2 lg:order-1"
                     >
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-                            What&apos;s Included
-                        </h3>
+                        <ScrollReveal>
+                            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 leading-[1.1]">
+                                <span className="text-white">Your current stack is</span>{" "}
+                                <span className="bg-gradient-to-r from-[#FF6B35] to-[#C41E3A] bg-clip-text text-transparent">
+                                    bleeding revenue.
+                                </span>
+                            </h2>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={0.2}>
+                            <p className="text-[#A0A0A8] text-lg mb-8 leading-relaxed max-w-xl">
+                                Manual workflows are the silent killer of scale. We deconstruct your
+                                operations, identify the friction, and deploy autonomous agents that
+                                execute faster than your best employee.
+                            </p>
+                        </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
                             {auditIncludes.map((item, index) => (
                                 <motion.div

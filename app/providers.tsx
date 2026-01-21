@@ -4,8 +4,13 @@ import { ReactNode, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CursorProvider } from "@/components/ui/CustomCursor";
 import { ToastProvider } from "@/components/ui/Toast";
-import PreLoader from "@/components/ui/PreLoader";
+import CinematicLoader from "@/components/ui/CinematicLoader";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import dynamic from "next/dynamic";
+
+// Dynamically import Scene (R3F) to avoid SSR issues
+const Scene = dynamic(() => import("@/components/canvas/Scene"), { ssr: false });
 
 interface ProvidersProps {
     children: ReactNode;
@@ -15,13 +20,16 @@ export default function Providers({ children }: ProvidersProps) {
     return (
         <AnimatePresence mode="wait">
             <CursorProvider>
-                <ToastProvider>
-                    <PreLoader />
-                    <Suspense fallback={<LoadingFallback />}>
-                        <ScrollToTop />
-                        {children}
-                    </Suspense>
-                </ToastProvider>
+                <SmoothScrollProvider>
+                    <ToastProvider>
+                        <CinematicLoader />
+                        <Scene />
+                        <Suspense fallback={<LoadingFallback />}>
+                            <ScrollToTop />
+                            {children}
+                        </Suspense>
+                    </ToastProvider>
+                </SmoothScrollProvider>
             </CursorProvider>
         </AnimatePresence>
     );

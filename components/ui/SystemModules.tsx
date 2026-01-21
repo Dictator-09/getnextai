@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const systemModules = [
     {
@@ -221,26 +222,24 @@ export default function SystemModules() {
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Section header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    viewport={{ once: true }}
-                    className="mb-16 md:mb-24"
-                >
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
-                        <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
-                            System Modules
-                        </span>
-                    </div>
+                <div className="mb-16 md:mb-24">
+                    <ScrollReveal>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
+                            <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
+                                System Modules
+                            </span>
+                        </div>
+                    </ScrollReveal>
 
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight max-w-3xl">
-                        AI Infrastructure
-                        <br />
-                        <span className="text-white/40">Ready to Deploy</span>
-                    </h2>
-                </motion.div>
+                    <ScrollReveal delay={0.2}>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight max-w-3xl">
+                            AI Infrastructure
+                            <br />
+                            <span className="text-white/40">Ready to Deploy</span>
+                        </h2>
+                    </ScrollReveal>
+                </div>
 
                 {/* Modules list */}
                 <div className="space-y-4 md:space-y-6 max-w-4xl">

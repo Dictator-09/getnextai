@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
 import HeroStatic from "./hero/HeroStatic";
 import HeroClient from "./hero/HeroClient";
 import Providers from "./providers";
@@ -19,34 +17,7 @@ import StickyAuditCTA from "@/components/ui/StickyAuditCTA";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 export default function Home() {
-  const lenisRef = useRef<Lenis | null>(null);
-
-  useEffect(() => {
-    // Initialize Lenis smooth scroll
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 0.7, // Lower duration = more responsive (was 1.2)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.5, // Higher multiplier = less "stuck" feeling
-      touchMultiplier: 2,
-    });
-
-    lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+  // Lenis is now handled by SmoothScrollProvider in app/providers.tsx
 
   return (
     <Providers>

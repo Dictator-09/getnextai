@@ -66,7 +66,7 @@ export function ScrollProgress() {
                             strokeWidth="2"
                             fill="none"
                             strokeLinecap="round"
-                            strokeDasharray={151}
+                            strokeDasharray="151"
                             strokeDashoffset={useTransform(scrollYProgress, [0, 1], [151, 0])}
                         />
                     </svg>

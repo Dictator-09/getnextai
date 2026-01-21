@@ -1,7 +1,10 @@
 "use client";
 
+import { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { Coffee, Cloud, Palette, ArrowRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CaseStudyCard, { CaseStudyData } from "./CaseStudyCard";
 
 const caseStudies: CaseStudyData[] = [
@@ -56,76 +59,87 @@ const caseStudies: CaseStudyData[] = [
 ];
 
 export default function CaseStudies() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const container = containerRef.current;
+            if (!container) return;
+
+            const scrollWidth = container.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const xMovement = -(scrollWidth - viewportWidth);
+
+            gsap.to(container, {
+                x: xMovement,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: triggerRef.current,
+                    pin: true,
+                    scrub: 1, // Smooth scrub
+                    // end: bottom of the trigger + custom scroll length
+                    // We make it scroll for 3000px or related to width for a comfortable pace
+                    end: "+=3000",
+                    anticipatePin: 1
+                }
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="case-studies" className="py-24 md:py-32 relative overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-[#030305]" />
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00C9A7]/20 to-transparent" />
+        <section ref={sectionRef} id="case-studies" className="relative overflow-hidden bg-[#030305]">
+            <div ref={triggerRef} className="h-screen flex items-center overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 bg-[#030305]" />
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00C9A7]/20 to-transparent" />
 
-            {/* Simple Grid Background */}
-            <div
-                className="absolute inset-0 opacity-5"
-                style={{
-                    backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-
-            <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16 md:mb-24"
-                >
+                {/* Header Overlay (Fixed position relative to pin) */}
+                <div className="absolute top-24 left-0 w-full z-10 text-center pointer-events-none">
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
                         <span className="font-mono text-xs text-white/50 tracking-widest uppercase">
                             Past Deployments
                         </span>
                     </div>
-
                     <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
                         System <span className="text-white/40">Performance</span>
                     </h2>
-                    <p className="text-white/40 max-w-2xl mx-auto font-light">
-                        Verified results from live production environments.
-                    </p>
-                </motion.div>
+                </div>
 
-                {/* Case Study Grid - Horizontal scroll on mobile */}
-                <div className="flex overflow-x-auto sm:overflow-visible sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-8 sm:pb-0 snap-x-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+                {/* Horizontal Scroll Container */}
+                <div
+                    ref={containerRef}
+                    className="flex gap-20 px-4 md:px-24 w-max items-center h-full pt-32 will-change-transform"
+                >
                     {caseStudies.map((study, index) => (
-                        <div key={study.id} className="min-w-[320px] sm:min-w-0 snap-center h-full">
+                        <div key={study.id} className="case-study-card w-[85vw] md:w-[60vw] lg:w-[40vw] flex-shrink-0">
                             <CaseStudyCard study={study} index={index} />
                         </div>
                     ))}
-                </div>
 
-                {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-16 md:mt-24"
-                >
-                    <p className="font-mono text-white/30 text-xs uppercase tracking-widest mb-6">
-                        Ready to deploy your system?
-                    </p>
-                    <a href="/audit">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-white text-black font-display font-bold rounded-full text-lg hover:bg-gray-200 transition-all duration-300 flex items-center gap-2 mx-auto"
-                        >
-                            Initiate Audit
-                            <ArrowRight className="w-5 h-5" />
-                        </motion.button>
-                    </a>
-                </motion.div>
+                    {/* Final CTA Card */}
+                    <div className="case-study-card w-[85vw] md:w-[60vw] lg:w-[40vw] flex-shrink-0 flex items-center justify-center">
+                        <div className="text-center">
+                            <p className="font-mono text-white/30 text-xs uppercase tracking-widest mb-6">
+                                Ready to deploy your system?
+                            </p>
+                            <a href="/audit" className="inline-block pointer-events-auto">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-8 py-4 bg-white text-black font-display font-bold rounded-full text-lg hover:bg-gray-200 transition-all duration-300 flex items-center gap-2"
+                                >
+                                    Initiate Audit
+                                    <ArrowRight className="w-5 h-5" />
+                                </motion.button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );

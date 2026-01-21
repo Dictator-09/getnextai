@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/CustomCursor";
-import ScrambleText from "@/components/ui/ScrambleText";
+import MagneticScroll from "@/components/ui/MagneticScroll";
+import { StaggeredText } from "@/components/ui/StaggeredText";
 
 // ============================================
 // HERO CTA BUTTON - AURORA THEME
@@ -142,28 +143,24 @@ export default function HeroSection() {
             />
 
             {/* Content */}
+            {/* Content */}
             <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl">
 
                 {/* Main headline */}
-                <motion.h1
-                    className="font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
-                >
+                <h1 className="font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8 perspective-1000">
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
-                        <ScrambleText text="Your Business." delay={0.2} />
+                        <StaggeredText text="Your Business." delay={0.5} />
                     </span>
                     <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
-                        Running on{" "}
+                        <span className="inline-block">Running on </span>{" "}
                         <span
                             className="bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent"
                             style={{ textShadow: "0 0 40px rgba(0, 201, 167, 0.4)" }}
                         >
-                            <ScrambleText text="Intelligence." delay={0.8} />
+                            <StaggeredText text="Intelligence." delay={1.0} />
                         </span>
                     </span>
-                </motion.h1>
+                </h1>
 
                 {/* Subheadline */}
                 <motion.p
@@ -192,28 +189,6 @@ export default function HeroSection() {
                     </span>
                 </motion.div>
             </div>
-
-            {/* Scroll indicator */}
-            <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-            >
-                <span className="text-[#6B6B73] text-xs font-sans tracking-widest uppercase">
-                    Scroll
-                </span>
-                <motion.div
-                    className="w-px h-8 bg-gradient-to-b from-[#6B6B73] to-transparent"
-                    animate={{ scaleY: [1, 1.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="w-2 h-2 rounded-full bg-[#00C9A7]"
-                    animate={{ y: [0, 12, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-            </motion.div>
         </section>
     );
 }
