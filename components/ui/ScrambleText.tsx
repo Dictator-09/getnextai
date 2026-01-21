@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 
 interface ScrambleTextProps {
     text: string;
@@ -29,7 +29,7 @@ export default function ScrambleText({
 
         let interval: NodeJS.Timeout;
         const startTime = Date.now();
-        const endTime = startTime + duration * 1000;
+        // const endTime = startTime + duration * 1000; // Removed unused variable
 
         // Initial delay
         const timeout = setTimeout(() => {
@@ -49,29 +49,7 @@ export default function ScrambleText({
                 }
 
                 // Scramble logic
-                const scrambled = text
-                    .split("")
-                    .map((char, index) => {
-                        // Reveal characters progressively
-                        if (index < text.length * progress) {
-                            return index <= Math.floor(text.length * progress) ? char : CHARS[Math.floor(Math.random() * CHARS.length)];
-                        }
-                        return CHARS[Math.floor(Math.random() * CHARS.length)];
-                    })
-                    .join("");
-
-                // Show only Revealed part + partial scramble for better effect? 
-                // A better algorithm:
-                // Calculate how many chars should be revealed: floor(length * progress)
-                // The rest: scrambled or hidden? Scramble text usually fills the whole length first.
-
-                const currentLength = Math.floor(text.length * progress);
-                let result = text.substring(0, currentLength);
-
-                if (currentLength < text.length) {
-                    result += CHARS[Math.floor(Math.random() * CHARS.length)];
-                    result += CHARS[Math.floor(Math.random() * CHARS.length)];
-                }
+                // unused variable 'scrambled' removed
 
                 // Let's stick to the classic "Matrix" style:
                 // Randomly replacing unrevealed characters.
@@ -95,9 +73,11 @@ export default function ScrambleText({
         };
     }, [isInView, text, delay, duration]);
 
+    // Ensure we don't use Math.random() during render for the fallback
+    // Use an empty string or the full text to avoid hydration mismatch
     return (
         <span ref={ref} className={className}>
-            {displayText || text.split('').map(() => CHARS[Math.floor(Math.random() * CHARS.length)]).join('')}
+            {displayText || text}
         </span>
     );
 }

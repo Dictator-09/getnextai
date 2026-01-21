@@ -43,8 +43,13 @@ export default function HeroMotion() {
     const [rotation, setRotation] = useState(0);
 
     useEffect(() => {
-        setIsMounted(true);
+        const timer = setTimeout(() => {
+            setIsMounted(true);
+        }, 0);
+        return () => clearTimeout(timer);
+    }, []);
 
+    useEffect(() => {
         let animationId: number;
         let lastTime = 0;
 

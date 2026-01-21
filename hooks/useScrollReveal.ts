@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useAnimation } from "framer-motion";
 
 interface UseScrollRevealOptions {
@@ -18,6 +18,7 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
 
     const ref = useRef<HTMLDivElement>(null);
     const controls = useAnimation();
+    const [isInView, setIsInView] = useState(false);
     const hasAnimated = useRef(false);
 
     useEffect(() => {
@@ -38,11 +39,13 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
                         },
                     });
                     hasAnimated.current = true;
+                    setIsInView(true);
                 } else if (!triggerOnce) {
                     controls.start({
                         opacity: 0,
                         y: 30,
                     });
+                    setIsInView(false);
                 }
             },
             { threshold, rootMargin }
@@ -56,7 +59,7 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
     return {
         ref,
         controls,
-        isInView: hasAnimated.current,
+        isInView, // Now returning state, safe to use in render
     };
 }
 

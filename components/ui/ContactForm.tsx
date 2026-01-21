@@ -103,7 +103,7 @@ export default function ContactForm() {
                     >
                         <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
                         <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                        <p className="text-gray-400 text-center px-4">We'll be in touch shortly to build your future.</p>
+                        <p className="text-gray-400 text-center px-4">We&apos;ll be in touch shortly to build your future.</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/CustomCursor";
-import MagneticScroll from "@/components/ui/MagneticScroll";
 import { StaggeredText } from "@/components/ui/StaggeredText";
 
 // ============================================
