@@ -4,7 +4,6 @@ import { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { Coffee, Cloud, Palette, ArrowRight } from "lucide-react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CaseStudyCard, { CaseStudyData } from "./CaseStudyCard";
 
 const caseStudies: CaseStudyData[] = [

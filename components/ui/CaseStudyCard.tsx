@@ -78,7 +78,7 @@ export default function CaseStudyCard({ study, index }: { study: CaseStudyData; 
                     {study.title}
                 </h3>
                 <p className="text-white/40 text-xs font-mono mb-6 uppercase tracking-wider">
-                    {study.location} // {study.industry}
+                    {study.location} {'//'} {study.industry}
                 </p>
 
                 {/* Problem */}

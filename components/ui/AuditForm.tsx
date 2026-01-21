@@ -133,7 +133,7 @@ export default function AuditForm() {
                         <p className="text-gray-400 text-center max-w-md mb-2">
                             Check your inbox within 48 hours for your personalized Loom video audit.
                         </p>
-                        <p className="text-cyan-400 text-sm mb-6">We're excited to show you what's possible!</p>
+                        <p className="text-cyan-400 text-sm mb-6">We&apos;re excited to show you what&apos;s possible!</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Twitter, Linkedin, Github, Mail, Globe, ArrowUpRight } from "lucide-react";
+import { Twitter, Linkedin, Github, Globe, ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 
 const services = [

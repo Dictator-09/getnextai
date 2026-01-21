@@ -2,7 +2,6 @@
 
 import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
 interface ScrollRevealProps {
@@ -11,7 +10,6 @@ interface ScrollRevealProps {
     animation?: "fade-up" | "word-reveal" | "line-mask";
     delay?: number;
     duration?: number;
-    stagger?: number;
 }
 
 export default function ScrollReveal({
@@ -20,7 +18,6 @@ export default function ScrollReveal({
     animation = "fade-up",
     delay = 0,
     duration = 0.8,
-    stagger = 0.05,
 }: ScrollRevealProps) {
     const el = useRef<HTMLDivElement>(null);
 

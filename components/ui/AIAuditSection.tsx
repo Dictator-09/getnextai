@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { motion } from "framer-motion";
 import { FileSearch, Video, Lightbulb, CheckCircle } from "lucide-react";
