@@ -58,7 +58,7 @@ export default function CinematicLoader() {
     return (
         <div
             ref={containerRef}
-            className="fixed inset-0 z-[9999] bg-[#050508] flexflex-col items-center justify-center overflow-hidden"
+            className="fixed inset-0 z-[9999] bg-[#050508] flex flex-col items-center justify-center overflow-hidden"
         >
             <div className="relative w-full max-w-md px-6">
                 <div ref={textRef} className="text-4xl md:text-6xl font-bold font-mono text-[#00C9A7] mb-8 text-center tracking-tighter">
