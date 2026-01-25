@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Globe, CreditCard, FileText, Clock, Headphones } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+import { styles } from "./styles/GlobalPresence.styles";
 
 const trustFeatures = [
     {
@@ -50,29 +53,29 @@ const regions = [
 
 export default function GlobalPresence() {
     return (
-        <section className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-[#030308]">
+        <section className={styles.section}>
             {/* Background effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent" />
+            <div className={styles.background} />
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className={styles.container}>
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className={styles.header.container}
                 >
-                    <p className="text-cyan-400 text-sm uppercase tracking-widest mb-4">
+                    <p className={styles.header.label}>
                         Global Reach
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-heading font-black text-white mb-4">
+                    <h2 className={styles.header.title}>
                         Built for{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                        <span className={styles.header.highlight}>
                             Global Businesses
                         </span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className={styles.header.description}>
                         We work with businesses across time zones, delivering world-class AI solutions
                         with the reliability and professionalism you expect.
                     </p>
@@ -84,12 +87,12 @@ export default function GlobalPresence() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative w-full max-w-4xl mx-auto mb-16 aspect-[2/1]"
+                    className={styles.map.container}
                 >
                     {/* Stylized world map background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
+                    <div className={styles.map.background}>
                         {/* Grid pattern */}
-                        <div className="absolute inset-0" style={{
+                        <div className={styles.map.grid} style={{
                             backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
                             backgroundSize: '30px 30px'
                         }} />
@@ -102,18 +105,18 @@ export default function GlobalPresence() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                                 viewport={{ once: true }}
-                                className="absolute"
+                                className={styles.map.region.container}
                                 style={{ left: `${region.x}%`, top: `${region.y}%` }}
                             >
                                 {/* Pulse effect */}
-                                <div className="relative">
-                                    <span className="absolute inline-flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400 opacity-20 animate-ping" />
-                                    <span className="relative inline-flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.8)]" />
+                                <div className={styles.map.region.pulseWrapper}>
+                                    <span className={styles.map.region.pulse} />
+                                    <span className={styles.map.region.dot} />
                                 </div>
 
                                 {/* Label */}
-                                <div className="absolute top-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                                    <span className="px-2 py-1 bg-black/80 border border-white/10 rounded text-cyan-400 text-xs font-medium">
+                                <div className={styles.map.region.labelWrapper}>
+                                    <span className={styles.map.region.label}>
                                         {region.code}
                                     </span>
                                 </div>
@@ -121,7 +124,7 @@ export default function GlobalPresence() {
                         ))}
 
                         {/* Connection lines */}
-                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ opacity: 0.1 }}>
+                        <svg className={styles.map.svg} viewBox="0 0 100 100" preserveAspectRatio="none" style={{ opacity: 0.1 }}>
                             <defs>
                                 <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                     <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
@@ -153,7 +156,7 @@ export default function GlobalPresence() {
                 </motion.div>
 
                 {/* Trust Features Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div className={styles.grid.container}>
                     {trustFeatures.map((feature, index) => (
                         <motion.div
                             key={index}
@@ -161,13 +164,13 @@ export default function GlobalPresence() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="flex flex-col items-center text-center p-4 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/30 transition-all duration-300 group"
+                            className={styles.grid.card}
                         >
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <div className={styles.grid.iconBox}>
                                 {feature.icon}
                             </div>
-                            <h4 className="text-white font-bold text-sm mb-1">{feature.title}</h4>
-                            <p className="text-gray-500 text-xs">{feature.description}</p>
+                            <h4 className={styles.grid.title}>{feature.title}</h4>
+                            <p className={styles.grid.description}>{feature.description}</p>
                         </motion.div>
                     ))}
                 </div>

@@ -20,29 +20,31 @@ const company = [
 
 const regions = ["US", "UK", "UAE", "AU", "EU"];
 
+import { styles } from "./styles/Footer.styles";
+
 export default function Footer() {
     return (
-        <footer className="relative w-full bg-[#050508] pt-24 pb-12 overflow-hidden">
+        <footer className={styles.footer}>
             {/* Background Gradient */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,201,167,0.05),transparent_40%)] pointer-events-none" />
+            <div className={styles.background.line} />
+            <div className={styles.background.radial} />
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className={styles.container}>
                 {/* MEGA CTA */}
-                <div className="mb-24 md:mb-32 flex flex-col items-center text-center">
-                    <h2 className="font-heading font-black text-[15vw] leading-[0.8] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20 select-none hover:to-white/40 transition-all duration-700">
+                <div className={styles.cta.container}>
+                    <h2 className={styles.cta.title}>
                         LET&apos;S TALK
                     </h2>
-                    <div className="mt-8 md:mt-12">
+                    <div className={styles.cta.buttonWrapper}>
                         <Link
                             href="/audit"
-                            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/10 rounded-full overflow-hidden hover:border-[#00C9A7]/50 transition-all duration-300"
+                            className={styles.cta.button}
                         >
-                            <span className="absolute inset-0 bg-gradient-to-r from-[#00C9A7]/10 to-[#FF6B35]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <span className="relative z-10 text-lg md:text-xl text-gray-300 group-hover:text-white transition-colors">
+                            <span className={styles.cta.buttonGlow} />
+                            <span className={styles.cta.buttonText}>
                                 Start Your Transformation
                             </span>
-                            <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#00C9A7] group-hover:text-black transition-all duration-300 group-hover:rotate-45">
+                            <span className={styles.cta.buttonIcon}>
                                 <ArrowUpRight className="w-5 h-5" />
                             </span>
                         </Link>
@@ -50,12 +52,12 @@ export default function Footer() {
                 </div>
 
                 {/* Footer Content Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-white/5 pt-16">
+                <div className={styles.grid.container}>
                     {/* Brand Column */}
-                    <div className="col-span-1 md:col-span-2 space-y-8">
+                    <div className={styles.grid.brandCol}>
                         <div>
                             <Logo size="md" />
-                            <p className="mt-6 text-gray-400 leading-relaxed max-w-md">
+                            <p className={styles.grid.brandText}>
                                 Reintegrating human creativity with machine intelligence.
                                 <br />
                                 We build systems that scale.
@@ -63,14 +65,14 @@ export default function Footer() {
                         </div>
 
                         {/* Global Presence */}
-                        <div className="flex flex-wrap items-center gap-3">
-                            <Globe className="w-4 h-4 text-[#00C9A7]" />
-                            <span className="text-gray-500 text-sm">Serving clients globally:</span>
-                            <div className="flex flex-wrap gap-2">
+                        <div className={styles.grid.global.container}>
+                            <Globe className={styles.grid.global.icon} />
+                            <span className={styles.grid.global.label}>Serving clients globally:</span>
+                            <div className={styles.grid.global.regionsWrapper}>
                                 {regions.map((region) => (
                                     <span
                                         key={region}
-                                        className="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-gray-400 text-xs font-medium"
+                                        className={styles.grid.global.regionBadge}
                                     >
                                         {region}
                                     </span>
@@ -81,8 +83,8 @@ export default function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h3 className="text-white font-bold mb-6 font-heading tracking-wide">SOLUTIONS</h3>
-                        <ul className="space-y-4">
+                        <h3 className={styles.grid.sectionTitle}>SOLUTIONS</h3>
+                        <ul className={styles.grid.linkList}>
                             {services.map((item) => (
                                 <FooterLink key={item.label} href={item.href} label={item.label} />
                             ))}
@@ -91,13 +93,13 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h3 className="text-white font-bold mb-6 font-heading tracking-wide">COMPANY</h3>
-                        <ul className="space-y-4">
+                        <h3 className={styles.grid.sectionTitle}>COMPANY</h3>
+                        <ul className={styles.grid.linkList}>
                             {company.map((item) => (
                                 <FooterLink key={item.label} href={item.href} label={item.label} />
                             ))}
                         </ul>
-                        <div className="flex gap-4 mt-8">
+                        <div className={styles.grid.socialContainer}>
                             <SocialLink href="https://twitter.com" icon={<Twitter className="w-5 h-5" />} />
                             <SocialLink href="https://linkedin.com" icon={<Linkedin className="w-5 h-5" />} />
                             <SocialLink href="https://github.com" icon={<Github className="w-5 h-5" />} />
@@ -106,12 +108,12 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-gray-600 text-sm">
+                <div className={styles.bottomBar.container}>
+                    <p className={styles.bottomBar.text}>
                         © {new Date().getFullYear()} GetNextAI. All rights reserved.
                     </p>
-                    <p className="text-gray-600 text-sm flex items-center gap-2">
-                        Designed with <span className="text-[#00C9A7]">Intelligence</span>
+                    <p className={styles.bottomBar.designer}>
+                        Designed with <span className={styles.bottomBar.highlight}>Intelligence</span>
                     </p>
                 </div>
             </div>
@@ -125,7 +127,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#00C9A7] hover:text-black hover:scale-110 transition-all duration-300"
+            className={styles.socialLink}
         >
             {icon}
         </a>
@@ -137,7 +139,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
         <li>
             <Link
                 href={href}
-                className="text-gray-400 hover:text-[#00C9A7] hover:translate-x-1 transition-all duration-300 inline-block text-sm"
+                className={styles.footerLink}
             >
                 {label}
             </Link>

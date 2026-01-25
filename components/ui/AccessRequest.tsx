@@ -6,6 +6,8 @@ import { Loader2 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { useToast } from "./Toast";
 
+import { styles } from "./styles/AccessRequest.styles";
+
 const timeSlots = [
     { id: "1", time: "10:00 AM", zone: "IST", available: true },
     { id: "2", time: "2:00 PM", zone: "IST", available: true },
@@ -55,11 +57,11 @@ export default function AccessRequest() {
     const selectedDayData = days.find(d => d.id === selectedDay);
 
     return (
-        <section id="contact" className="relative py-24 md:py-40 overflow-hidden">
+        <section id="contact" className={styles.section}>
             {/* Background */}
-            <div className="absolute inset-0 bg-[#030305]" />
+            <div className={styles.background.base} />
             <div
-                className="absolute inset-0 opacity-10"
+                className={styles.background.grid}
                 style={{
                     backgroundImage: `
                         linear-gradient(rgba(184, 255, 0, 0.05) 1px, transparent 1px),
@@ -69,27 +71,27 @@ export default function AccessRequest() {
                 }}
             />
 
-            <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                <div className="max-w-4xl mx-auto">
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
                     {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         viewport={{ once: true }}
-                        className="text-center mb-12 md:mb-16"
+                        className={styles.header.container}
                     >
-                        <div className="inline-flex items-center gap-2 mb-4">
-                            <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
-                            <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
+                        <div className={styles.header.badge}>
+                            <div className={styles.header.dot} />
+                            <span className={styles.header.label}>
                                 Request Access
                             </span>
                         </div>
 
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight mb-4">
+                        <h2 className={styles.header.title}>
                             Book Your Session
                         </h2>
-                        <p className="text-white/40 text-base md:text-lg max-w-xl mx-auto">
+                        <p className={styles.header.subtitle}>
                             Limited availability. Direct line to our architects.
                         </p>
                     </motion.div>
@@ -102,24 +104,24 @@ export default function AccessRequest() {
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-center py-16"
+                                className={styles.confirmation.container}
                             >
                                 <motion.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                                    className="w-20 h-20 mx-auto mb-8 rounded-full bg-[#00C9A7]/10 border border-[#00C9A7]/30 flex items-center justify-center"
+                                    className={styles.confirmation.iconWrapper}
                                 >
-                                    <div className="w-10 h-10 bg-[#00C9A7] rounded-full" />
+                                    <div className={styles.confirmation.icon} />
                                 </motion.div>
 
-                                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
+                                <h3 className={styles.confirmation.title}>
                                     Session Locked
                                 </h3>
-                                <p className="text-white/50 mb-2">
+                                <p className={styles.confirmation.date}>
                                     {selectedDayData?.date} at {selectedSlotData?.time} {selectedSlotData?.zone}
                                 </p>
-                                <p className="text-[#00C9A7]/80 text-sm font-mono">
+                                <p className={styles.confirmation.note}>
                                     Expect direct confirmation within 2 hours.
                                 </p>
 
@@ -127,7 +129,7 @@ export default function AccessRequest() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
-                                    className="mt-10"
+                                    className={styles.confirmation.resetButtonContainer}
                                 >
                                     <button
                                         onClick={() => {
@@ -136,7 +138,7 @@ export default function AccessRequest() {
                                             setSelectedSlot(null);
                                             setFormData({ name: "", email: "", company: "" });
                                         }}
-                                        className="text-white/30 hover:text-white/50 text-sm transition-colors"
+                                        className={styles.confirmation.resetButton}
                                     >
                                         Book another session
                                     </button>
@@ -151,14 +153,14 @@ export default function AccessRequest() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="space-y-10"
+                                className={styles.form.container}
                             >
                                 {/* Day Selection */}
                                 <div>
-                                    <label className="block text-white/30 text-xs font-mono uppercase tracking-widest mb-4">
+                                    <label className={styles.form.label}>
                                         Select Day
                                     </label>
-                                    <div className="grid grid-cols-3 gap-3 md:gap-4">
+                                    <div className={styles.form.grid}>
                                         {days.map((day, index) => (
                                             <motion.button
                                                 key={day.id}
@@ -167,16 +169,16 @@ export default function AccessRequest() {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ delay: index * 0.1 }}
                                                 onClick={() => setSelectedDay(day.id)}
-                                                className={`relative p-4 md:p-6 rounded-xl border transition-all duration-300 ${selectedDay === day.id
-                                                        ? "bg-[#00C9A7]/10 border-[#00C9A7]/50 shadow-[0_0_30px_rgba(0,201,167,0.1)]"
-                                                        : "bg-white/5 border-white/10 hover:border-white/20"
+                                                className={`${styles.selection.button} ${selectedDay === day.id
+                                                    ? styles.selection.active
+                                                    : styles.selection.inactive
                                                     }`}
                                             >
-                                                <span className={`block text-xs font-mono uppercase mb-1 ${selectedDay === day.id ? "text-[#00C9A7]" : "text-white/30"
+                                                <span className={`block text-xs font-mono uppercase mb-1 ${selectedDay === day.id ? styles.selection.labelActive : styles.selection.labelInactive
                                                     }`}>
                                                     {day.label}
                                                 </span>
-                                                <span className={`block text-lg md:text-xl font-display font-bold ${selectedDay === day.id ? "text-white" : "text-white/60"
+                                                <span className={`block text-lg md:text-xl font-display font-bold ${selectedDay === day.id ? styles.selection.textActive : styles.selection.textInactive
                                                     }`}>
                                                     {day.date}
                                                 </span>
@@ -184,7 +186,7 @@ export default function AccessRequest() {
                                                 {selectedDay === day.id && (
                                                     <motion.div
                                                         layoutId="dayIndicator"
-                                                        className="absolute -top-1 -right-1 w-3 h-3 bg-[#00C9A7] rounded-full"
+                                                        className={styles.selection.indicator}
                                                     />
                                                 )}
                                             </motion.button>
@@ -200,10 +202,10 @@ export default function AccessRequest() {
                                             animate={{ opacity: 1, height: "auto" }}
                                             exit={{ opacity: 0, height: 0 }}
                                         >
-                                            <label className="block text-white/30 text-xs font-mono uppercase tracking-widest mb-4">
+                                            <label className={styles.form.label}>
                                                 Select Time
                                             </label>
-                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                            <div className={styles.form.timeGrid}>
                                                 {timeSlots.map((slot, index) => (
                                                     <motion.button
                                                         key={slot.id}
@@ -213,14 +215,14 @@ export default function AccessRequest() {
                                                         transition={{ delay: index * 0.05 }}
                                                         disabled={!slot.available}
                                                         onClick={() => setSelectedSlot(slot.id)}
-                                                        className={`relative p-4 rounded-xl border transition-all duration-300 ${!slot.available
-                                                                ? "bg-white/5 border-white/5 opacity-30 cursor-not-allowed"
-                                                                : selectedSlot === slot.id
-                                                                    ? "bg-[#00C9A7]/10 border-[#00C9A7]/50 shadow-[0_0_20px_rgba(0,201,167,0.1)]"
-                                                                    : "bg-white/5 border-white/10 hover:border-white/20"
+                                                        className={`${styles.selection.timeButton} ${!slot.available
+                                                            ? styles.selection.disabled
+                                                            : selectedSlot === slot.id
+                                                                ? styles.selection.activeTime
+                                                                : styles.selection.inactive
                                                             }`}
                                                     >
-                                                        <span className={`block text-lg font-display font-bold ${selectedSlot === slot.id ? "text-white" : "text-white/60"
+                                                        <span className={`block text-lg font-display font-bold ${selectedSlot === slot.id ? styles.selection.textActive : styles.selection.textInactive
                                                             }`}>
                                                             {slot.time}
                                                         </span>
@@ -231,7 +233,7 @@ export default function AccessRequest() {
                                                         {selectedSlot === slot.id && (
                                                             <motion.div
                                                                 layoutId="slotIndicator"
-                                                                className="absolute -top-1 -right-1 w-3 h-3 bg-[#00C9A7] rounded-full"
+                                                                className={styles.selection.indicator}
                                                             />
                                                         )}
                                                     </motion.button>
@@ -248,19 +250,19 @@ export default function AccessRequest() {
                                             initial={{ opacity: 0, height: 0 }}
                                             animate={{ opacity: 1, height: "auto" }}
                                             exit={{ opacity: 0, height: 0 }}
-                                            className="space-y-4"
+                                            className={styles.form.inputs.container}
                                         >
-                                            <label className="block text-white/30 text-xs font-mono uppercase tracking-widest mb-4">
+                                            <label className={styles.form.label}>
                                                 Your Details
                                             </label>
 
-                                            <div className="grid md:grid-cols-2 gap-4">
+                                            <div className={styles.form.inputs.row}>
                                                 <input
                                                     type="text"
                                                     placeholder="Name"
                                                     value={formData.name}
                                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
+                                                    className={styles.form.inputs.field}
                                                     required
                                                 />
                                                 <input
@@ -268,7 +270,7 @@ export default function AccessRequest() {
                                                     placeholder="Email"
                                                     value={formData.email}
                                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
+                                                    className={styles.form.inputs.field}
                                                     required
                                                 />
                                             </div>
@@ -277,7 +279,7 @@ export default function AccessRequest() {
                                                 placeholder="Company (optional)"
                                                 value={formData.company}
                                                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#00C9A7]/50 transition-colors"
+                                                className={styles.form.inputs.field}
                                             />
                                         </motion.div>
                                     )}
@@ -296,14 +298,14 @@ export default function AccessRequest() {
                                                 disabled={status === "submitting"}
                                                 whileHover={{ scale: 1.02 }}
                                                 whileTap={{ scale: 0.98 }}
-                                                className="w-full md:w-auto px-10 py-5 bg-[#00C9A7] text-[#050508] font-display font-bold text-lg rounded-full transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3"
+                                                className={styles.form.submit.button}
                                                 style={{
                                                     boxShadow: "0 0 40px rgba(184, 255, 0, 0.3)",
                                                 }}
                                             >
                                                 {status === "submitting" ? (
                                                     <>
-                                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                                        <Loader2 className={styles.form.submit.spinner} />
                                                         Locking Session...
                                                     </>
                                                 ) : (

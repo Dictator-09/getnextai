@@ -69,28 +69,59 @@ export function HeroCTAButton({ children, href = "/audit" }: { children: React.R
 // AURORA HERO SECTION
 // ============================================
 
+const styles = {
+    section: "relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050508]",
+    background: {
+        wrapper: "absolute inset-0",
+        leftGlow: "absolute -left-1/4 top-0 w-1/2 h-full",
+        centerGlow: "absolute left-1/4 top-0 w-1/2 h-full",
+        rightGlow: "absolute -right-1/4 top-0 w-1/2 h-full",
+        grid: "absolute inset-0 opacity-[0.03]",
+        gridPattern: "w-full h-full",
+        orbsContainer: "absolute inset-0 overflow-hidden pointer-events-none",
+        orb: "absolute w-80 h-80 rounded-full animate-float-slow",
+        grain: "absolute inset-0 opacity-[0.04] pointer-events-none"
+    },
+    content: {
+        wrapper: "relative z-10 text-center px-4 sm:px-6 max-w-5xl",
+        headline: "font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8 perspective-1000",
+        overline: "block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]",
+        underlineWrapper: "block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]",
+        gradientText: "bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent",
+        subheadline: "text-[clamp(1rem,2.5vw,1.375rem)] text-[#A0A0A8] font-sans font-light max-w-3xl mx-auto mb-10 md:mb-14 leading-relaxed",
+        ctaContainer: "flex flex-col items-center gap-3",
+        ctaNote: "text-[#6B6B73] text-sm font-sans"
+    }
+};
+
+const orbs = [
+    { color: "rgba(255, 107, 53, 0.10)", x: "15%", y: "25%" },
+    { color: "rgba(0, 201, 167, 0.10)", x: "75%", y: "35%" },
+    { color: "rgba(196, 30, 58, 0.06)", x: "50%", y: "70%" },
+];
+
 export default function HeroSection() {
     return (
-        <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050508]">
+        <section className={styles.section}>
             {/* Aurora gradient background */}
-            <div className="absolute inset-0">
+            <div className={styles.background.wrapper}>
                 {/* Left warm glow */}
                 <div
-                    className="absolute -left-1/4 top-0 w-1/2 h-full"
+                    className={styles.background.leftGlow}
                     style={{
                         background: "radial-gradient(ellipse at left, rgba(255, 107, 53, 0.15) 0%, transparent 60%)",
                     }}
                 />
                 {/* Center red/dark */}
                 <div
-                    className="absolute left-1/4 top-0 w-1/2 h-full"
+                    className={styles.background.centerGlow}
                     style={{
                         background: "radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, transparent 50%)",
                     }}
                 />
                 {/* Right teal glow */}
                 <div
-                    className="absolute -right-1/4 top-0 w-1/2 h-full"
+                    className={styles.background.rightGlow}
                     style={{
                         background: "radial-gradient(ellipse at right, rgba(0, 201, 167, 0.15) 0%, transparent 60%)",
                     }}
@@ -98,9 +129,9 @@ export default function HeroSection() {
             </div>
 
             {/* Animated background grid */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className={styles.background.grid}>
                 <div
-                    className="w-full h-full"
+                    className={styles.background.gridPattern}
                     style={{
                         backgroundImage: `
                             linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
@@ -112,15 +143,11 @@ export default function HeroSection() {
             </div>
 
             {/* Floating aurora orbs - optimized with CSS transforms */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ contain: "layout paint" }}>
-                {[
-                    { color: "rgba(255, 107, 53, 0.10)", x: "15%", y: "25%" },
-                    { color: "rgba(0, 201, 167, 0.10)", x: "75%", y: "35%" },
-                    { color: "rgba(196, 30, 58, 0.06)", x: "50%", y: "70%" },
-                ].map((orb, i) => (
+            <div className={styles.background.orbsContainer} style={{ contain: "layout paint" }}>
+                {orbs.map((orb, i) => (
                     <div
                         key={i}
-                        className="absolute w-80 h-80 rounded-full animate-float-slow"
+                        className={styles.background.orb}
                         style={{
                             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
                             left: orb.x,
@@ -135,25 +162,24 @@ export default function HeroSection() {
 
             {/* Grain texture overlay */}
             <div
-                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                className={styles.background.grain}
                 style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                 }}
             />
 
             {/* Content */}
-            {/* Content */}
-            <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl">
+            <div className={styles.content.wrapper}>
 
                 {/* Main headline */}
-                <h1 className="font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8 perspective-1000">
-                    <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
+                <h1 className={styles.content.headline}>
+                    <span className={styles.content.overline}>
                         <StaggeredText text="Your Business." delay={0.5} />
                     </span>
-                    <span className="block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]">
+                    <span className={styles.content.underlineWrapper}>
                         <span className="inline-block">Running on </span>{" "}
                         <span
-                            className="bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent"
+                            className={styles.content.gradientText}
                             style={{ textShadow: "0 0 40px rgba(0, 201, 167, 0.4)" }}
                         >
                             <StaggeredText text="Intelligence." delay={1.0} />
@@ -163,7 +189,7 @@ export default function HeroSection() {
 
                 {/* Subheadline */}
                 <motion.p
-                    className="text-[clamp(1rem,2.5vw,1.375rem)] text-[#A0A0A8] font-sans font-light max-w-3xl mx-auto mb-10 md:mb-14 leading-relaxed"
+                    className={styles.content.subheadline}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.43, 0.13, 0.23, 0.96] }}
@@ -175,7 +201,7 @@ export default function HeroSection() {
 
                 {/* CTA Button */}
                 <motion.div
-                    className="flex flex-col items-center gap-3"
+                    className={styles.content.ctaContainer}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
@@ -183,7 +209,7 @@ export default function HeroSection() {
                     <HeroCTAButton href="/audit">
                         Book a Strategy Call
                     </HeroCTAButton>
-                    <span className="text-[#6B6B73] text-sm font-sans">
+                    <span className={styles.content.ctaNote}>
                         15 minutes · No sales pitch
                     </span>
                 </motion.div>

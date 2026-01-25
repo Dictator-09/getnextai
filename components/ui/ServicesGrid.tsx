@@ -68,38 +68,7 @@ const services = [
     }
 ];
 
-const colorClasses = {
-    cyan: {
-        gradient: "from-cyan-500 to-cyan-600",
-        gradientLight: "from-cyan-500/20 via-cyan-400/20 to-cyan-600/20",
-        bg: "bg-cyan-500/10",
-        border: "border-cyan-500/20",
-        text: "text-cyan-400",
-        textDark: "text-cyan-300",
-        glow: "shadow-[0_0_30px_rgba(6,182,212,0.3)]",
-        glowHover: "hover:shadow-[0_0_50px_rgba(6,182,212,0.5)]"
-    },
-    purple: {
-        gradient: "from-purple-500 to-purple-600",
-        gradientLight: "from-purple-500/20 via-purple-400/20 to-purple-600/20",
-        bg: "bg-purple-500/10",
-        border: "border-purple-500/20",
-        text: "text-purple-400",
-        textDark: "text-purple-300",
-        glow: "shadow-[0_0_30px_rgba(168,85,247,0.3)]",
-        glowHover: "hover:shadow-[0_0_50px_rgba(168,85,247,0.5)]"
-    },
-    green: {
-        gradient: "from-green-500 to-green-600",
-        gradientLight: "from-green-500/20 via-green-400/20 to-green-600/20",
-        bg: "bg-green-500/10",
-        border: "border-green-500/20",
-        text: "text-green-400",
-        textDark: "text-green-300",
-        glow: "shadow-[0_0_30px_rgba(34,197,94,0.3)]",
-        glowHover: "hover:shadow-[0_0_50px_rgba(34,197,94,0.5)]"
-    }
-};
+import { colorClasses, styles, sectionStyles } from "./styles/ServicesGrid.styles";
 
 interface ServiceCardProps {
     service: typeof services[0];
@@ -116,26 +85,26 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
             viewport={{ once: true, margin: "-50px" }}
-            className={`group relative ${service.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
+            className={`${styles.card.container} ${service.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
         >
             {/* Glow effect on hover */}
-            <div className={`absolute -inset-1 bg-gradient-to-r ${colors.gradientLight} rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+            <div className={`${styles.card.glow} bg-gradient-to-r ${colors.gradientLight}`} />
 
             <motion.div
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className={`relative h-full flex flex-col bg-black/40 backdrop-blur-xl rounded-[2rem] p-6 sm:p-8 ${service.featured ? 'md:p-12' : 'md:p-8'} border border-white/20 hover:border-white/30 transition-all duration-500`}
+                className={`${styles.card.content} ${service.featured ? 'md:p-12' : 'md:p-8'}`}
             >
                 {/* Decorative gradient orb */}
-                <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${colors.gradientLight} rounded-full blur-3xl opacity-50`} />
+                <div className={`${styles.card.orb} ${colors.gradientLight}`} />
 
                 {/* Header */}
-                <div className="flex items-center justify-between mb-6 relative z-10">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl ${colors.bg} border ${colors.border}`}>
-                        <Icon className={`w-5 h-5 ${colors.text}`} />
+                <div className={styles.card.header.container}>
+                    <div className={`${styles.card.header.iconBox} ${colors.bg} ${colors.border}`}>
+                        <Icon className={`${styles.card.header.icon} ${colors.text}`} />
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className={`flex items-center gap-2 text-xs font-medium ${colors.textDark} uppercase tracking-wider px-3 py-1.5 rounded-full border ${colors.border} ${colors.bg}`}>
+                        <div className={`${styles.card.header.timelineBadge} ${colors.textDark} ${colors.border} ${colors.bg}`}>
                             <Clock className="w-3 h-3" />
                             {service.timeline}
                         </div>
@@ -143,32 +112,32 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </div>
 
                 {/* Number badge */}
-                <div className={`absolute top-8 right-8 text-6xl font-black ${colors.text} opacity-10 select-none ${service.featured ? 'md:text-8xl' : ''}`}>
+                <div className={`${styles.card.number} ${colors.text} ${service.featured ? 'md:text-8xl' : ''}`}>
                     {service.number}
                 </div>
 
                 {/* Title */}
-                <h3 className={`text-2xl ${service.featured ? 'md:text-4xl' : 'md:text-3xl'} font-heading font-black mb-4 tracking-tight leading-tight relative z-10`}>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
+                <h3 className={`${styles.card.title.container} ${service.featured ? 'md:text-4xl' : 'md:text-3xl'}`}>
+                    <span className={styles.card.title.primary}>
                         {service.title}
                     </span>
                     <br />
-                    <span className={`text-transparent bg-clip-text bg-gradient-to-r ${colors.gradient}`}>
+                    <span className={`${styles.card.title.highlight} ${colors.gradient}`}>
                         {service.highlight}
                     </span>
                 </h3>
 
                 {/* Description */}
-                <p className={`text-gray-400 ${service.featured ? 'text-base md:text-lg' : 'text-sm md:text-base'} mb-6 leading-relaxed font-light max-w-md relative z-10`}>
+                <p className={`${styles.card.description} ${service.featured ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
                     {service.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6 relative z-10">
+                <div className={styles.card.tags.container}>
                     {service.tags.map((tag) => (
                         <span
                             key={tag}
-                            className={`px-3 py-1 ${colors.bg} border ${colors.border} rounded-full ${colors.text} text-xs`}
+                            className={`${styles.card.tags.tag} ${colors.bg} ${colors.border} ${colors.text}`}
                         >
                             {tag}
                         </span>
@@ -176,11 +145,11 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </div>
 
                 {/* Features */}
-                <ul className={`space-y-3 mb-8 flex-grow relative z-10 ${!service.featured && 'hidden md:block'}`}>
+                <ul className={`${styles.card.features.list} ${!service.featured && 'hidden md:block'}`}>
                     {service.features.map((feature) => (
-                        <li key={feature} className={`flex items-center ${colors.textDark} text-sm font-medium`}>
-                            <div className={`w-6 h-6 rounded-lg ${colors.bg} border ${colors.border} flex items-center justify-center mr-3 flex-shrink-0`}>
-                                <CheckCircle className="w-3.5 h-3.5" />
+                        <li key={feature} className={`${styles.card.features.item} ${colors.textDark}`}>
+                            <div className={`${styles.card.features.iconBox} ${colors.bg} ${colors.border}`}>
+                                <CheckCircle className={styles.card.features.checkIcon} />
                             </div>
                             {feature}
                         </li>
@@ -188,15 +157,15 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </ul>
 
                 {/* CTA Button */}
-                <a href="/audit" className="relative z-10 mt-auto">
+                <a href="/audit" className={styles.card.cta.link}>
                     <motion.button
                         whileTap={{ scale: 0.97 }}
-                        className={`group/btn relative w-full md:w-auto px-6 py-3.5 bg-gradient-to-r ${colors.gradient} rounded-xl text-white font-bold text-sm overflow-hidden ${colors.glow} ${colors.glowHover} transition-all duration-500`}
+                        className={`${styles.card.cta.button} ${colors.gradient} ${colors.glow} ${colors.glowHover}`}
                     >
-                        <div className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 brightness-110`} />
-                        <span className="relative flex items-center justify-center gap-2">
+                        <div className={`${styles.card.cta.pulla} ${colors.gradient}`} />
+                        <span className={styles.card.cta.content}>
                             Explore This Solution
-                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                            <ArrowRight className={styles.card.cta.arrow} />
                         </span>
                     </motion.button>
                 </a>
@@ -207,10 +176,10 @@ function ServiceCard({ service, index }: ServiceCardProps) {
 
 export default function ServicesGrid() {
     return (
-        <section id="services" className="py-20 md:py-32 relative overflow-hidden">
+        <section id="services" className={sectionStyles.section}>
             {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-[#030308] to-black" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-cyan-500/5 via-purple-500/5 to-transparent rounded-full blur-3xl" />
+            <div className={sectionStyles.background.base} />
+            <div className={sectionStyles.background.orb} />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Section Header */}
@@ -219,21 +188,21 @@ export default function ServicesGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16 md:mb-20"
+                    className={sectionStyles.header.container}
                 >
-                    <p className="text-cyan-400 text-xs sm:text-sm uppercase tracking-widest mb-4">
+                    <p className={sectionStyles.header.label}>
                         What We Build
                     </p>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white mb-4">
-                        AI Solutions <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">That Deliver</span>
+                    <h2 className={sectionStyles.header.title}>
+                        AI Solutions <span className={sectionStyles.header.highlight}>That Deliver</span>
                     </h2>
-                    <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+                    <p className={sectionStyles.header.subtitle}>
                         Enterprise-grade AI systems, delivered in weeks, not months.
                     </p>
                 </motion.div>
 
                 {/* Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className={sectionStyles.grid}>
                     {services.map((service, index) => (
                         <ServiceCard key={service.id} service={service} index={index} />
                     ))}
@@ -245,35 +214,35 @@ export default function ServicesGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 p-4 sm:p-6 md:p-8 bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl"
+                    className={sectionStyles.stats.container}
                 >
-                    <div className="text-center">
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className={sectionStyles.stats.item}>
+                        <div className={sectionStyles.stats.valueContainer}>
                             <Zap className="w-5 h-5 text-cyan-400" />
-                            <span className="text-2xl md:text-3xl font-black text-white">2-3</span>
+                            <span className={sectionStyles.stats.value}>2-3</span>
                         </div>
-                        <p className="text-gray-500 text-xs md:text-sm">Weeks Average Delivery</p>
+                        <p className={sectionStyles.stats.label}>Weeks Average Delivery</p>
                     </div>
-                    <div className="text-center">
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className={sectionStyles.stats.item}>
+                        <div className={sectionStyles.stats.valueContainer}>
                             <Bot className="w-5 h-5 text-purple-400" />
-                            <span className="text-2xl md:text-3xl font-black text-white">24/7</span>
+                            <span className={sectionStyles.stats.value}>24/7</span>
                         </div>
-                        <p className="text-gray-500 text-xs md:text-sm">AI System Uptime</p>
+                        <p className={sectionStyles.stats.label}>AI System Uptime</p>
                     </div>
-                    <div className="text-center">
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className={sectionStyles.stats.item}>
+                        <div className={sectionStyles.stats.valueContainer}>
                             <BarChart3 className="w-5 h-5 text-green-400" />
-                            <span className="text-2xl md:text-3xl font-black text-white">30+</span>
+                            <span className={sectionStyles.stats.value}>30+</span>
                         </div>
-                        <p className="text-gray-500 text-xs md:text-sm">Hours Saved Monthly</p>
+                        <p className={sectionStyles.stats.label}>Hours Saved Monthly</p>
                     </div>
-                    <div className="text-center">
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className={sectionStyles.stats.item}>
+                        <div className={sectionStyles.stats.valueContainer}>
                             <MessageSquare className="w-5 h-5 text-pink-400" />
-                            <span className="text-2xl md:text-3xl font-black text-white">100%</span>
+                            <span className={sectionStyles.stats.value}>100%</span>
                         </div>
-                        <p className="text-gray-500 text-xs md:text-sm">Client Satisfaction</p>
+                        <p className={sectionStyles.stats.label}>Client Satisfaction</p>
                     </div>
                 </motion.div>
             </div>

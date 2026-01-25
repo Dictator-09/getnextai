@@ -5,6 +5,9 @@ import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { useToast } from "./Toast";
+import { cn } from "@/lib/utils";
+
+import { styles } from "./styles/ContactForm.styles";
 
 export default function ContactForm() {
     const { showToast } = useToast();
@@ -92,22 +95,22 @@ export default function ContactForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex-1 space-y-4 relative">
+        <form onSubmit={handleSubmit} className={styles.form.container}>
             <AnimatePresence>
                 {status === "success" && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/40 z-10 flex flex-col items-center justify-center rounded-xl backdrop-blur-xl"
+                        className={styles.successModal.overlay}
                     >
-                        <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-                        <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                        <p className="text-gray-400 text-center px-4">We&apos;ll be in touch shortly to build your future.</p>
+                        <CheckCircle className={styles.successModal.icon} />
+                        <h3 className={styles.successModal.title}>Message Sent!</h3>
+                        <p className={styles.successModal.message}>We&apos;ll be in touch shortly to build your future.</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}
-                            className="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm transition-colors"
+                            className={styles.successModal.button}
                         >
                             Send Another
                         </button>
@@ -121,10 +124,10 @@ export default function ContactForm() {
                     placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={cn(styles.form.input, errors.name ? styles.form.inputError : styles.form.inputNormal)}
                     required
                 />
-                {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                {errors.name && <p className={styles.form.errorText}>{errors.name}</p>}
             </div>
             <div>
                 <input
@@ -132,10 +135,10 @@ export default function ContactForm() {
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={cn(styles.form.input, errors.email ? styles.form.inputError : styles.form.inputNormal)}
                     required
                 />
-                {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                {errors.email && <p className={styles.form.errorText}>{errors.email}</p>}
             </div>
             <div>
                 <input
@@ -143,15 +146,15 @@ export default function ContactForm() {
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full px-4 py-3 bg-white/5 border ${errors.phone ? 'border-red-500' : 'border-white/10'} rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors`}
+                    className={cn(styles.form.input, errors.phone ? styles.form.inputError : styles.form.inputNormal)}
                     required
                 />
-                {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
+                {errors.phone && <p className={styles.form.errorText}>{errors.phone}</p>}
             </div>
             <select
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-gray-400 focus:outline-none focus:border-cyan-500 transition-colors"
+                className={styles.form.select}
             >
                 <option>Custom Website</option>
                 <option>AI Voice Agent</option>
@@ -160,8 +163,8 @@ export default function ContactForm() {
             </select>
 
             {status === "error" && (
-                <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 p-3 rounded-lg border border-red-500/20">
-                    <AlertCircle className="w-4 h-4" />
+                <div className={styles.errorBox.container}>
+                    <AlertCircle className={styles.errorBox.icon} />
                     <span>{message}</span>
                 </div>
             )}
@@ -169,11 +172,11 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 rounded-lg shadow-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className={styles.submitButton.base}
             >
                 {status === "submitting" ? (
                     <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <Loader2 className={styles.submitButton.loader} />
                         Sending...
                     </>
                 ) : (

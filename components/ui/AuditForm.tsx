@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle, Zap, Shield, Clock } from "lucide-react";
 import confetti from "canvas-confetti";
 import { useToast } from "./Toast";
+import { cn } from "@/lib/utils";
+
+import { styles } from "./styles/AuditForm.styles";
 
 const businessTypes = [
     "E-commerce",
@@ -117,27 +120,27 @@ export default function AuditForm() {
     };
 
     return (
-        <div className="relative">
+        <div className={styles.container}>
             <AnimatePresence>
                 {status === "success" && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/40 z-10 flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl p-8"
+                        className={styles.modal.overlay}
                     >
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500/20 to-green-600/10 flex items-center justify-center mb-6">
-                            <CheckCircle className="w-10 h-10 text-green-500" />
+                        <div className={styles.modal.iconWrapper}>
+                            <CheckCircle className={styles.modal.icon} />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2 text-center">Audit Request Received!</h3>
-                        <p className="text-gray-400 text-center max-w-md mb-2">
+                        <h3 className={styles.modal.title}>Audit Request Received!</h3>
+                        <p className={styles.modal.message}>
                             Check your inbox within 48 hours for your personalized Loom video audit.
                         </p>
-                        <p className="text-cyan-400 text-sm mb-6">We&apos;re excited to show you what&apos;s possible!</p>
+                        <p className={styles.modal.note}>We&apos;re excited to show you what&apos;s possible!</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}
-                            className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm transition-colors"
+                            className={styles.modal.button}
                         >
                             Submit Another Request
                         </button>
@@ -145,17 +148,17 @@ export default function AuditForm() {
                 )}
             </AnimatePresence>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className={styles.form.container}>
+                <div className={styles.form.grid}>
                     <div>
                         <input
                             type="text"
                             placeholder="Your Name"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className={`w-full px-4 py-3.5 bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all`}
+                            className={cn(styles.form.input, errors.name ? styles.form.inputError : styles.form.inputNormal)}
                         />
-                        {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                        {errors.name && <p className={styles.form.errorText}>{errors.name}</p>}
                     </div>
                     <div>
                         <input
@@ -163,41 +166,41 @@ export default function AuditForm() {
                             placeholder="Email Address"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className={`w-full px-4 py-3.5 bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'} rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all`}
+                            className={cn(styles.form.input, errors.email ? styles.form.inputError : styles.form.inputNormal)}
                         />
-                        {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                        {errors.email && <p className={styles.form.errorText}>{errors.email}</p>}
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className={styles.form.grid}>
                     <div>
                         <input
                             type="text"
                             placeholder="Website URL"
                             value={formData.website}
                             onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                            className={`w-full px-4 py-3.5 bg-white/5 border ${errors.website ? 'border-red-500' : 'border-white/10'} rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all`}
+                            className={cn(styles.form.input, errors.website ? styles.form.inputError : styles.form.inputNormal)}
                         />
-                        {errors.website && <p className="text-red-400 text-sm mt-1">{errors.website}</p>}
+                        {errors.website && <p className={styles.form.errorText}>{errors.website}</p>}
                     </div>
                     <div>
                         <select
                             value={formData.businessType}
                             onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                            className={`w-full px-4 py-3.5 bg-white/5 border ${errors.businessType ? 'border-red-500' : 'border-white/10'} rounded-xl text-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none cursor-pointer`}
+                            className={cn(styles.form.select, errors.businessType ? styles.form.inputError : styles.form.inputNormal)}
                         >
-                            <option value="" className="bg-black">Select Business Type</option>
+                            <option value="" className={styles.form.optionDefault}>Select Business Type</option>
                             {businessTypes.map((type) => (
-                                <option key={type} value={type} className="bg-black text-white">{type}</option>
+                                <option key={type} value={type} className={styles.form.option}>{type}</option>
                             ))}
                         </select>
-                        {errors.businessType && <p className="text-red-400 text-sm mt-1">{errors.businessType}</p>}
+                        {errors.businessType && <p className={styles.form.errorText}>{errors.businessType}</p>}
                     </div>
                 </div>
 
                 {status === "error" && (
-                    <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 p-3 rounded-lg border border-red-500/20">
-                        <AlertCircle className="w-4 h-4" />
+                    <div className={styles.errorBox.container}>
+                        <AlertCircle className={styles.errorBox.icon} />
                         <span>{message}</span>
                     </div>
                 )}
@@ -207,33 +210,33 @@ export default function AuditForm() {
                     disabled={status === "submitting"}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className={styles.submitButton.base}
                 >
                     {status === "submitting" ? (
                         <>
-                            <Loader2 className="w-5 h-5 animate-spin" />
+                            <Loader2 className={styles.submitButton.loader} />
                             Processing...
                         </>
                     ) : (
                         <>
                             Get My Free AI Audit
-                            <Zap className="w-5 h-5" />
+                            <Zap className={styles.submitButton.icon} />
                         </>
                     )}
                 </motion.button>
 
                 {/* Trust indicators */}
-                <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-sm text-gray-500">
-                    <div className="flex items-center gap-1.5">
-                        <Zap className="w-4 h-4 text-cyan-500" />
+                <div className={styles.trustIndicators.container}>
+                    <div className={styles.trustIndicators.item}>
+                        <Zap className={styles.trustIndicators.iconFree} />
                         <span>100% Free</span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                        <Shield className="w-4 h-4 text-green-500" />
+                    <div className={styles.trustIndicators.item}>
+                        <Shield className={styles.trustIndicators.iconShield} />
                         <span>No Obligation</span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-purple-500" />
+                    <div className={styles.trustIndicators.item}>
+                        <Clock className={styles.trustIndicators.iconClock} />
                         <span>48hr Delivery</span>
                     </div>
                 </div>
