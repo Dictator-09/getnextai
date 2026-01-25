@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { styles } from "./styles/TechStack.styles";
 
 // Tech stack logos as simple styled components (no external images needed)
 const techStack = [
@@ -20,30 +21,30 @@ const techStack = [
 
 export default function TechStack() {
     return (
-        <section className="py-16 relative overflow-hidden border-t border-white/5">
-            <div className="container mx-auto px-6">
+        <section className={styles.section}>
+            <div className={styles.container}>
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
-                    className="text-center mb-10"
+                    className={styles.header}
                 >
-                    <p className="text-gray-500 text-sm uppercase tracking-widest">
+                    <p className={styles.label}>
                         Powered by Industry-Leading Technology
                     </p>
                 </motion.div>
 
                 {/* Logo Marquee */}
-                <div className="relative overflow-hidden">
+                <div className={styles.marquee.wrapper}>
                     {/* Gradient masks */}
-                    <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
-                    <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
+                    <div className={styles.marquee.maskLeft} />
+                    <div className={styles.marquee.maskRight} />
 
                     {/* Scrolling logos */}
                     <motion.div
-                        className="flex gap-12 items-center"
+                        className={styles.marquee.track}
                         animate={{ x: [0, -1200] }}
                         transition={{
                             x: {
@@ -58,13 +59,13 @@ export default function TechStack() {
                         {[...techStack, ...techStack].map((tech, index) => (
                             <div
                                 key={index}
-                                className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:border-white/20 transition-colors"
+                                className={styles.card.wrapper}
                             >
                                 <div
-                                    className="w-3 h-3 rounded-full"
+                                    className={styles.card.dot}
                                     style={{ backgroundColor: tech.color }}
                                 />
-                                <span className="text-gray-400 text-sm font-medium whitespace-nowrap">
+                                <span className={styles.card.text}>
                                     {tech.name}
                                 </span>
                             </div>
@@ -78,7 +79,7 @@ export default function TechStack() {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     viewport={{ once: true }}
-                    className="text-center text-gray-600 text-xs mt-8"
+                    className={styles.footer}
                 >
                     We leverage the best tools to deliver exceptional results
                 </motion.p>

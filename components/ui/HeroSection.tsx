@@ -1,219 +1,124 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { MagneticButton } from "@/components/ui/CustomCursor";
-import { StaggeredText } from "@/components/ui/StaggeredText";
 
 // ============================================
-// HERO CTA BUTTON - AURORA THEME
-// ============================================
-
-export function HeroCTAButton({ children, href = "/audit" }: { children: React.ReactNode; href?: string }) {
-    return (
-        <MagneticButton className="relative group" href={href}>
-            <motion.div
-                className="relative"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-                {/* Main button with aurora gradient */}
-                <div className="relative px-8 py-4 md:px-10 md:py-5 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#0D5C63] overflow-hidden">
-                    {/* Animated shine effect */}
-                    <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                        animate={{ x: ["-200%", "200%"] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    />
-
-                    {/* Button text */}
-                    <span className="relative z-10 font-bold text-white text-base md:text-lg flex items-center gap-2">
-                        {children}
-
-                        {/* Arrow icon */}
-                        <motion.svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </motion.svg>
-                    </span>
-                </div>
-
-                {/* Glow effect */}
-                <motion.div
-                    className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                    style={{ boxShadow: "0 0 60px 20px rgba(0, 201, 167, 0.5), 0 0 100px 40px rgba(0, 201, 167, 0.2)" }}
-                />
-
-                {/* Pulsing ring */}
-                <motion.div
-                    className="absolute inset-0 rounded-full border-2 border-[#00C9A7] -z-10"
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                />
-            </motion.div>
-        </MagneticButton>
-    );
-}
-
-// ============================================
-// AURORA HERO SECTION
+// CYBER-NOIR HERO SECTION
 // ============================================
 
 const styles = {
-    section: "relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050508]",
-    background: {
-        wrapper: "absolute inset-0",
-        leftGlow: "absolute -left-1/4 top-0 w-1/2 h-full",
-        centerGlow: "absolute left-1/4 top-0 w-1/2 h-full",
-        rightGlow: "absolute -right-1/4 top-0 w-1/2 h-full",
-        grid: "absolute inset-0 opacity-[0.03]",
-        gridPattern: "w-full h-full",
-        orbsContainer: "absolute inset-0 overflow-hidden pointer-events-none",
-        orb: "absolute w-80 h-80 rounded-full animate-float-slow",
-        grain: "absolute inset-0 opacity-[0.04] pointer-events-none"
+    section: "relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#030303]",
+    grid: {
+        wrapper: "absolute inset-0 pointer-events-none opacity-[0.4] mix-blend-color-dodge",
+        pattern: "w-full h-full",
+    },
+    lighting: {
+        spotlight: "absolute top-[-50%] left-[-20%] w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_60%)] blur-[120px] pointer-events-none",
+        accent: "absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(112,0,255,0.05)_0%,transparent_70%)] blur-[100px] pointer-events-none"
     },
     content: {
-        wrapper: "relative z-10 text-center px-4 sm:px-6 max-w-5xl",
-        headline: "font-heading font-bold tracking-tighter leading-[0.9] mb-6 md:mb-8 perspective-1000",
-        overline: "block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]",
-        underlineWrapper: "block text-[clamp(2.5rem,10vw,7rem)] text-[#E8E8ED]",
-        gradientText: "bg-gradient-to-r from-[#FF6B35] via-[#00C9A7] to-[#0D5C63] bg-clip-text text-transparent",
-        subheadline: "text-[clamp(1rem,2.5vw,1.375rem)] text-[#A0A0A8] font-sans font-light max-w-3xl mx-auto mb-10 md:mb-14 leading-relaxed",
-        ctaContainer: "flex flex-col items-center gap-3",
-        ctaNote: "text-[#6B6B73] text-sm font-sans"
+        wrapper: "relative z-10 text-center px-6 max-w-7xl mx-auto flex flex-col items-center",
+        label: "font-mono text-acid-lime text-xs sm:text-sm tracking-[0.2em] mb-8 uppercase opacity-0 animate-reveal",
+        headline: {
+            wrapper: "font-display font-extrabold tracking-tighter leading-[0.85] mb-8 relative",
+            row: "block overflow-hidden",
+            text: "inline-block transform-gpu"
+        },
+        subheadline: "text-[#A1A1AA] font-sans text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed opacity-0 animate-reveal [animation-delay:400ms]",
+        cta: {
+            wrapper: "flex flex-col sm:flex-row items-center gap-6 opacity-0 animate-reveal [animation-delay:600ms]",
+            button: "group relative px-8 py-4 bg-acid-lime text-black font-sans font-bold text-lg hover:bg-[#b3e600] transition-colors duration-300 flex items-center gap-3",
+            secondary: "text-white/60 hover:text-white font-mono text-sm uppercase tracking-widest transition-colors border-b border-transparent hover:border-acid-lime/50 pb-1"
+        }
     }
 };
-
-const orbs = [
-    { color: "rgba(255, 107, 53, 0.10)", x: "15%", y: "25%" },
-    { color: "rgba(0, 201, 167, 0.10)", x: "75%", y: "35%" },
-    { color: "rgba(196, 30, 58, 0.06)", x: "50%", y: "70%" },
-];
 
 export default function HeroSection() {
     return (
         <section className={styles.section}>
-            {/* Aurora gradient background */}
-            <div className={styles.background.wrapper}>
-                {/* Left warm glow */}
+            {/* Background Grid */}
+            <div className={styles.grid.wrapper}>
                 <div
-                    className={styles.background.leftGlow}
-                    style={{
-                        background: "radial-gradient(ellipse at left, rgba(255, 107, 53, 0.15) 0%, transparent 60%)",
-                    }}
-                />
-                {/* Center red/dark */}
-                <div
-                    className={styles.background.centerGlow}
-                    style={{
-                        background: "radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, transparent 50%)",
-                    }}
-                />
-                {/* Right teal glow */}
-                <div
-                    className={styles.background.rightGlow}
-                    style={{
-                        background: "radial-gradient(ellipse at right, rgba(0, 201, 167, 0.15) 0%, transparent 60%)",
-                    }}
-                />
-            </div>
-
-            {/* Animated background grid */}
-            <div className={styles.background.grid}>
-                <div
-                    className={styles.background.gridPattern}
+                    className={styles.grid.pattern}
                     style={{
                         backgroundImage: `
-                            linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)
+                            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
                         `,
-                        backgroundSize: "60px 60px",
+                        backgroundSize: "80px 80px",
+                        maskImage: "radial-gradient(circle at center, black 40%, transparent 100%)"
                     }}
                 />
             </div>
 
-            {/* Floating aurora orbs - optimized with CSS transforms */}
-            <div className={styles.background.orbsContainer} style={{ contain: "layout paint" }}>
-                {orbs.map((orb, i) => (
-                    <div
-                        key={i}
-                        className={styles.background.orb}
-                        style={{
-                            background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
-                            left: orb.x,
-                            top: orb.y,
-                            filter: "blur(60px)",
-                            willChange: "transform",
-                            animationDelay: `${i * 2}s`,
-                        }}
-                    />
-                ))}
-            </div>
+            {/* Atmospheric Lighting */}
+            <div className={styles.lighting.spotlight} />
+            <div className={styles.lighting.accent} />
 
-            {/* Grain texture overlay */}
-            <div
-                className={styles.background.grain}
-                style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                }}
-            />
-
-            {/* Content */}
+            {/* Main Content */}
             <div className={styles.content.wrapper}>
+                {/* Micro Label */}
+                <div className={styles.content.label}>
+                    System Status: Online
+                </div>
 
-                {/* Main headline */}
-                <h1 className={styles.content.headline}>
-                    <span className={styles.content.overline}>
-                        <StaggeredText text="Your Business." delay={0.5} />
-                    </span>
-                    <span className={styles.content.underlineWrapper}>
-                        <span className="inline-block">Running on </span>{" "}
-                        <span
-                            className={styles.content.gradientText}
-                            style={{ textShadow: "0 0 40px rgba(0, 201, 167, 0.4)" }}
+                {/* Headline */}
+                <h1 className={styles.content.headline.wrapper}>
+                    <span className={styles.content.headline.row}>
+                        <motion.span
+                            className={`${styles.content.headline.text} text-white text-[clamp(3.5rem,12vw,9rem)]`}
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                         >
-                            <StaggeredText text="Intelligence." delay={1.0} />
-                        </span>
+                            INTELLIGENCE
+                        </motion.span>
+                    </span>
+                    <span className={styles.content.headline.row}>
+                        <motion.span
+                            className={`${styles.content.headline.text} text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[clamp(3.5rem,12vw,9rem)]`}
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                        >
+                            ARCHITECTS
+                        </motion.span>
                     </span>
                 </h1>
 
                 {/* Subheadline */}
-                <motion.p
-                    className={styles.content.subheadline}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.43, 0.13, 0.23, 0.96] }}
-                >
-                    We design and deploy AI systems that replace manual work,
-                    <br className="hidden sm:block" />
-                    compress decision time, and scale without friction.
-                </motion.p>
+                <p className={styles.content.subheadline}>
+                    We build autonomous systems that replace manual labor,
+                    <span className="text-white"> compress timelines</span>, and
+                    <span className="text-white"> accelerate scale</span>.
+                </p>
 
-                {/* CTA Button */}
-                <motion.div
-                    className={styles.content.ctaContainer}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
-                >
-                    <HeroCTAButton href="/audit">
-                        Book a Strategy Call
-                    </HeroCTAButton>
-                    <span className={styles.content.ctaNote}>
-                        15 minutes · No sales pitch
-                    </span>
-                </motion.div>
+                {/* CTA Actions */}
+                <div className={styles.content.cta.wrapper}>
+                    <MagneticButton>
+                        <a href="/audit" className={styles.content.cta.button}>
+                            INITIALIZE AUDIT
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    </MagneticButton>
+
+                    <a href="#work" className={styles.content.cta.secondary}>
+                        View Protocols
+                    </a>
+                </div>
             </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/20 flex flex-col items-center gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+            >
+                <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-acid-lime to-transparent opacity-50" />
+            </motion.div>
         </section>
     );
 }

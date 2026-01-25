@@ -43,11 +43,15 @@ const config: Config = {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
+                // Custom Palette
+                "deep-void": "#030303",
+                "acid-lime": "#CCFF00",
+                "hyper-violet": "#7000FF",
             },
             fontFamily: {
-                sans: ["var(--font-inter)", "sans-serif"],
-                heading: ["var(--font-outfit)", "sans-serif"],
-                display: ["var(--font-outfit)", "sans-serif"],
+                sans: ["var(--font-manrope)", "sans-serif"],
+                heading: ["var(--font-syne)", "sans-serif"],
+                display: ["var(--font-syne)", "sans-serif"],
             },
             letterSpacing: {
                 "tighter-neg": "-0.05em",

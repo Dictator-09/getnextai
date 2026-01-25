@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google"; // Import Outfit
+import { Syne, Manrope } from "next/font/google"; // Import Syne and Manrope
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import SkipToContent from "@/components/ui/SkipToContent";
 
 // Font configuration
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-manrope",
   display: "swap",
 });
 
-const outfit = Outfit({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -75,9 +75,9 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-[#030712] font-sans antialiased text-white",
-          inter.variable,
-          outfit.variable
+          "min-h-screen bg-[#030303] font-sans antialiased text-white", // Deep Void Black background
+          manrope.variable,
+          syne.variable
         )}
       >
         <SkipToContent />

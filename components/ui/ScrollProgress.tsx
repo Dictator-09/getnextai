@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
+import { styles } from "./styles/ScrollProgress.styles";
 
 // ============================================
 // SCROLL PROGRESS - AURORA THEME
@@ -14,7 +15,7 @@ export function ScrollProgress() {
         <>
             {/* Top Progress Bar - Aurora gradient */}
             <motion.div
-                className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#FF6B35] via-[#C41E3A] to-[#00C9A7] origin-left z-[100]"
+                className={styles.progress.bar}
                 style={{
                     scaleX: scrollYProgress,
                     transformOrigin: "0%",
@@ -23,14 +24,14 @@ export function ScrollProgress() {
 
             {/* Circular Progress Indicator (bottom left) */}
             <motion.div
-                className="fixed bottom-8 left-8 z-50 hidden md:block"
+                className={styles.progress.indicator.wrapper}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 }}
             >
-                <div className="relative w-14 h-14">
+                <div className={styles.progress.indicator.container}>
                     {/* Background circle */}
-                    <svg className="w-full h-full -rotate-90">
+                    <svg className={styles.progress.indicator.bgCircle}>
                         <circle
                             cx="28"
                             cy="28"
@@ -42,7 +43,7 @@ export function ScrollProgress() {
                     </svg>
 
                     {/* Progress circle */}
-                    <svg className="absolute inset-0 w-full h-full -rotate-90">
+                    <svg className={styles.progress.indicator.progressSvg}>
                         <defs>
                             <linearGradient id="aurora-progress" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stopColor="#FF6B35" />
@@ -65,7 +66,7 @@ export function ScrollProgress() {
 
                     {/* Glow effect */}
                     <motion.div
-                        className="absolute inset-0 rounded-full blur-xl -z-10"
+                        className={styles.progress.indicator.glow}
                         style={{
                             background: "radial-gradient(circle, rgba(0,201,167,0.2) 0%, transparent 70%)",
                             opacity: useTransform(scrollYProgress, [0, 1], [0, 0.8]),
@@ -86,7 +87,7 @@ export function MinimalProgress() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#FF6B35] to-[#00C9A7] origin-left z-[100]"
+            className={styles.minimal.bar}
             style={{ scaleX: scrollYProgress }}
         />
     );
@@ -105,11 +106,11 @@ export function SideProgress() {
     }, [scrollYProgress]);
 
     return (
-        <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        <div className={styles.side.wrapper}>
             {/* Vertical line */}
-            <div className="relative w-[2px] h-48 bg-[#00C9A7]/10 rounded-full overflow-hidden">
+            <div className={styles.side.line.container}>
                 <motion.div
-                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#FF6B35] via-[#C41E3A] to-[#00C9A7]"
+                    className={styles.side.line.fill}
                     style={{
                         height: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
                     }}
@@ -118,7 +119,7 @@ export function SideProgress() {
 
             {/* Percentage indicator */}
             <motion.div
-                className="absolute right-4 text-xs font-mono text-[#00C9A7]"
+                className={styles.side.text}
                 style={{
                     top: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
                     y: "-50%",

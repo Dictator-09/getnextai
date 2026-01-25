@@ -3,6 +3,7 @@
 import { useMotionValue, useMotionTemplate, motion } from "framer-motion";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { styles } from "./styles/SpotlightCard.styles";
 
 export default function SpotlightCard({
     children,
@@ -25,14 +26,14 @@ export default function SpotlightCard({
     return (
         <div
             className={cn(
-                "group relative border border-white/10 overflow-hidden rounded-xl bg-white/[0.03] backdrop-blur-xl",
+                styles.container,
                 className
             )}
             onMouseMove={handleMouseMove}
         >
             {/* Noise texture overlay */}
             <div
-                className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
+                className={styles.noise}
                 style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                 }}
@@ -40,7 +41,7 @@ export default function SpotlightCard({
 
             {/* Spotlight gradient */}
             <motion.div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                className={styles.spotlight}
                 style={{
                     background: useMotionTemplate`
                         radial-gradient(
@@ -53,9 +54,9 @@ export default function SpotlightCard({
             />
 
             {/* Inner border glow */}
-            <div className="absolute inset-0 rounded-xl border border-[#00C9A7]/5 pointer-events-none" />
+            <div className={styles.innerBorder} />
 
-            <div className="relative h-full">{children}</div>
+            <div className={styles.content}>{children}</div>
         </div>
     );
 }
