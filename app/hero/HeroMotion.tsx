@@ -1,37 +1,10 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-
-// Custom easing matching specs
-const heroEasing = [0.16, 1, 0.3, 1] as const;
-
-// Debounced requestAnimationFrame wrapper
-function useRAFThrottle(callback: (e: MouseEvent) => void) {
-    const rafId = useRef<number | null>(null);
-
-    return (e: MouseEvent) => {
-        if (rafId.current !== null) return;
-
-        rafId.current = requestAnimationFrame(() => {
-            callback(e);
-            rafId.current = null;
-        });
-    };
-}
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroMotion() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isMounted, setIsMounted] = useState(false);
-
-    // Mouse position for parallax
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    // Smooth spring physics for parallax
-    const springConfig = { damping: 50, stiffness: 100 };
-    const smoothX = useSpring(mouseX, springConfig);
-    const smoothY = useSpring(mouseY, springConfig);
 
     // Scroll-based depth
     const { scrollY } = useScroll();
@@ -39,49 +12,9 @@ export default function HeroMotion() {
     const coreScale = useTransform(scrollY, [0, 400], [1, 0.8]);
     const coreOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-    // Autonomous rotation with RAF
-    const [rotation, setRotation] = useState(0);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsMounted(true);
-        }, 0);
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
-        let animationId: number;
-        let lastTime = 0;
-
-        const animate = (time: number) => {
-            if (lastTime) {
-                const delta = (time - lastTime) / 1000;
-                setRotation((prev) => prev + delta * 10); // 10 degrees per second
-            }
-            lastTime = time;
-            animationId = requestAnimationFrame(animate);
-        };
-
-        animationId = requestAnimationFrame(animate);
-
-        return () => cancelAnimationFrame(animationId);
-    }, []);
-
-    // Debounced mouse move handler for parallax (≤8px)
-    const handleMouseMove = useRAFThrottle((e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-        const x = ((clientX - centerX) / centerX) * 8;
-        const y = ((clientY - centerY) / centerY) * 8;
-        mouseX.set(x);
-        mouseY.set(y);
-    });
-
-    useEffect(() => {
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [handleMouseMove]);
+    // Ensure client side mounting for hydration safety
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => setIsMounted(true), []);
 
     if (!isMounted) return null;
 
@@ -96,44 +29,36 @@ export default function HeroMotion() {
             }}
         >
             {/* Abstract AI Core - Layered geometric shapes */}
-            <motion.div
-                className="relative"
-                style={{
-                    x: smoothX,
-                    y: smoothY,
-                }}
-            >
+            <div className="relative">
                 {/* Outer ring */}
                 <motion.div
                     className="absolute -inset-32 md:-inset-48 rounded-full border border-[#B8FF00]/10"
-                    style={{
-                        rotate: rotation,
-                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Middle ring with glow */}
                 <motion.div
                     className="absolute -inset-20 md:-inset-32 rounded-full border border-[#B8FF00]/20"
                     style={{
-                        rotate: -rotation * 0.7,
                         boxShadow: "0 0 60px rgba(184, 255, 0, 0.05)",
                     }}
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Inner ring */}
                 <motion.div
                     className="absolute -inset-12 md:-inset-20 rounded-full border border-[#B8FF00]/30"
-                    style={{
-                        rotate: rotation * 0.5,
-                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Core hexagon */}
                 <motion.div
                     className="w-24 h-24 md:w-32 md:h-32 relative"
-                    style={{
-                        rotate: rotation * 0.3,
-                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 >
                     <svg
                         viewBox="0 0 100 100"
@@ -175,13 +100,13 @@ export default function HeroMotion() {
                             transition={{
                                 duration: 2,
                                 repeat: Infinity,
-                                ease: heroEasing,
+                                ease: "easeInOut",
                             }}
                         />
                     </svg>
                 </motion.div>
 
-                {/* Floating particles */}
+                {/* Floating particles - Simplified */}
                 {[...Array(6)].map((_, i) => (
                     <motion.div
                         key={i}
@@ -198,11 +123,11 @@ export default function HeroMotion() {
                             duration: 3,
                             delay: i * 0.5,
                             repeat: Infinity,
-                            ease: heroEasing,
+                            ease: "easeInOut",
                         }}
                     />
                 ))}
-            </motion.div>
+            </div>
         </motion.div>
     );
 }

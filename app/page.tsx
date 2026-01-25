@@ -5,7 +5,7 @@ import HeroClient from "./hero/HeroClient";
 import Providers from "./providers";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import SectionTransition from "@/components/ui/SectionTransition";
+import FadeIn from "@/components/ui/FadeIn";
 import SystemModules from "@/components/ui/SystemModules";
 import AccessRequest from "@/components/ui/AccessRequest";
 import TrustBadges from "@/components/ui/TrustBadges";
@@ -31,33 +31,33 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <Navbar />
 
-      <SectionTransition depth="shallow" overlap={false}>
+      <FadeIn className="relative z-10">
         <TrustBadges />
-      </SectionTransition>
+      </FadeIn>
 
-      <SectionTransition depth="deep">
+      <div className="relative z-10">
         <SystemModules />
-      </SectionTransition>
+      </div>
 
-      <SectionTransition depth="medium">
+      <FadeIn className="relative z-10">
         <CaseStudies />
-      </SectionTransition>
+      </FadeIn>
 
-      <SectionTransition depth="medium">
+      <FadeIn className="relative z-10">
         <ProcessSection />
-      </SectionTransition>
+      </FadeIn>
 
-      <SectionTransition depth="shallow">
+      <FadeIn className="relative z-10">
         <GlobalPresence />
-      </SectionTransition>
+      </FadeIn>
 
-      <SectionTransition depth="shallow">
+      <FadeIn className="relative z-10">
         <TechStack />
-      </SectionTransition>
+      </FadeIn>
 
-      <SectionTransition depth="deep">
+      <div className="relative z-10">
         <AccessRequest />
-      </SectionTransition>
+      </div>
 
       <Footer />
       <StickyAuditCTA />

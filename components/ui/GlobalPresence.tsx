@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, CreditCard, FileText, Clock, Shield, Headphones } from "lucide-react";
+import { Globe, CreditCard, FileText, Clock, Headphones } from "lucide-react";
 
 const trustFeatures = [
     {
@@ -24,17 +24,21 @@ const trustFeatures = [
         title: "Flexible Hours",
         description: "Available when you need us"
     },
-    {
-        icon: <Shield className="w-6 h-6" />,
-        title: "Money-Back Guarantee",
-        description: "100% satisfaction or refund"
-    },
+
     {
         icon: <Headphones className="w-6 h-6" />,
         title: "Dedicated Support",
         description: "Direct line to your team"
     }
 ];
+// ... (omitting middle lines, targeting start and end)
+
+// I will do two separate replaces if I can only target contiguous blocks. 
+// Wait, replace_file_content is for single contiguous block.
+// I have essentially two changes: Imports (top) and Grid Class (bottom).
+// They are far apart. I should use multi_replace_file_content or two separate calls. 
+// I'll use separate calls to be safe and simple.
+
 
 const regions = [
     { name: "United States", code: "US", x: 22, y: 35 },
@@ -149,7 +153,7 @@ export default function GlobalPresence() {
                 </motion.div>
 
                 {/* Trust Features Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     {trustFeatures.map((feature, index) => (
                         <motion.div
                             key={index}

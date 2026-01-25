@@ -1,15 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, RefreshCw, Lock, FileText, Globe, Clock } from "lucide-react";
+import { RefreshCw, Lock, FileText, Globe, Clock } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const badges = [
-    {
-        icon: <Shield className="w-6 h-6" />,
-        title: "100% Satisfaction",
-        description: "Money-back guarantee"
-    },
+
     {
         icon: <Globe className="w-6 h-6" />,
         title: "Global Delivery",
@@ -50,7 +46,7 @@ export default function TrustBadges() {
                     </p>
                 </ScrollReveal>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     {badges.map((badge, index) => (
                         <motion.div
                             key={index}

@@ -347,6 +347,16 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Optimize blur for mobile */
+@media (max-width: 768px) {
+
+  .glass,
+  .glass-dark {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
 /* Reduce blur on low-power devices */
 @media (prefers-reduced-motion: reduce) {
 

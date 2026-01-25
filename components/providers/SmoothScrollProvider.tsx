@@ -1,7 +1,7 @@
 "use client";
 
-import { useLayoutEffect } from "react";
-import Lenis from "@studio-freight/lenis";
+import { useLayoutEffect, useState } from "react";
+import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,14 +9,16 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+        // Initialize Lenis with "Locomotive" style tuning
         const lenisInstance = new Lenis({
-            duration: 1.5, // Slower, heavier feel (Junoon style)
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease out
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
-            wheelMultiplier: 1.2, // Slightly reduced to prevent jumpiness with high duration
+            wheelMultiplier: 1,
             touchMultiplier: 2,
+            infinite: false,
         });
 
         // Sync Lenis with GSAP ScrollTrigger

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const systemModules = [
@@ -43,182 +43,19 @@ const systemModules = [
     },
 ];
 
-interface ModuleProps {
-    module: typeof systemModules[0];
-    index: number;
-    isActive: boolean;
-    onActivate: () => void;
-}
-
-function SystemModule({ module, index, isActive, onActivate }: ModuleProps) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-            onMouseEnter={() => { onActivate(); }}
-            className="group relative"
-        >
-            {/* Module container */}
-            <motion.div
-                animate={{
-                    scale: isActive ? 1.02 : 1,
-                    x: isActive ? 20 : 0,
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className={`relative flex items-stretch gap-6 p-6 md:p-8 rounded-2xl border transition-all duration-500 cursor-pointer ${isActive
-                    ? "bg-[#0A0A0F] border-[#00C9A7]/30 shadow-[0_0_60px_rgba(0,201,167,0.1)]"
-                    : "bg-[#050508]/80 border-white/5 hover:border-white/10"
-                    }`}
-            >
-                {/* Left: Status indicator */}
-                <div className="flex flex-col items-center gap-4">
-                    {/* Vertical line with pulse */}
-                    <div className="relative h-full w-px">
-                        <div className={`absolute inset-0 ${isActive ? "bg-[#00C9A7]" : "bg-white/10"} transition-colors duration-300`} />
-                        {isActive && (
-                            <motion.div
-                                className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-[#00C9A7] to-transparent"
-                                animate={{ y: [0, 100, 0] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                            />
-                        )}
-                    </div>
-                </div>
-
-                {/* Center: Content */}
-                <div className="flex-1 min-w-0">
-                    {/* Module label */}
-                    <div className="flex items-center gap-3 mb-3">
-                        <span className={`font-mono text-xs tracking-widest ${isActive ? "text-[#00C9A7]" : "text-white/30"} transition-colors`}>
-                            {module.label}
-                        </span>
-                        <span className={`px-2 py-0.5 text-[10px] font-mono rounded ${isActive ? "bg-[#00C9A7]/20 text-[#00C9A7]" : "bg-white/5 text-white/30"
-                            } transition-colors`}>
-                            {module.status}
-                        </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-1 tracking-tight">
-                        {module.title}
-                    </h3>
-                    <p className={`text-sm ${isActive ? "text-[#00C9A7]/80" : "text-white/40"} mb-4 transition-colors`}>
-                        {module.subtitle}
-                    </p>
-
-                    {/* Description - reveals on active */}
-                    <AnimatePresence>
-                        {isActive && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <p className="text-white/60 text-sm leading-relaxed mb-5 max-w-xl">
-                                    {module.description}
-                                </p>
-
-                                {/* Capabilities */}
-                                <div className="flex flex-wrap gap-2">
-                                    {module.capabilities.map((cap, i) => (
-                                        <motion.span
-                                            key={cap}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: i * 0.05 }}
-                                            className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-white/70 font-mono"
-                                        >
-                                            {cap}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-
-                {/* Right: Abstract visual */}
-                <div className="hidden md:flex items-center justify-center w-24 h-24 relative">
-                    <motion.div
-                        animate={{
-                            rotate: isActive ? 45 : 0,
-                            scale: isActive ? 1.1 : 1,
-                        }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className={`w-16 h-16 border ${isActive ? "border-[#00C9A7]/50" : "border-white/10"} transition-colors`}
-                        style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
-                    >
-                        {isActive && (
-                            <div className="absolute inset-0 bg-[#00C9A7]/10" />
-                        )}
-                    </motion.div>
-
-                    {/* Orbiting dot */}
-                    {isActive && (
-                        <motion.div
-                            className="absolute w-2 h-2 bg-[#00C9A7] rounded-full"
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            style={{ transformOrigin: "40px 40px" }}
-                        />
-                    )}
-                </div>
-            </motion.div>
-        </motion.div>
-    );
-}
-
 export default function SystemModules() {
-    const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
-
-    const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
     return (
-        <section
-            ref={containerRef}
-            id="services"
-            className="relative py-24 md:py-40 overflow-hidden"
-        >
-            {/* Deep background */}
-            <motion.div
-                className="absolute inset-0"
-                style={{ y: backgroundY }}
-            >
-                <div className="absolute inset-0 bg-[#030305]" />
-
-                {/* Grid fade */}
-                <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(rgba(184, 255, 0, 0.03) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(184, 255, 0, 0.03) 1px, transparent 1px)
-                        `,
-                        backgroundSize: "60px 60px",
-                    }}
-                />
-
-                {/* Depth glow */}
-                <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30"
-                    style={{
-                        background: "radial-gradient(circle, rgba(184, 255, 0, 0.05) 0%, transparent 60%)",
-                        filter: "blur(100px)",
-                    }}
-                />
-            </motion.div>
+        <section id="services" className="relative py-24 md:py-32 overflow-hidden bg-[#030305]">
+            {/* Ambient Background - Simplified */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00C9A7]/5 blur-[120px] rounded-full" />
+            </div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                {/* Section header */}
+                {/* Header */}
                 <div className="mb-16 md:mb-24">
                     <ScrollReveal>
                         <div className="flex items-center gap-3 mb-4">
@@ -238,43 +75,113 @@ export default function SystemModules() {
                     </ScrollReveal>
                 </div>
 
-                {/* Modules list */}
-                <div className="space-y-4 md:space-y-6 max-w-4xl">
+                {/* Mobile View: Vertical Stack (Simple & Reliable) */}
+                <div className="md:hidden space-y-4">
                     {systemModules.map((module, index) => (
-                        <SystemModule
+                        <div
                             key={module.id}
-                            module={module}
-                            index={index}
-                            isActive={activeIndex === index}
-                            onActivate={() => setActiveIndex(index)}
-                        />
+                            className="bg-[#0A0A0F] border border-white/10 rounded-2xl p-6 relative overflow-hidden"
+                        >
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-[#00C9A7] text-xs font-mono tracking-wider">{module.label}</span>
+                                <span className="bg-[#00C9A7]/10 text-[#00C9A7] px-2 py-1 text-[10px] font-mono rounded">{module.status}</span>
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-1">{module.title}</h3>
+                            <p className="text-white/60 text-sm mb-4">{module.subtitle}</p>
+                            <p className="text-white/70 text-sm leading-relaxed mb-6 border-l-2 border-[#00C9A7]/20 pl-4">
+                                {module.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                {module.capabilities.map((cap) => (
+                                    <span key={cap} className="px-2 py-1 bg-white/5 border border-white/5 rounded text-[10px] text-white/50 font-mono">
+                                        {cap}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     ))}
                 </div>
 
+                {/* Desktop View: Interactive List (Md+) */}
+                <div className="hidden md:flex flex-col gap-4">
+                    {systemModules.map((module, index) => {
+                        const isActive = activeIndex === index;
+                        return (
+                            <motion.div
+                                key={module.id}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                onMouseEnter={() => setActiveIndex(index)}
+                                className={`
+                                    group relative flex items-stretch gap-6 p-8 rounded-2xl border transition-all duration-300 cursor-pointer
+                                    ${isActive
+                                        ? "bg-[#0A0A0F] border-[#00C9A7]/30 shadow-[0_0_60px_rgba(0,201,167,0.1)] translate-x-4"
+                                        : "bg-[#050508]/50 border-white/5 hover:border-white/10"
+                                    }
+                                `}
+                            >
+                                {/* Left Indicator */}
+                                <div className={`w-1 rounded-full transition-colors duration-300 ${isActive ? "bg-[#00C9A7]" : "bg-white/5"}`} />
+
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className={`font-mono text-xs tracking-widest transition-colors ${isActive ? "text-[#00C9A7]" : "text-white/30"}`}>
+                                            {module.label}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-2xl font-display font-bold text-white mb-1">{module.title}</h3>
+                                    <p className={`text-sm transition-colors ${isActive ? "text-[#00C9A7]/80" : "text-white/40"}`}>
+                                        {module.subtitle}
+                                    </p>
+
+                                    <AnimatePresence>
+                                        {isActive && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                                animate={{ height: "auto", opacity: 1, marginTop: 20 }}
+                                                exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <p className="text-white/70 leading-relaxed mb-6 max-w-2xl">
+                                                    {module.description}
+                                                </p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {module.capabilities.map((cap) => (
+                                                        <span key={cap} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-white/60 font-mono">
+                                                            {cap}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Right: Decorative Icon */}
+                                <div className="flex items-center justify-center w-24">
+                                    <motion.div
+                                        animate={{ rotate: isActive ? 45 : 0, scale: isActive ? 1.1 : 1 }}
+                                        className={`w-12 h-12 border transition-colors ${isActive ? "border-[#00C9A7]/50" : "border-white/10"}`}
+                                        style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
+                                    >
+                                        {isActive && <div className="w-full h-full bg-[#00C9A7]/10" />}
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+
                 {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    viewport={{ once: true }}
-                    className="mt-16 md:mt-24 flex flex-col sm:flex-row items-start sm:items-center gap-6"
-                >
-                    <a href="/audit">
-                        <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="px-8 py-4 bg-[#00C9A7] text-[#050508] font-display font-bold rounded-full transition-all duration-300"
-                            style={{
-                                boxShadow: "0 0 30px rgba(184, 255, 0, 0.3)",
-                            }}
-                        >
-                            Request System Audit
-                        </motion.button>
+                <div className="mt-16 md:mt-24 flex flex-col sm:flex-row items-center gap-6">
+                    <a href="/audit" className="group relative px-8 py-4 bg-[#00C9A7] text-[#050508] font-display font-bold rounded-full overflow-hidden transition-transform active:scale-95">
+                        <span className="relative z-10">Request System Audit</span>
+                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                     </a>
-                    <span className="text-white/30 text-sm font-mono">
-                        Deployment in 2-3 weeks
-                    </span>
-                </motion.div>
+                    <span className="text-white/30 text-sm font-mono">Deployment in 2-3 weeks</span>
+                </div>
             </div>
         </section>
     );

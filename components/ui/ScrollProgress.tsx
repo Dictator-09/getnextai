@@ -9,14 +9,6 @@ import { useState, useEffect } from "react";
 
 export function ScrollProgress() {
     const { scrollYProgress } = useScroll();
-    const [scrollPercentage, setScrollPercentage] = useState(0);
-
-    useEffect(() => {
-        const unsubscribe = scrollYProgress.on("change", (latest) => {
-            setScrollPercentage(Math.round(latest * 100));
-        });
-        return () => unsubscribe();
-    }, [scrollYProgress]);
 
     return (
         <>
@@ -70,13 +62,6 @@ export function ScrollProgress() {
                             strokeDashoffset={useTransform(scrollYProgress, [0, 1], [151, 0])}
                         />
                     </svg>
-
-                    {/* Percentage text */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-xs font-mono font-bold text-[#00C9A7]">
-                            {scrollPercentage}%
-                        </span>
-                    </div>
 
                     {/* Glow effect */}
                     <motion.div
