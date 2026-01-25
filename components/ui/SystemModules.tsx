@@ -3,6 +3,58 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { cn } from "@/lib/utils";
+
+const styles = {
+    section: "relative py-24 md:py-32 overflow-hidden bg-[#030305]",
+    background: {
+        container: "absolute inset-0 pointer-events-none",
+        grid: "absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20",
+        glow: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00C9A7]/5 blur-[120px] rounded-full"
+    },
+    header: {
+        container: "mb-16 md:mb-24",
+        pill: "flex items-center gap-3 mb-4",
+        dot: "w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse",
+        label: "font-mono text-xs text-[#00C9A7] tracking-widest uppercase",
+        title: "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight max-w-3xl",
+        subtitle: "text-white/40"
+    },
+    mobile: {
+        container: "md:hidden space-y-4",
+        card: "bg-[#0A0A0F] border border-white/10 rounded-2xl p-6 relative overflow-hidden",
+        cardHeader: "flex items-center justify-between mb-4",
+        label: "text-[#00C9A7] text-xs font-mono tracking-wider",
+        status: "bg-[#00C9A7]/10 text-[#00C9A7] px-2 py-1 text-[10px] font-mono rounded",
+        title: "text-xl font-bold text-white mb-1",
+        subtitle: "text-white/60 text-sm mb-4",
+        description: "text-white/70 text-sm leading-relaxed mb-6 border-l-2 border-[#00C9A7]/20 pl-4",
+        tags: "flex flex-wrap gap-2",
+        tag: "px-2 py-1 bg-white/5 border border-white/5 rounded text-[10px] text-white/50 font-mono"
+    },
+    desktop: {
+        container: "hidden md:flex flex-col gap-4",
+        card: {
+            base: "group relative flex items-stretch gap-6 p-8 rounded-2xl border transition-all duration-300 cursor-pointer",
+            active: "bg-[#0A0A0F] border-[#00C9A7]/30 shadow-[0_0_60px_rgba(0,201,167,0.1)] translate-x-4",
+            inactive: "bg-[#050508]/50 border-white/5 hover:border-white/10"
+        },
+        indicator: "w-1 rounded-full transition-colors duration-300",
+        label: "font-mono text-xs tracking-widest transition-colors",
+        title: "text-2xl font-display font-bold text-white mb-1",
+        subtitle: "text-sm transition-colors",
+        description: "text-white/70 leading-relaxed mb-6 max-w-2xl",
+        tag: "px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-white/60 font-mono",
+        iconBox: "w-12 h-12 border transition-colors"
+    },
+    cta: {
+        container: "mt-16 md:mt-24 flex flex-col sm:flex-row items-center gap-6",
+        button: "group relative px-8 py-4 bg-[#00C9A7] text-[#050508] font-display font-bold rounded-full overflow-hidden transition-transform active:scale-95",
+        buttonText: "relative z-10",
+        buttonHover: "absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300",
+        footnote: "text-white/30 text-sm font-mono"
+    }
+};
 
 const systemModules = [
     {
@@ -47,53 +99,50 @@ export default function SystemModules() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section id="services" className="relative py-24 md:py-32 overflow-hidden bg-[#030305]">
+        <section id="services" className={styles.section}>
             {/* Ambient Background - Simplified */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00C9A7]/5 blur-[120px] rounded-full" />
+            <div className={styles.background.container}>
+                <div className={styles.background.grid} />
+                <div className={styles.background.glow} />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-16 md:mb-24">
+                <div className={styles.header.container}>
                     <ScrollReveal>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-2 h-2 bg-[#00C9A7] rounded-full animate-pulse" />
-                            <span className="font-mono text-xs text-[#00C9A7] tracking-widest uppercase">
+                        <div className={styles.header.pill}>
+                            <div className={styles.header.dot} />
+                            <span className={styles.header.label}>
                                 System Modules
                             </span>
                         </div>
                     </ScrollReveal>
 
                     <ScrollReveal delay={0.2}>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight max-w-3xl">
+                        <h2 className={styles.header.title}>
                             AI Infrastructure
                             <br />
-                            <span className="text-white/40">Ready to Deploy</span>
+                            <span className={styles.header.subtitle}>Ready to Deploy</span>
                         </h2>
                     </ScrollReveal>
                 </div>
 
                 {/* Mobile View: Vertical Stack (Simple & Reliable) */}
-                <div className="md:hidden space-y-4">
-                    {systemModules.map((module, index) => (
-                        <div
-                            key={module.id}
-                            className="bg-[#0A0A0F] border border-white/10 rounded-2xl p-6 relative overflow-hidden"
-                        >
-                            <div className="flex items-center justify-between mb-4">
-                                <span className="text-[#00C9A7] text-xs font-mono tracking-wider">{module.label}</span>
-                                <span className="bg-[#00C9A7]/10 text-[#00C9A7] px-2 py-1 text-[10px] font-mono rounded">{module.status}</span>
+                <div className={styles.mobile.container}>
+                    {systemModules.map((module) => (
+                        <div key={module.id} className={styles.mobile.card}>
+                            <div className={styles.mobile.cardHeader}>
+                                <span className={styles.mobile.label}>{module.label}</span>
+                                <span className={styles.mobile.status}>{module.status}</span>
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-1">{module.title}</h3>
-                            <p className="text-white/60 text-sm mb-4">{module.subtitle}</p>
-                            <p className="text-white/70 text-sm leading-relaxed mb-6 border-l-2 border-[#00C9A7]/20 pl-4">
+                            <h3 className={styles.mobile.title}>{module.title}</h3>
+                            <p className={styles.mobile.subtitle}>{module.subtitle}</p>
+                            <p className={styles.mobile.description}>
                                 {module.description}
                             </p>
-                            <div className="flex flex-wrap gap-2">
+                            <div className={styles.mobile.tags}>
                                 {module.capabilities.map((cap) => (
-                                    <span key={cap} className="px-2 py-1 bg-white/5 border border-white/5 rounded text-[10px] text-white/50 font-mono">
+                                    <span key={cap} className={styles.mobile.tag}>
                                         {cap}
                                     </span>
                                 ))}
@@ -103,7 +152,7 @@ export default function SystemModules() {
                 </div>
 
                 {/* Desktop View: Interactive List (Md+) */}
-                <div className="hidden md:flex flex-col gap-4">
+                <div className={styles.desktop.container}>
                     {systemModules.map((module, index) => {
                         const isActive = activeIndex === index;
                         return (
@@ -114,25 +163,22 @@ export default function SystemModules() {
                                 transition={{ delay: index * 0.1 }}
                                 viewport={{ once: true }}
                                 onMouseEnter={() => setActiveIndex(index)}
-                                className={`
-                                    group relative flex items-stretch gap-6 p-8 rounded-2xl border transition-all duration-300 cursor-pointer
-                                    ${isActive
-                                        ? "bg-[#0A0A0F] border-[#00C9A7]/30 shadow-[0_0_60px_rgba(0,201,167,0.1)] translate-x-4"
-                                        : "bg-[#050508]/50 border-white/5 hover:border-white/10"
-                                    }
-                                `}
+                                className={cn(
+                                    styles.desktop.card.base,
+                                    isActive ? styles.desktop.card.active : styles.desktop.card.inactive
+                                )}
                             >
                                 {/* Left Indicator */}
-                                <div className={`w-1 rounded-full transition-colors duration-300 ${isActive ? "bg-[#00C9A7]" : "bg-white/5"}`} />
+                                <div className={cn(styles.desktop.indicator, isActive ? "bg-[#00C9A7]" : "bg-white/5")} />
 
                                 <div className="flex-1">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <span className={`font-mono text-xs tracking-widest transition-colors ${isActive ? "text-[#00C9A7]" : "text-white/30"}`}>
+                                        <span className={cn(styles.desktop.label, isActive ? "text-[#00C9A7]" : "text-white/30")}>
                                             {module.label}
                                         </span>
                                     </div>
-                                    <h3 className="text-2xl font-display font-bold text-white mb-1">{module.title}</h3>
-                                    <p className={`text-sm transition-colors ${isActive ? "text-[#00C9A7]/80" : "text-white/40"}`}>
+                                    <h3 className={styles.desktop.title}>{module.title}</h3>
+                                    <p className={cn(styles.desktop.subtitle, isActive ? "text-[#00C9A7]/80" : "text-white/40")}>
                                         {module.subtitle}
                                     </p>
 
@@ -144,12 +190,12 @@ export default function SystemModules() {
                                                 exit={{ height: 0, opacity: 0, marginTop: 0 }}
                                                 className="overflow-hidden"
                                             >
-                                                <p className="text-white/70 leading-relaxed mb-6 max-w-2xl">
+                                                <p className={styles.desktop.description}>
                                                     {module.description}
                                                 </p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {module.capabilities.map((cap) => (
-                                                        <span key={cap} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-white/60 font-mono">
+                                                        <span key={cap} className={styles.desktop.tag}>
                                                             {cap}
                                                         </span>
                                                     ))}
@@ -163,7 +209,7 @@ export default function SystemModules() {
                                 <div className="flex items-center justify-center w-24">
                                     <motion.div
                                         animate={{ rotate: isActive ? 45 : 0, scale: isActive ? 1.1 : 1 }}
-                                        className={`w-12 h-12 border transition-colors ${isActive ? "border-[#00C9A7]/50" : "border-white/10"}`}
+                                        className={cn(styles.desktop.iconBox, isActive ? "border-[#00C9A7]/50" : "border-white/10")}
                                         style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
                                     >
                                         {isActive && <div className="w-full h-full bg-[#00C9A7]/10" />}
@@ -175,12 +221,12 @@ export default function SystemModules() {
                 </div>
 
                 {/* Bottom CTA */}
-                <div className="mt-16 md:mt-24 flex flex-col sm:flex-row items-center gap-6">
-                    <a href="/audit" className="group relative px-8 py-4 bg-[#00C9A7] text-[#050508] font-display font-bold rounded-full overflow-hidden transition-transform active:scale-95">
-                        <span className="relative z-10">Request System Audit</span>
-                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className={styles.cta.container}>
+                    <a href="/audit" className={styles.cta.button}>
+                        <span className={styles.cta.buttonText}>Request System Audit</span>
+                        <div className={styles.cta.buttonHover} />
                     </a>
-                    <span className="text-white/30 text-sm font-mono">Deployment in 2-3 weeks</span>
+                    <span className={styles.cta.footnote}>Deployment in 2-3 weeks</span>
                 </div>
             </div>
         </section>

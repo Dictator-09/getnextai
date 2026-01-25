@@ -55,16 +55,16 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
                 onMouseLeave={handleMouseLeave}
                 style={{ perspective: 1000 }}
             >
-                {/* Glow effect behind logo */}
+                {/* Glow effect behind logo - Reduced on mobile */}
                 {showGlow && (
                     <motion.div
-                        className="absolute -inset-3 rounded-xl pointer-events-none"
+                        className="absolute -inset-2 md:-inset-3 rounded-xl pointer-events-none opacity-50 md:opacity-100"
                         style={{
-                            background: "radial-gradient(ellipse at center, rgba(0,201,167,0.2) 0%, rgba(255,107,53,0.12) 50%, transparent 70%)",
-                            filter: "blur(14px)",
+                            background: "radial-gradient(ellipse at center, rgba(0,201,167,0.15) 0%, rgba(255,107,53,0.08) 50%, transparent 70%)",
+                            filter: "blur(8px) md:blur(14px)",
                         }}
                         animate={{
-                            opacity: isHovered ? 0.9 : 0.5,
+                            opacity: isHovered ? 0.9 : 0.3,
                             scale: isHovered ? 1.05 : 1,
                         }}
                         transition={{ duration: 0.3 }}
@@ -77,19 +77,16 @@ export default function Logo({ className = "", size = "md", showGlow = true }: L
                     style={{ transformStyle: "preserve-3d" }}
                     className="relative z-10 flex items-center"
                 >
-                    <Image
-                        src="/logo.png"
-                        alt="GetNextAI - AI Solutions Agency"
-                        width={currentSize.width}
-                        height={currentSize.height}
-                        style={{
-                            width: currentSize.width,
-                            height: "auto",
-                            objectFit: "contain",
-                        }}
-                        priority
-                        quality={100}
-                    />
+                    <div className="relative w-[100px] h-[28px] md:w-[130px] md:h-[36px]">
+                        <Image
+                            src="/logo.png"
+                            alt="GetNextAI - AI Solutions Agency"
+                            fill
+                            className="object-contain"
+                            priority
+                            quality={100}
+                        />
+                    </div>
                 </motion.div>
             </motion.div>
         </Link>

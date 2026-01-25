@@ -6,6 +6,36 @@ import { Menu, X } from "lucide-react";
 import { MagneticButton } from "./CustomCursor";
 import { StaggeredText } from "./StaggeredText";
 import Logo from "./Logo";
+import { cn } from "@/lib/utils";
+
+// ============================================
+// STYLES
+// ============================================
+
+const styles = {
+    auditButton: {
+        container: "relative group overflow-hidden",
+        content: "relative px-6 py-3 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#0D5C63] group-hover:from-[#00DDB8] group-hover:to-[#00C9A7] transition-all duration-300",
+        glow: "absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10"
+    },
+    navLink: {
+        button: "relative px-2 py-1 text-sm font-medium text-gray-300 group",
+        text: "relative z-10 group-hover:text-white transition-colors",
+        underline: "absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#FF6B35] to-[#00C9A7]"
+    },
+    navbar: {
+        container: "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        base: "py-3 px-4 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/5", // Mobile/Default
+        desktop: "md:py-4 md:px-8 md:bg-transparent md:backdrop-blur-none md:border-none",
+        scrolled: "md:!py-3 md:!px-16 md:!bg-[#0a0a0f]/90 md:!backdrop-blur-md md:!border-white/5"
+    },
+    mobileMenu: {
+        overlay: "fixed inset-0 z-40 bg-[#050508]/98 backdrop-blur-xl flex items-center justify-center overflow-hidden",
+        linkContainer: "group relative block overflow-hidden",
+        linkText: "text-5xl sm:text-7xl font-display font-bold text-white group-hover:text-[#00C9A7] transition-colors duration-300",
+        linkUnderline: "absolute bottom-0 left-0 w-full h-[2px] bg-[#00C9A7] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"
+    }
+};
 
 // ============================================
 // AI AUDIT BUTTON - AURORA THEME
@@ -13,8 +43,8 @@ import Logo from "./Logo";
 
 function AIAuditButton() {
     return (
-        <MagneticButton className="relative group overflow-hidden" href="/audit">
-            <div className="relative px-6 py-3 rounded-full bg-gradient-to-r from-[#00C9A7] to-[#0D5C63] group-hover:from-[#00DDB8] group-hover:to-[#00C9A7] transition-all duration-300">
+        <MagneticButton className={styles.auditButton.container} href="/audit">
+            <div className={styles.auditButton.content}>
                 <div className="flex items-center gap-2">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                         <motion.path
@@ -30,7 +60,7 @@ function AIAuditButton() {
 
             {/* Glow effect */}
             <motion.div
-                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10"
+                className={styles.auditButton.glow}
                 style={{ background: "radial-gradient(circle, rgba(0,201,167,0.4) 0%, transparent 70%)" }}
             />
         </MagneticButton>
@@ -45,14 +75,14 @@ function NavLink({ href, children, onClick }: { href: string; children: React.Re
     return (
         <MagneticButton
             href={href}
-            className="relative px-2 py-1 text-sm font-medium text-gray-300 group"
+            className={styles.navLink.button}
             onClick={onClick}
         >
-            <span className="relative z-10 group-hover:text-white transition-colors">
+            <span className={styles.navLink.text}>
                 {children}
             </span>
             <motion.div
-                className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#FF6B35] to-[#00C9A7]"
+                className={styles.navLink.underline}
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
@@ -93,10 +123,12 @@ export default function Navbar() {
     return (
         <>
             <motion.nav
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "py-2 px-8 sm:px-16 lg:px-24 bg-[#0a0a0f]/95 backdrop-blur-sm border-b border-white/5"
-                    : "py-4 px-4 sm:px-8 bg-transparent"
-                    }`}
+                className={cn(
+                    styles.navbar.container,
+                    styles.navbar.base,
+                    styles.navbar.desktop,
+                    isScrolled && styles.navbar.scrolled
+                )}
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
@@ -134,7 +166,7 @@ export default function Navbar() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        className="fixed inset-0 z-40 bg-[#050508]/98 backdrop-blur-xl flex items-center justify-center overflow-hidden"
+                        className={styles.mobileMenu.overlay}
                         initial={{ opacity: 0, y: "-100%" }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: "-100%" }}
@@ -151,13 +183,13 @@ export default function Navbar() {
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className="group relative block overflow-hidden"
+                                    className={styles.mobileMenu.linkContainer}
                                     onClick={handleLinkClick}
                                 >
-                                    <div className="text-5xl sm:text-7xl font-display font-bold text-white group-hover:text-[#00C9A7] transition-colors duration-300">
+                                    <div className={styles.mobileMenu.linkText}>
                                         <StaggeredText text={link.label} delay={0.3 + index * 0.1} />
                                     </div>
-                                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00C9A7] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+                                    <div className={styles.mobileMenu.linkUnderline} />
                                 </a>
                             ))}
 
