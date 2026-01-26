@@ -1,7 +1,6 @@
 "use client";
 
-import HeroStatic from "./hero/HeroStatic";
-import HeroClient from "./hero/HeroClient";
+import HeroSection from "@/components/ui/HeroSection";
 import Providers from "./providers";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
@@ -24,9 +23,8 @@ export default function Home() {
       {/* SCROLL PROGRESS */}
       <ScrollProgress />
 
-      {/* HERO FIRST */}
-      <HeroStatic />
-      <HeroClient />
+      {/* NEW HERO */}
+      <HeroSection />
 
       {/* MAIN CONTENT */}
       <Navbar />

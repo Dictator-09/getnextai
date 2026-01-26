@@ -23,23 +23,11 @@ function AIAuditButton() {
         <MagneticButton className={styles.auditButton.container} href="/audit">
             <div className={styles.auditButton.content}>
                 <div className={styles.auditButton.iconWrapper}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <motion.path
-                            d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"
-                            fill="white"
-                            animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                    </svg>
-                    <span className={styles.auditButton.text}>Free AI Audit</span>
+                    <span className={styles.auditButton.text}>Free Audit</span>
                 </div>
             </div>
-
             {/* Glow effect */}
-            <motion.div
-                className={styles.auditButton.glow}
-                style={{ background: "radial-gradient(circle, rgba(0,201,167,0.4) 0%, transparent 70%)" }}
-            />
+            <div className={styles.auditButton.glow} />
         </MagneticButton>
     );
 }
@@ -58,12 +46,7 @@ function NavLink({ href, children, onClick }: { href: string; children: React.Re
             <span className={styles.navLink.text}>
                 {children}
             </span>
-            <motion.div
-                className={styles.navLink.underline}
-                initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
-                transition={{ duration: 0.3 }}
-            />
+            <div className={styles.navLink.underline} />
         </MagneticButton>
     );
 }

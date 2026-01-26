@@ -68,7 +68,7 @@ export default function HeroSection() {
                 <h1 className={styles.content.headline.wrapper}>
                     <span className={styles.content.headline.row}>
                         <motion.span
-                            className={`${styles.content.headline.text} text-white text-[clamp(3.5rem,12vw,9rem)]`}
+                            className={`${styles.content.headline.text} text-white text-[clamp(2.5rem,11vw,9rem)]`}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -78,7 +78,7 @@ export default function HeroSection() {
                     </span>
                     <span className={styles.content.headline.row}>
                         <motion.span
-                            className={`${styles.content.headline.text} text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[clamp(3.5rem,12vw,9rem)]`}
+                            className={`${styles.content.headline.text} text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[clamp(2.5rem,11vw,9rem)]`}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}

@@ -52,6 +52,7 @@ const config: Config = {
                 sans: ["var(--font-manrope)", "sans-serif"],
                 heading: ["var(--font-syne)", "sans-serif"],
                 display: ["var(--font-syne)", "sans-serif"],
+                logo: ["var(--font-orbitron)", "sans-serif"],
             },
             letterSpacing: {
                 "tighter-neg": "-0.05em",

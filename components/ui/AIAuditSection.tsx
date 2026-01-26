@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { motion } from "framer-motion";
-import { FileSearch, Video, Lightbulb, CheckCircle } from "lucide-react";
+import { FileSearch, Video, Lightbulb, CheckCircle, ArrowLeft } from "lucide-react";
 import AuditForm from "./AuditForm";
 import SpotlightCard from "./SpotlightCard";
 
@@ -41,6 +42,11 @@ const auditIncludes = [
 export default function AIAuditSection() {
     return (
         <section id="audit" className={styles.section}>
+            {/* Back Navigation */}
+            <Link href="/" className={styles.backButton}>
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <span>Return to Protocol</span>
+            </Link>
             {/* Background effects */}
             <div className={styles.background.base} />
             <div className={styles.background.blobCyan} />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne, Manrope } from "next/font/google"; // Import Syne and Manrope
+import { Syne, Manrope, Orbitron } from "next/font/google"; // Import Orbitron for Logo
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import SkipToContent from "@/components/ui/SkipToContent";
@@ -14,6 +14,12 @@ const manrope = Manrope({
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
+  display: "swap",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
   display: "swap",
 });
 
@@ -60,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         {/* Mobile Viewport & Safe Areas */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
@@ -77,7 +83,8 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-[#030303] font-sans antialiased text-white", // Deep Void Black background
           manrope.variable,
-          syne.variable
+          syne.variable,
+          orbitron.variable
         )}
       >
         <SkipToContent />

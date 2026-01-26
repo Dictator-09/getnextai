@@ -1,10 +1,11 @@
 export const styles = {
     section: "py-16 sm:py-24 relative overflow-hidden bg-gradient-to-b from-black via-[#050510] to-black",
     background: {
-        base: "absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/10 sm:from-cyan-900/20 via-transparent to-transparent",
-        blobCyan: "hidden sm:block absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl",
-        blobPurple: "hidden sm:block absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"
+        base: "absolute inset-0 bg-[#030303]",
+        blobCyan: "absolute top-0 right-0 w-[800px] h-[800px] bg-acid-lime/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen",
+        blobPurple: "absolute bottom-0 left-0 w-[600px] h-[600px] bg-hyper-violet/5 rounded-full blur-[100px] pointer-events-none mix-blend-screen"
     },
+    backButton: "fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full backdrop-blur-md transition-all group text-sm font-mono text-white/60 hover:text-white",
     header: {
         container: "text-center mb-10 sm:mb-16",
         badge: "inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-xs sm:text-sm font-medium mb-4 sm:mb-6",
