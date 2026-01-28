@@ -22,7 +22,7 @@ const styles = {
         wrapper: "relative z-10 text-center px-6 max-w-7xl mx-auto flex flex-col items-center",
         label: "font-mono text-acid-lime text-xs sm:text-sm tracking-[0.2em] mb-8 uppercase opacity-0 animate-reveal",
         headline: {
-            wrapper: "font-display font-extrabold tracking-tighter leading-[0.85] mb-8 relative",
+            wrapper: "font-display font-extrabold tracking-tighter leading-[0.9] mb-8 relative",
             row: "block overflow-hidden",
             text: "inline-block transform-gpu"
         },
@@ -68,7 +68,7 @@ export default function HeroSection() {
                 <h1 className={styles.content.headline.wrapper}>
                     <span className={styles.content.headline.row}>
                         <motion.span
-                            className={`${styles.content.headline.text} text-white text-[clamp(2.5rem,11vw,9rem)]`}
+                            className={`${styles.content.headline.text} text-white text-[clamp(2.5rem,10vw,8rem)]`}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -78,7 +78,7 @@ export default function HeroSection() {
                     </span>
                     <span className={styles.content.headline.row}>
                         <motion.span
-                            className={`${styles.content.headline.text} text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[clamp(2.5rem,11vw,9rem)]`}
+                            className={`${styles.content.headline.text} text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[clamp(2.5rem,10vw,8rem)]`}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
